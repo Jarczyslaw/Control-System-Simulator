@@ -13,6 +13,9 @@ namespace SolversTest
     {
         private TestModel model;
         private List<TestEntry> entries = new List<TestEntry>();
+        private double[] timeVector;
+        private double[] exactValue;
+
         private Stopwatch stopwatch = new Stopwatch();
 
         public Tester(TestModel model, ISolver[] solvers)
@@ -28,31 +31,22 @@ namespace SolversTest
         public void Test(double time, double h)
         {
             int iterations = Convert.ToInt32(time / h);
-            double[] t = new double[iterations];
-            double[] exact = new double[iterations];
+            timeVector = new double[iterations];
+            exactValue = new double[iterations];
             for (int i = 0;i < iterations;i++)
             {
-                t[i] = i * h;
-                exact[i] = model.ExactSolution(t[i]);
+                timeVector[i] = i * h;
+                exactValue[i] = model.ExactSolution(timeVector[i]);
             }
 
             Stopwatch sw = new Stopwatch();
             foreach (TestEntry entry in entries)
             {
-                entry.Test(sw, t, h);
-                entry.GetMse(exact);
+                entry.Test(sw, timeVector, h);
+                entry.GetMse(exactValue);
             }
-                
-            List<double[]> data = new List<double[]>();
-            for(int i = 0;i < iterations;i++)
-            {
-                double[] row = new double[entries.Count + 2];
-                row[0] = t[i];
-                row[1] = exact[i];
-                for(int j = 0;j < entries.Count;j++)
-                    row[2 + j] = entries[j].data[i];
-                data.Add(row);
-            }
+
+            List<double[]>  data = MergeData();
 
             FileWriter fw = new FileWriter();
             fw.DataToFile(data, @"D://test.txt");
@@ -61,6 +55,19 @@ namespace SolversTest
                 entry.ShowInfo();
         }
 
-
+        private List<double[]> MergeData()
+        {
+            List<double[]> data = new List<double[]>();
+            for (int i = 0; i < timeVector.Length; i++)
+            {
+                double[] row = new double[entries.Count + 2];
+                row[0] = timeVector[i];
+                row[1] = exactValue[i];
+                for (int j = 0; j < entries.Count; j++)
+                    row[2 + j] = entries[j].data[i];
+                data.Add(row);
+            }
+            return data;
+        }
     }
 }

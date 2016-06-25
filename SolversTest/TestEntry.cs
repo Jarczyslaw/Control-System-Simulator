@@ -44,7 +44,7 @@ namespace SolversTest
         public void GetMse(double[] exact)
         {
             for (int i = 0; i < exact.Length; i++)
-                mse += (double)Math.Pow(data[i] - exact[i], 2d);
+                mse += Math.Pow(data[i] - exact[i], 2d);
         }
 
         public double Step(double t, double h)

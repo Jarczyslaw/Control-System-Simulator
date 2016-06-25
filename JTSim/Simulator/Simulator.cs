@@ -80,11 +80,8 @@ namespace JTSim
         public void SignalSimulation(double time, ISignalGenerator generator)
         {
             Init();
-            int iterations = (int)Math.Round(time / h);
-            for (int i = 0; i < iterations; i++)
-            {
-                Step(generator.GetSample(i * h));
-            }
+            for (double t = 0d; t <= time; t += h)
+                Step(generator.GetSample(t));
         }
 
         public double GetCurrentTime()
