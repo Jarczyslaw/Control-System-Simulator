@@ -8,16 +8,16 @@ namespace JTSim
 {
     public class P : GenericRegulator
     {
-        public float Kp = 3f;
+        public double Kp = 3d;
 
         public P() { }
 
-        public P(float Kp)
+        public P(double Kp)
         {
             this.Kp = Kp;
         }
 
-        public override float Step(float setValue, float processValue, float h)
+        public override double Step(double setValue, double processValue, double h)
         {
             return Kp * (setValue - processValue);
         }

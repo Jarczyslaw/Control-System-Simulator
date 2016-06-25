@@ -2,10 +2,10 @@
 {
     public abstract class GenericSystem
     {
-        public float output;
+        public double output;
 
-        public abstract void Step(float u, float t, float h);
+        public abstract void Step(double u, double t, double h);
 
-        public abstract void Init(float h);
+        public abstract void Init(double h);
     }
 }

@@ -4,26 +4,26 @@ namespace JTSim
 {
     public class HydraulicPlant : ContinousModel
     {
-        public float k = 1f;
-        public float T = 1.0f;
+        public double k = 1d;
+        public double T = 1.0d;
 
-        public float max = 5f;
+        public double max = 5d;
 
-        public HydraulicPlant(float initState)
+        public HydraulicPlant(double initState)
         {
-            this.initState = Vector<float>.Build.Dense(1, initState);
+            this.initState = Vector<double>.Build.Dense(1, initState);
         }
 
-        public override Vector<float> DifferentialEquasions(Vector<float> state, float input, float t)
+        public override Vector<double> DifferentialEquasions(Vector<double> state, double input, double t)
         {
-            Vector<float> diff = -1.0f / T * state + k / T * input;
+            Vector<double> diff = -1.0d / T * state + k / T * input;
             return diff;
         }
 
-        public override float OutputEquation(Vector<float> state, float input)
+        public override double OutputEquation(Vector<double> state, double input)
         {
-            if (state[0] < 0f)
-                state[0] = 0f;
+            if (state[0] < 0d)
+                state[0] = 0d;
             else if (state[0] > max)
                 state[0] = max;
             return state[0];

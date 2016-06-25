@@ -53,7 +53,6 @@
     <Compile Include="TestEntry.cs" />
     <Compile Include="Tester.cs" />
     <Compile Include="TestModel.cs" />
-    <Compile Include="TestSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

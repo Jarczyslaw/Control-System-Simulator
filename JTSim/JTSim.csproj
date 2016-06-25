@@ -49,13 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Simulator\FileWriter.cs" />
-    <Compile Include="Simulator\ISignalGenerator.cs" />
+    <Compile Include="Simulator\Generators\ISignalGenerator.cs" />
     <Compile Include="Simulator\Regulators\P.cs" />
     <Compile Include="Simulator\Solvers\SolverDormandPrince.cs" />
     <Compile Include="Simulator\Solvers\SolverMidPoint.cs" />
     <Compile Include="Simulator\Solvers\SolverRK4Enhanced.cs" />
-    <Compile Include="Simulator\StepsGenerator.cs" />
-    <Compile Include="Simulator\WaveGenerator.cs" />
+    <Compile Include="Simulator\Generators\StepsGenerator.cs" />
+    <Compile Include="Simulator\Generators\WaveGenerator.cs" />
+    <Compile Include="Simulator\Systems\Continuous\Test.cs" />
     <Compile Include="Simulator\Systems\Specific\AlphaFilter.cs" />
     <Compile Include="Simulator\Systems\Specific\AlphaFilter2.cs" />
     <Compile Include="Simulator\Systems\Specific\AR.cs" />

@@ -2,10 +2,10 @@
 {
     public abstract class GenericRegulator
     {
-        public float output;
+        public double output;
 
-        public abstract float Step(float setValue, float processValue, float h);
+        public abstract double Step(double setValue, double processValue, double h);
 
-        public virtual void Init(float h) { }
+        public virtual void Init(double h) { }
     }
 }

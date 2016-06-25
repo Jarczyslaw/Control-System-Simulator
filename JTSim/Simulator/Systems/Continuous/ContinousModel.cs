@@ -4,10 +4,10 @@ namespace JTSim
 {
     public abstract class ContinousModel
     {
-        public Vector<float> initState;
+        public Vector<double> initState;
 
-        public abstract Vector<float> DifferentialEquasions(Vector<float> state, float input, float t);
+        public abstract Vector<double> DifferentialEquasions(Vector<double> state, double input, double t);
 
-        public abstract float OutputEquation(Vector<float> state, float input);
+        public abstract double OutputEquation(Vector<double> state, double input);
     }
 }

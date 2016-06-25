@@ -4,6 +4,6 @@ namespace JTSim
 {
     public interface ISolver
     {
-        Vector<float> Solve(ContinousModel model, Vector<float> state, float input, float t, float h);
+        Vector<double> Solve(ContinousModel model, Vector<double> state, double input, double t, double h);
     }
 }

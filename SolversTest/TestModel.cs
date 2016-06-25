@@ -12,23 +12,23 @@ namespace SolversTest
     {
         public TestModel()
         {
-            this.initState = Vector<float>.Build.Dense(1, ExactSolution(0f));
+            this.initState = Vector<double>.Build.Dense(1, ExactSolution(0f));
         }
 
-        public override Vector<float> DifferentialEquasions(Vector<float> state, float input, float t)
+        public override Vector<double> DifferentialEquasions(Vector<double> state, double input, double t)
         {
-            float x = 5f * (float)Math.Sin(3f * t) * (float)Math.Exp(-t / 2f) + 15f * t * (float)Math.Cos(3f * t) * (float)Math.Exp(-t / 2f) - 0.5f * (5f * t * (float)Math.Sin(3f * t) * (float)Math.Exp(-t / 2f));
-            return Vector<float>.Build.Dense(1, x);
+            double x = 5d * Math.Sin(3d * t) * Math.Exp(-t / 2d) + 15d * t * Math.Cos(3d * t) * Math.Exp(-t / 2d) - 0.5d * (5d * t * Math.Sin(3d * t) * Math.Exp(-t / 2d));
+            return Vector<double>.Build.Dense(1, x);
         }
 
-        public override float OutputEquation(Vector<float> state, float input)
+        public override double OutputEquation(Vector<double> state, double input)
         {
             return state[0];
         }
 
-        public float ExactSolution(float t)
+        public double ExactSolution(double t)
         {
-            return 5f * t * (float)Math.Sin(3f * t) * (float)Math.Exp(-0.5f * t) + 4;
+            return 5d * t * Math.Sin(3d * t) * Math.Exp(-0.5d * t) + 4d;
         }
     }
 }

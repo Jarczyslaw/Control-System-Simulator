@@ -8,20 +8,20 @@ namespace JTSim
     {
         private ISolver solver;
         private ContinousModel model;
-        private Vector<float> state;
+        private Vector<double> state;
         private TransportDelay transportDelay;
-        private float delay;
+        private double delay;
 
-        public ContinousSystem(ContinousModel model, ISolver solver) : this(model, 0f, solver) { }
+        public ContinousSystem(ContinousModel model, ISolver solver) : this(model, 0d, solver) { }
 
-        public ContinousSystem (ContinousModel model, float delay, ISolver solver)
+        public ContinousSystem (ContinousModel model, double delay, ISolver solver)
         {
             this.solver = solver;
             this.model = model;
             this.delay = delay;
         }
 
-        public override void Step(float u, float t, float h)
+        public override void Step(double u, double t, double h)
         {
             state = solver.Solve(model, state, u, t, h);
             output = model.OutputEquation(state, u);
@@ -29,10 +29,10 @@ namespace JTSim
             output = transportDelay.Step(output);
         }
 
-        public override void Init(float h)
+        public override void Init(double h)
         {
             state = model.initState.Clone();
-            float initOutput = model.OutputEquation(state, 0f);
+            double initOutput = model.OutputEquation(state, 0d);
             transportDelay = new TransportDelay(delay, initOutput, h);
             output = initOutput;
         }

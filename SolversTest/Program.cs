@@ -13,9 +13,14 @@ namespace SolversTest
         {
             Tester tester = new Tester(new TestModel(), new ISolver[] {
                 new SolverEuler(),
-                new SolverRK4()
+                new SolverMidPoint(),
+                new SolverRK4(),
+                new SolverRK4Enhanced(),
+                new SolverDormandPrince(),
             });
-            tester.Test(10f, 0.01f);
+            tester.Test(10d, 0.01d);
+
+            Console.ReadKey();
         }
     }
 }

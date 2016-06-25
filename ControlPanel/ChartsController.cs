@@ -19,18 +19,18 @@ namespace ControlPanel
         private Series input;
         private Series control;
 
-        private float horizon;
+        private double horizon;
         private int capacity;
         private int chartPointer;
 
         public ChartsController(Chart outputChart, Chart inputChart, Chart controlChart,
-            float horizon, int divider, float h)
+            double horizon, int divider, double h)
         {
             this.outputChart = outputChart;
             this.inputChart = inputChart;
             this.controlChart = controlChart;
 
-            capacity = Convert.ToInt32(horizon * 1f / (divider * h));
+            capacity = Convert.ToInt32(horizon * 1d / (divider * h));
             this.horizon = horizon;
         }
 
@@ -76,9 +76,9 @@ namespace ControlPanel
             chartPointer = 0;
         }
 
-        public void AddData (float[] data)
+        public void AddData (double[] data)
         {
-            float time = data[0];
+            double time = data[0];
 
             DataPoint outputPoint = new DataPoint(time, data[3]);
             DataPoint controlPoint = new DataPoint(time, data[2]);

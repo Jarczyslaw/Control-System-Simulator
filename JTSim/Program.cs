@@ -10,11 +10,7 @@ namespace JTSim
     {
         static void Main(string[] args)
         {
-            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
-            customCulture.NumberFormat.NumberDecimalSeparator = ".";
-            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
-
-            float h = 0.01f;
+            double h = 0.01f;
             var simulator = new Simulator(h);
             simulator.AddRegulator(new TransparentRegulator());
             //s.AddSystem(new ContinousSystem(new SecondOrder(0f, 0f), 1f, new SolverEuler()));
@@ -22,8 +18,9 @@ namespace JTSim
             //s.AddSystem(new AlphaFilter(0.5f));
             //s.AddSystem(new DiscreteSystem(new AlphaFilter2(-0.5f), 1f));
             //s.AddSystem(new DiscreteSystem(new AR(-1f, -1f, -1f)));
-            simulator.AddSystem(new ContinousSystem(new SecondOrder(0f, 0f), 0f, new SolverDormandPrince()));
-            simulator.SignalSimulation(30f, new StepsGenerator(new float[] { 20f, 10f, 0f}, new float[] { 2f, -2f, 1f}));
+            simulator.AddSystem(new ContinousSystem(new Test(), 0d, new SolverRK4()));
+            simulator.mode = Simulator.Modes.OpenLoop;
+            simulator.StepSimulation(10f);
             FileWriter fw = new FileWriter();
             fw.DataToFile(simulator.data, @"D://data.txt");
 

@@ -2,7 +2,7 @@
 {
     public class TransparentRegulator : GenericRegulator
     {
-        public override float Step(float setValue, float processValue, float h)
+        public override double Step(double setValue, double processValue, double h)
         {
             output = setValue;
             return output;

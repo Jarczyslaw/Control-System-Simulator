@@ -4,34 +4,34 @@ namespace JTSim
 {
     public class DiscreteSecondOrder : DiscreteModel
     {
-        float k = 2f;
-        float T1 = 1f;
-        float T2 = 1f;
+        double k = 2d;
+        double T1 = 1d;
+        double T2 = 1d;
 
-        public DiscreteSecondOrder(float y_1, float y_2)
+        public DiscreteSecondOrder(double y_1, double y_2)
         {
-            initStates = Vector<float>.Build.Dense(new float[] { y_1, y_2 });
-            initInputs = Vector<float>.Build.Dense(1, 0f);
+            initStates = Vector<double>.Build.Dense(new double[] { y_1, y_2 });
+            initInputs = Vector<double>.Build.Dense(1, 0d);
         }
 
-        public DiscreteSecondOrder(float y_1, float y_2, float k, float T1, float T2) : this(y_1, y_2)
+        public DiscreteSecondOrder(double y_1, double y_2, double k, double T1, double T2) : this(y_1, y_2)
         {
             this.k = k;
             this.T1 = T1;
             this.T2 = T2;
         }
 
-        public override float DifferenceEquasion(Vector<float> states, Vector<float> inputs, float t, float h)
+        public override double DifferenceEquasion(Vector<double> states, Vector<double> inputs, double t, double h)
         {
-            float A = h * h + h * (T1 + T2) + T1 * T2;
-            float B = -2f * T1 * T2 - h * (T1 + T2);
-            float C = T1 * T2;
-            float D = k * h * h;
+            double A = h * h + h * (T1 + T2) + T1 * T2;
+            double B = -2d * T1 * T2 - h * (T1 + T2);
+            double C = T1 * T2;
+            double D = k * h * h;
 
             return -B/A * states[0] - C/A * states[1] + D/A * inputs[0];
         }
 
-        public override float OutputEquation(Vector<float> states, Vector<float> inputs)
+        public override double OutputEquation(Vector<double> states, Vector<double> inputs)
         {
             return states[0];
         }

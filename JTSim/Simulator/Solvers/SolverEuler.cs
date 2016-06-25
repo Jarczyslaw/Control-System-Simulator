@@ -4,9 +4,9 @@ namespace JTSim
 {
     public class SolverEuler : ISolver
     {
-        public Vector<float> Solve(ContinousModel model, Vector<float> state, float input, float t, float h)
+        public Vector<double> Solve(ContinousModel model, Vector<double> state, double input, double t, double h)
         {
-            Vector<float> diffs = model.DifferentialEquasions(state, input, t);
+            Vector<double> diffs = model.DifferentialEquasions(state, input, t);
             return state + h * diffs;
         }
     }

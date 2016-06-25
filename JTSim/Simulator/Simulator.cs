@@ -12,33 +12,32 @@ namespace JTSim
             OpenLoop, ClosedLoop
         }
 
-        public List<float[]> data = new List<float[]>();
+        public List<double[]> data = new List<double[]>();
         public Modes mode = Modes.OpenLoop;
 
-        public float h { get; private set; }
+        public double h { get; private set; }
 
         private GenericSystem system;
         private GenericRegulator regulator;
 
         public int iteration { get; private set; } = -1;
-        private bool log = true;
 
-        public Simulator (float h)
+        public Simulator (double h)
         {
             this.h = h;
         }
 
-        public Simulator (float h, GenericSystem system, GenericRegulator regulator) : this(h)
+        public Simulator (double h, GenericSystem system, GenericRegulator regulator) : this(h)
         {
             this.system = system;
             this.regulator = regulator;
         }
 
-        public float[] Step(float input)
+        public double[] Step(double input)
         {
             iteration++;
-            float time = GetCurrentTime();
-            float controlValue;
+            double time = GetCurrentTime();
+            double controlValue;
             if (iteration == 0)
             {
                 controlValue = GetControlValue(input, system.output);
@@ -46,16 +45,15 @@ namespace JTSim
             else
             {
                 controlValue = GetControlValue(input, system.output);
-                system.Step(controlValue, time, h);
+                system.Step(controlValue, time - h, h);
             }
 
-            float[] newData = new float[] { time, input, controlValue, system.output };
-            if (log)
-                data.Add(newData);
+            double[] newData = new double[] { time, input, controlValue, system.output };
+            data.Add(newData);
             return newData;
         }
 
-        private float GetControlValue (float input, float processValue)
+        private double GetControlValue (double input, double processValue)
         {
             if (mode == Modes.OpenLoop)
                 return input;
@@ -73,23 +71,23 @@ namespace JTSim
             this.regulator = regulator;
         }
 
-        public void StepSimulation(float time)
+        public void StepSimulation(double time)
         {
             StepsGenerator sg = new StepsGenerator(1f);
             SignalSimulation(time, sg);
         }
 
-        public void SignalSimulation(float time, ISignalGenerator generator)
+        public void SignalSimulation(double time, ISignalGenerator generator)
         {
             Init();
             int iterations = (int)Math.Round(time / h);
             for (int i = 0; i < iterations; i++)
             {
-                data.Add(Step(generator.GetSample(i * h)));
+                Step(generator.GetSample(i * h));
             }
         }
 
-        public float GetCurrentTime()
+        public double GetCurrentTime()
         {
             return iteration * h;
         }

@@ -4,11 +4,11 @@ namespace JTSim
 {
     public abstract class DiscreteModel
     {
-        public Vector<float> initStates;
-        public Vector<float> initInputs;
+        public Vector<double> initStates;
+        public Vector<double> initInputs;
 
-        public abstract float DifferenceEquasion(Vector<float> states, Vector<float> inputs, float t, float h);
+        public abstract double DifferenceEquasion(Vector<double> states, Vector<double> inputs, double t, double h);
 
-        public abstract float OutputEquation(Vector<float> states, Vector<float> inputs);
+        public abstract double OutputEquation(Vector<double> states, Vector<double> inputs);
     }
 }

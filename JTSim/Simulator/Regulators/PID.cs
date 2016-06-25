@@ -2,43 +2,43 @@
 {
     public class PID : GenericRegulator
     {
-        float Kp = 1.9f;
-        float Ti = 1f;
-        float Td = 0.15f;
+        double Kp = 1.9d;
+        double Ti = 1d;
+        double Td = 0.15d;
 
         bool antiwindup = false;
-        float processMax = 100f;
-        float processMin = -100f;
+        double processMax = 100d;
+        double processMin = -100d;
 
-        float sumE = 0f;
-        float lastE = 0f;
+        double sumE = 0d;
+        double lastE = 0d;
 
         int iteration = 0;
 
-        public PID(float Kp, float Ti, float Td)
+        public PID(double Kp, double Ti, double Td)
         {
             this.Kp = Kp;
             this.Ti = Ti;
             this.Td = Td;
         }
 
-        public PID(float Kp, float Ti, float Td, float processMax, float processMin) : this(Kp, Ti, Td)
+        public PID(double Kp, double Ti, double Td, double processMax, double processMin) : this(Kp, Ti, Td)
         {
             this.processMax = processMax;
             this.processMin = processMin;
             antiwindup = true;
         }
 
-        public override float Step(float setValue, float processValue, float h)
+        public override double Step(double setValue, double processValue, double h)
         {
-            float e = setValue - processValue;
-            float P = Kp * e;
+            double e = setValue - processValue;
+            double P = Kp * e;
             sumE += e;
-            float I = Kp * h / Ti * sumE;
-            float D = 0f;
+            double I = Kp * h / Ti * sumE;
+            double D = 0d;
             if (iteration != 0)
-                D = 1f / h * Kp * Td * (e - lastE);
-            float u = P + I + D;
+                D = 1d / h * Kp * Td * (e - lastE);
+            double u = P + I + D;
             if (antiwindup)
             {
                 if (u > processMax)
@@ -58,10 +58,10 @@
             return u;
         }
 
-        public override void Init(float h)
+        public override void Init(double h)
         {
             iteration = 0;
-            sumE = 0f;
+            sumE = 0d;
         }
     }
 }

@@ -11,8 +11,8 @@ namespace ControlPanel
     public class Controller
     {
         public volatile bool running = false;
-        public Action<float[], int> realTimeUpdate;
-        public float input = 1f;
+        public Action<double[], int> realTimeUpdate;
+        public double input = 1d;
         public Simulator simulator { get; private set; }
 
         private MicroLibrary.MicroTimer timer;
@@ -22,11 +22,11 @@ namespace ControlPanel
         public Controller(Simulator simulator)
         {
             this.simulator = simulator;
-            InitTimer(1000000f * simulator.h);
+            InitTimer(1000000d * simulator.h);
             
         }
 
-        private void InitTimer(float delay)
+        private void InitTimer(double delay)
         {
             timer = new MicroLibrary.MicroTimer();
             timer.Interval = Convert.ToInt64(delay);
@@ -42,7 +42,7 @@ namespace ControlPanel
         {
             if (running)
             {
-                float[] data = simulator.Step(input);
+                double[] data = simulator.Step(input);
                 realTimeUpdate?.Invoke(data, simulator.iteration);
             }
         }

@@ -5,22 +5,22 @@ namespace JTSim
 {
     public class AlphaFilter2 : DiscreteModel
     {
-        float k = 1f;
-        float T = 1f;
+        double k = 1d;
+        double T = 1d;
 
-        public AlphaFilter2 (float initState)
+        public AlphaFilter2 (double initState)
         {
-            this.initStates = Vector<float>.Build.Dense(1, initState);
-            this.initInputs = Vector<float>.Build.Dense(1, 0f);
+            this.initStates = Vector<double>.Build.Dense(1, initState);
+            this.initInputs = Vector<double>.Build.Dense(1, 0d);
         }
 
-        public override float DifferenceEquasion(Vector<float> states, Vector<float> inputs, float t, float h)
+        public override double DifferenceEquasion(Vector<double> states, Vector<double> inputs, double t, double h)
         {
-            float alpha = (float)Math.Exp(-h / T);
-            return states[0] * alpha + (1 - alpha) * k * inputs[0]; 
+            double alpha = (double)Math.Exp(-h / T);
+            return states[0] * alpha + (1d - alpha) * k * inputs[0]; 
         }
 
-        public override float OutputEquation(Vector<float> states, Vector<float> inputs)
+        public override double OutputEquation(Vector<double> states, Vector<double> inputs)
         {
             return states[0];
         }

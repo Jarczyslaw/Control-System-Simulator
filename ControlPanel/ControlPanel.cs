@@ -37,7 +37,7 @@ namespace ControlPanel
             Icon = Properties.Resources.JT;
             UpdateStartStop(false);
             UpdateOpenClose(false);
-            UpdateValuesTextBoxes(new float[] { -1f, 0f, 0f, 0f }, -1);
+            UpdateValuesTextBoxes(new double[] { -1d, 0d, 0d, 0d }, -1);
         }
 
         public void AddController(Controller controller)
@@ -50,7 +50,7 @@ namespace ControlPanel
             charts.Init();
         }
 
-        private void UpdateValuesTextBoxes(float[] data, int iteration)
+        private void UpdateValuesTextBoxes(double[] data, int iteration)
         {
             string f = "0.0000";
             iterationTextBox.Text = iteration.ToString();
@@ -90,7 +90,7 @@ namespace ControlPanel
             }
         }
 
-        public void UpdateFromController(float[] data, int iteration)
+        public void UpdateFromController(double[] data, int iteration)
         {
             if (steps % stepsPerUpdate == 0)
             {
@@ -136,7 +136,7 @@ namespace ControlPanel
             controller.Reset();
             charts.Reset();
             UpdateStartStop(false);
-            UpdateValuesTextBoxes(new float[] { -1f, 0f, 0f, 0f }, -1);
+            UpdateValuesTextBoxes(new double[] { -1d, 0d, 0d, 0d }, -1);
         }
 
         private void inputTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -5,18 +5,18 @@ namespace JTSim
 {
     public class TransportDelay
     {
-        public float h;
+        public double h;
 
-        private Queue<float> buffer;
+        private Queue<double> buffer;
         private int bufferCapacity;
 
-        public TransportDelay(float delay, float initState, float h)
+        public TransportDelay(double delay, double initState, double h)
         {
             this.h = h;
             Init(delay, initState);
         }
 
-        public float Step(float newState)
+        public double Step(double newState)
         {
             if (bufferCapacity == 0)
                 return newState;
@@ -27,10 +27,10 @@ namespace JTSim
             }
         }
 
-        public void Init (float delay, float initState)
+        public void Init (double delay, double initState)
         {
             bufferCapacity = Convert.ToInt32(delay / h);
-            buffer = new Queue<float>(bufferCapacity);
+            buffer = new Queue<double>(bufferCapacity);
             for (int i = 0; i < bufferCapacity; i++)
                 buffer.Enqueue(initState);
         }

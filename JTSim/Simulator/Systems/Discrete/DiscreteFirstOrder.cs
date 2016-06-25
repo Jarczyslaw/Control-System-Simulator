@@ -4,27 +4,27 @@ namespace JTSim
 {
     public class DiscreteFirstOrder : DiscreteModel
     {
-        public float k = 2.0f;
-        public float T = 1.0f;
+        public double k = 2.0d;
+        public double T = 1.0d;
 
-        public DiscreteFirstOrder(float initState)
+        public DiscreteFirstOrder(double initState)
         {
-            this.initStates = Vector<float>.Build.Dense(1, initState);
-            this.initInputs = Vector<float>.Build.Dense(1, 0f);
+            this.initStates = Vector<double>.Build.Dense(1, initState);
+            this.initInputs = Vector<double>.Build.Dense(1, 0d);
         }
 
-        public DiscreteFirstOrder(float initState, float k, float T) : this(initState)
+        public DiscreteFirstOrder(double initState, double k, double T) : this(initState)
         {
             this.k = k;
             this.T = T;
         }
 
-        public override float DifferenceEquasion(Vector<float> states, Vector<float> inputs, float t, float h)
+        public override double DifferenceEquasion(Vector<double> states, Vector<double> inputs, double t, double h)
         {
-            return (1f - h / T) * states[0] + k * h / T * inputs[0];
+            return (1d - h / T) * states[0] + k * h / T * inputs[0];
         }
 
-        public override float OutputEquation(Vector<float> states, Vector<float> inputs)
+        public override double OutputEquation(Vector<double> states, Vector<double> inputs)
         {
             return states[0];
         }

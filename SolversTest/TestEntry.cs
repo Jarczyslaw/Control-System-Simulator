@@ -5,37 +5,63 @@ using System.Text;
 using System.Threading.Tasks;
 using JTSim;
 using System.Diagnostics;
+using MathNet.Numerics.LinearAlgebra;
 
 namespace SolversTest
 {
     public class TestEntry
     {
-        private List<float> data;
+        public double[] data;
 
-        private TestSystem system;
+        private TestModel model;
+        private Vector<double> state;
+
         private ISolver solver;
 
         public long duration;
+        public double mse = 0d;
 
-        public TestEntry(TestSystem system, ISolver solver)
+        public TestEntry(TestModel model, ISolver solver)
         {
-            this.system = system;
+            this.model = model;
             this.solver = solver;
         }
 
-        public void Test(Stopwatch stopwatch, float t, float h)
+        public void Test(Stopwatch stopwatch, double[] time, double h)
         {
+            data = new double[time.Length];
+            data[0] = Init();
             stopwatch.Reset();
             stopwatch.Start();
-            int iterations = Convert.ToInt32(t / h);
-            data.Clear();
-            data.Add(system.Init());
-            for (int i = 1;i < iterations;i++)
+            for (int i = 1;i < time.Length;i++)
             {
-                data.Add(system.Step(solver, t, h));
+                data[i] = Step(time[i] - h, h);
             }
             stopwatch.Stop();
             duration = stopwatch.ElapsedMilliseconds;
+        }
+
+        public void GetMse(double[] exact)
+        {
+            for (int i = 0; i < exact.Length; i++)
+                mse += (double)Math.Pow(data[i] - exact[i], 2d);
+        }
+
+        public double Step(double t, double h)
+        {
+            state = solver.Solve(model, state, 0d, t, h);
+            return state[0];
+        }
+
+        public double Init()
+        {
+            state = model.initState.Clone();
+            return state[0];
+        }
+
+        public void ShowInfo ()
+        {
+            Console.WriteLine("Solver: {0}, duration: {1}, MSE: {2}", solver.GetType().Name, duration, mse);
         }
     }
 }

@@ -22,10 +22,10 @@ namespace ControlPanel
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
-            float h = 0.01f;
+            double h = 0.01d;
             Simulator simulator = new Simulator(h);
             simulator.AddRegulator(new P());
-            simulator.AddSystem(new ContinousSystem(new SecondOrder(0f, 0f), 0f, new SolverEuler()));
+            simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d), 0d, new SolverEuler()));
             //s.AddSystem(new DiscreteSystem(new DiscreteSecondOrder(0.0f, 0f), 1f));
             //s.AddSystem(new AlphaFilter(0.5f));
             //s.AddSystem(new DiscreteSystem(new AlphaFilter2(-0.5f), 1f));

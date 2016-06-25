@@ -14,7 +14,7 @@ namespace JTSim
         {
         }
 
-        private string RowToString(float[] row)
+        private string RowToString(double[] row)
         {
             string res = "";
             for (int i = 0;i < row.Length;i++)
@@ -26,7 +26,7 @@ namespace JTSim
             return res;
         }
 
-        public void DataToFile(List<float[]> data, string filePath, bool append = false)
+        public void DataToFile(List<double[]> data, string filePath, bool append = false)
         {
 
             StringBuilder sb = new StringBuilder();
