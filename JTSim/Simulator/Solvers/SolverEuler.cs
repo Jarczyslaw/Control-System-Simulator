@@ -9,5 +9,7 @@ namespace JTSim
             Vector<double> diffs = model.DifferentialEquasions(state, input, t);
             return state + h * diffs;
         }
+
+        public void Init(double h) { }
     }
 }

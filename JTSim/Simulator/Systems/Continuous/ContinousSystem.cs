@@ -35,6 +35,7 @@ namespace JTSim
             double initOutput = model.OutputEquation(state, 0d);
             transportDelay = new TransportDelay(delay, initOutput, h);
             output = initOutput;
+            solver.Init(h);
         }
     }
 }

@@ -9,14 +9,23 @@ namespace JTSim
 {
     public class SolverRK4Enhanced : ISolver
     {
+        private double oneThirdStep;
+        private double oneEightStep;
+
         public Vector<double> Solve(ContinousModel model, Vector<double> state, double input, double t, double h)
         {
-            double third = 1d / 3d;
-            Vector<double> k1 = h * model.DifferentialEquasions(state, input, t);
-            Vector<double> k2 = h * model.DifferentialEquasions(state + third * k1, input, t + third * h);
-            Vector<double> k3 = h * model.DifferentialEquasions(state + (-third * k1 + k2), input, t + 2d * third * h);
-            Vector<double> k4 = h * model.DifferentialEquasions(state + (k1 - k2 + k3), input, t + h);
-            return state + 1d / 8d * (k1 + 3f * k2 + 3f * k3 + k4);
+            
+            Vector<double> k1 = model.DifferentialEquasions(state, input, t);
+            Vector<double> k2 = model.DifferentialEquasions(state + oneThirdStep * k1, input, t + oneThirdStep);
+            Vector<double> k3 = model.DifferentialEquasions(state + (-oneThirdStep * k1 + h * k2), input, t + 2d * oneThirdStep);
+            Vector<double> k4 = model.DifferentialEquasions(state + h * (k1 - k2 + k3), input, t + h);
+            return state + oneEightStep * (k1 + 3f * k2 + 3f * k3 + k4);
+        }
+
+        public void Init(double h)
+        {
+            oneEightStep = h / 8d;
+            oneThirdStep = h / 3d;
         }
     }
 }

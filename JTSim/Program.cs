@@ -18,7 +18,7 @@ namespace JTSim
             //s.AddSystem(new AlphaFilter(0.5f));
             //s.AddSystem(new DiscreteSystem(new AlphaFilter2(-0.5f), 1f));
             //s.AddSystem(new DiscreteSystem(new AR(-1f, -1f, -1f)));
-            simulator.AddSystem(new ContinousSystem(new Test(), 0d, new SolverRK4()));
+            simulator.AddSystem(new ContinousSystem(new FirstOrder(0f), 0d, new SolverRK4()));
             simulator.mode = Simulator.Modes.OpenLoop;
             simulator.StepSimulation(10f);
             FileWriter fw = new FileWriter();

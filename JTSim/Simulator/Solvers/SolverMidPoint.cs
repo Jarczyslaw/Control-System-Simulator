@@ -9,11 +9,18 @@ namespace JTSim
 {
     public class SolverMidPoint : ISolver
     {
+        private double halfStep;
+
         public Vector<double> Solve(ContinousModel model, Vector<double> state, double input, double t, double h)
         {
-            Vector<double> k1 = h * model.DifferentialEquasions(state, input, t);
-            Vector<double> k2 = h * model.DifferentialEquasions(state + k1 / 2d, input, t + h / 2d);
-            return state + 0.5d * (k1 + k2);
+            Vector<double> k1 = model.DifferentialEquasions(state, input, t);
+            Vector<double> k2 = model.DifferentialEquasions(state + halfStep * k1, input, t + halfStep);
+            return state + halfStep * (k1 + k2);
+        }
+
+        public void Init(double h)
+        {
+            halfStep = 0.5d * h;
         }
     }
 }

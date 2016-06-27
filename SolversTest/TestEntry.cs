@@ -30,7 +30,7 @@ namespace SolversTest
         public void Test(Stopwatch stopwatch, double[] time, double h)
         {
             data = new double[time.Length];
-            data[0] = Init();
+            data[0] = Init(h);
             stopwatch.Reset();
             stopwatch.Start();
             for (int i = 1;i < time.Length;i++)
@@ -43,8 +43,10 @@ namespace SolversTest
 
         public void GetMse(double[] exact)
         {
+            double sum = 0d;
             for (int i = 0; i < exact.Length; i++)
-                mse += Math.Pow(data[i] - exact[i], 2d);
+                sum += Math.Pow(data[i] - exact[i], 2d);
+            mse = sum / exact.Length;
         }
 
         public double Step(double t, double h)
@@ -53,8 +55,9 @@ namespace SolversTest
             return state[0];
         }
 
-        public double Init()
+        public double Init(double h)
         {
+            solver.Init(h);
             state = model.initState.Clone();
             return state[0];
         }
