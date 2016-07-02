@@ -80,6 +80,7 @@
     <Compile Include="Simulator\Solvers\SolverRK4.cs" />
     <Compile Include="Simulator\Regulators\TransparentRegulator.cs" />
     <Compile Include="Simulator\Systems\TransportDelay.cs" />
+    <Compile Include="Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

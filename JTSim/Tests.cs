@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Diagnostics;
+
+namespace JTSim
+{
+    public class Tests
+    {
+        private string directory;
+        private Simulator simulator;
+        private FileWriter fileWriter;
+        private Stopwatch stopwatch = new Stopwatch();
+
+        public Tests (string directory)
+        {
+            this.directory = directory;
+            Directory.CreateDirectory(directory);
+
+            simulator = new Simulator(0.1);
+            fileWriter = new FileWriter();
+        }
+
+        public void Test1(string fileName)
+        {
+            simulator.AddRegulator(new TransparentRegulator());
+            simulator.AddSystem(new ContinousSystem(new FirstOrder(0d), 0d, new SolverRK4()));
+            simulator.SetOpenLoop();
+            simulator.Init();
+            simulator.StepSimulation(10f);
+
+            fileWriter.SimulatorDataToFile(simulator, directory + fileName);
+        }
+
+        public void Test2(string fileName)
+        {
+            simulator.AddRegulator(new TransparentRegulator());
+            simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d), 0d, new SolverRK4()));
+            simulator.SetOpenLoop();
+            simulator.Init();
+            simulator.StepSimulation(10f);
+
+            fileWriter.SimulatorDataToFile(simulator, directory + fileName);
+        }
+
+        public void Test3(string fileName)
+        {
+            simulator.AddRegulator(new PID(1.09, 3.16, 0.12));
+            simulator.AddSystem(new ContinousSystem(new FirstOrder(0.5d, 2, 3), 1d, new SolverRK4()));
+            simulator.SetClosedLoop();
+            simulator.Init();
+            simulator.StepSimulation(20f);
+
+            fileWriter.SimulatorDataToFile(simulator, directory + fileName);
+        }
+
+        public void Test4(string fileName)
+        {
+            simulator.AddRegulator(new TransparentRegulator());
+            simulator.AddSystem(new DiscreteSystem(new DiscreteSecondOrder(0, 0), 2d));
+            simulator.SetOpenLoop();
+            simulator.Init();
+            simulator.StepSimulation(10f);
+
+            fileWriter.SimulatorDataToFile(simulator, directory + fileName);
+        }
+
+        public void Test5(string fileName)
+        {
+            WaveGenerator wave = new WaveGenerator(0.5, 3, 1);
+            var data = wave.GetWaves(10, 0.1);
+
+            fileWriter.DataToFile(data, directory + fileName);
+        }
+
+        public void Test6(string fileName)
+        {
+            StepsGenerator steps = new StepsGenerator(
+                new double[] { 0, 5, 8, 14 },
+                new double[] { 1, -3, 2, 0});
+            var data = steps.GetSteps(20, 0.1);
+
+            fileWriter.DataToFile(data, directory + fileName);
+        }
+
+        public void DoAllTests ()
+        {
+            foreach(MethodInfo method in this.GetType().GetMethods())
+            {
+                string methodName = method.Name.ToLower();
+                if (methodName.StartsWith("test"))
+                {
+                    stopwatch.Reset();
+                    stopwatch.Start();
+                    method.Invoke(this, new object[] { methodName + ".txt" });
+                    stopwatch.Stop();
+                    Console.WriteLine("Test: " + method.Name + " done in: " + stopwatch.ElapsedMilliseconds + "ms");
+                } 
+            }
+        }
+    }
+}

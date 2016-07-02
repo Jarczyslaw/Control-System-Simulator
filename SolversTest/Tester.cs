@@ -49,7 +49,7 @@ namespace SolversTest
             List<double[]>  data = MergeData();
 
             FileWriter fw = new FileWriter();
-            fw.DataToFile(data, @"D://test.txt");
+            fw.DataToFile(data, @"D://tests/solvers_test.txt");
 
             foreach (TestEntry entry in entries)
                 entry.ShowInfo();

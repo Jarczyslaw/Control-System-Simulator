@@ -71,6 +71,24 @@ namespace JTSim
             this.regulator = regulator;
         }
 
+        public void SetOpenLoop()
+        {
+            mode = Modes.OpenLoop;
+        }
+
+        public void SetClosedLoop()
+        {
+            mode = Modes.ClosedLoop;
+        }
+
+        public void ToggleMode ()
+        {
+            if (mode == Modes.OpenLoop)
+                mode = Modes.ClosedLoop;
+            else
+                mode = Modes.OpenLoop;
+        }
+
         public void StepSimulation(double time)
         {
             StepsGenerator sg = new StepsGenerator(1f);

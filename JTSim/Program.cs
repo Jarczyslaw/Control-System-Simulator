@@ -10,20 +10,10 @@ namespace JTSim
     {
         static void Main(string[] args)
         {
-            double h = 0.01f;
-            var simulator = new Simulator(h);
-            simulator.AddRegulator(new TransparentRegulator());
-            //s.AddSystem(new ContinousSystem(new SecondOrder(0f, 0f), 1f, new SolverEuler()));
-            //s.AddSystem(new DiscreteSystem(new DiscreteSecondOrder(0.0f, 0f), 1f));
-            //s.AddSystem(new AlphaFilter(0.5f));
-            //s.AddSystem(new DiscreteSystem(new AlphaFilter2(-0.5f), 1f));
-            //s.AddSystem(new DiscreteSystem(new AR(-1f, -1f, -1f)));
-            simulator.AddSystem(new ContinousSystem(new FirstOrder(0f), 0d, new SolverRK4()));
-            simulator.mode = Simulator.Modes.OpenLoop;
-            simulator.StepSimulation(10f);
-            FileWriter fw = new FileWriter();
-            fw.DataToFile(simulator.data, @"D://data.txt");
+            Tests tests = new Tests(@"D:/tests/");
+            tests.DoAllTests();
 
+            Console.ReadKey();
             /*WaveGenerator gen = new WaveGenerator();
             fw.WavesToFile(gen, 10f, 0.01f, @"D://s.txt");*/
             

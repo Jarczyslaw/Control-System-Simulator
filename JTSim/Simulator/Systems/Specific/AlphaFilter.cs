@@ -21,7 +21,7 @@ namespace JTSim
 
         public override void Step(double u, double t, double h)
         {
-            double alpha = (double)Math.Exp(-h / T);
+            double alpha = Math.Exp(-h / T);
             output = output * alpha + (1d - alpha) * u * k;
         }
     }
