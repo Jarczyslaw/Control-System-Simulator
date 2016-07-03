@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.outputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.inputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -53,29 +53,29 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.timeHorizonTextBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.inputTrackBar = new System.Windows.Forms.TrackBar();
-            this.label6 = new System.Windows.Forms.Label();
-            this.inputTextBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.setValueTrackBar = new System.Windows.Forms.TrackBar();
-            this.inputSetTextBox = new System.Windows.Forms.TextBox();
-            this.inputTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.waveAmplitudeTextBox = new System.Windows.Forms.TextBox();
-            this.waveFrequencyTextBox = new System.Windows.Forms.TextBox();
-            this.waveOffsetTextBox = new System.Windows.Forms.TextBox();
-            this.waveSetButton = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.setValueTextBox = new System.Windows.Forms.TextBox();
-            this.timeHorizonTextBox = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.waveSetButton = new System.Windows.Forms.Button();
+            this.waveOffsetTextBox = new System.Windows.Forms.TextBox();
+            this.waveFrequencyTextBox = new System.Windows.Forms.TextBox();
+            this.waveAmplitudeTextBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.inputSetTextBox = new System.Windows.Forms.TextBox();
+            this.inputTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.setValueTrackBar = new System.Windows.Forms.TrackBar();
+            this.label7 = new System.Windows.Forms.Label();
+            this.inputTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.inputTrackBar = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.outputChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputChart)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -84,8 +84,8 @@
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.inputTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.setValueTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // outputChart
@@ -93,12 +93,12 @@
             this.outputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea4.Name = "ChartArea1";
-            this.outputChart.ChartAreas.Add(chartArea4);
-            legend4.Alignment = System.Drawing.StringAlignment.Center;
-            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend4.Name = "Legend1";
-            this.outputChart.Legends.Add(legend4);
+            chartArea7.Name = "ChartArea1";
+            this.outputChart.ChartAreas.Add(chartArea7);
+            legend7.Alignment = System.Drawing.StringAlignment.Center;
+            legend7.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend7.Name = "Legend1";
+            this.outputChart.Legends.Add(legend7);
             this.outputChart.Location = new System.Drawing.Point(3, 3);
             this.outputChart.Name = "outputChart";
             this.outputChart.Size = new System.Drawing.Size(762, 196);
@@ -110,12 +110,12 @@
             this.inputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea5.Name = "ChartArea1";
-            this.inputChart.ChartAreas.Add(chartArea5);
-            legend5.Alignment = System.Drawing.StringAlignment.Center;
-            legend5.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend5.Name = "Legend1";
-            this.inputChart.Legends.Add(legend5);
+            chartArea8.Name = "ChartArea1";
+            this.inputChart.ChartAreas.Add(chartArea8);
+            legend8.Alignment = System.Drawing.StringAlignment.Center;
+            legend8.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend8.Name = "Legend1";
+            this.inputChart.Legends.Add(legend8);
             this.inputChart.Location = new System.Drawing.Point(3, 205);
             this.inputChart.Name = "inputChart";
             this.inputChart.Size = new System.Drawing.Size(762, 191);
@@ -159,12 +159,12 @@
             this.controlChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea6.Name = "ChartArea1";
-            this.controlChart.ChartAreas.Add(chartArea6);
-            legend6.Alignment = System.Drawing.StringAlignment.Center;
-            legend6.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend6.Name = "Legend1";
-            this.controlChart.Legends.Add(legend6);
+            chartArea9.Name = "ChartArea1";
+            this.controlChart.ChartAreas.Add(chartArea9);
+            legend9.Alignment = System.Drawing.StringAlignment.Center;
+            legend9.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend9.Name = "Legend1";
+            this.controlChart.Legends.Add(legend9);
             this.controlChart.Location = new System.Drawing.Point(3, 402);
             this.controlChart.Name = "controlChart";
             this.controlChart.Size = new System.Drawing.Size(762, 192);
@@ -316,6 +316,31 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Control";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(5, 131);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(206, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Simulate";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(35, 108);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(70, 13);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "Time horizon:";
+            // 
+            // timeHorizonTextBox
+            // 
+            this.timeHorizonTextBox.Location = new System.Drawing.Point(111, 105);
+            this.timeHorizonTextBox.Name = "timeHorizonTextBox";
+            this.timeHorizonTextBox.Size = new System.Drawing.Size(100, 20);
+            this.timeHorizonTextBox.TabIndex = 10;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label2);
@@ -334,6 +359,25 @@
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Data";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(71, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Set value:";
+            // 
+            // setValueTextBox
+            // 
+            this.setValueTextBox.Location = new System.Drawing.Point(132, 71);
+            this.setValueTextBox.Name = "setValueTextBox";
+            this.setValueTextBox.ReadOnly = true;
+            this.setValueTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.setValueTextBox.Size = new System.Drawing.Size(80, 20);
+            this.setValueTextBox.TabIndex = 14;
+            this.setValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // groupBox4
             // 
@@ -360,50 +404,83 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Input";
             // 
-            // inputTrackBar
+            // label12
             // 
-            this.inputTrackBar.Location = new System.Drawing.Point(6, 72);
-            this.inputTrackBar.Maximum = 100;
-            this.inputTrackBar.Name = "inputTrackBar";
-            this.inputTrackBar.Size = new System.Drawing.Size(206, 45);
-            this.inputTrackBar.TabIndex = 23;
-            this.inputTrackBar.Scroll += new System.EventHandler(this.inputTrackBar_Scroll);
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(88, 273);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 13);
+            this.label12.TabIndex = 35;
+            this.label12.Text = "Offset:";
             // 
-            // label6
+            // label11
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(35, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 13);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Open loop - input:";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(70, 247);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 13);
+            this.label11.TabIndex = 34;
+            this.label11.Text = "Amplitude:";
             // 
-            // inputTextBox
+            // label10
             // 
-            this.inputTextBox.Location = new System.Drawing.Point(132, 46);
-            this.inputTextBox.Name = "inputTextBox";
-            this.inputTextBox.ReadOnly = true;
-            this.inputTextBox.Size = new System.Drawing.Size(80, 20);
-            this.inputTextBox.TabIndex = 23;
-            this.inputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(66, 221);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 13);
+            this.label10.TabIndex = 34;
+            this.label10.Text = "Frequency:";
             // 
-            // label7
+            // label9
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 126);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(111, 13);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "Close loop - set value:";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 197);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(99, 13);
+            this.label9.TabIndex = 33;
+            this.label9.Text = "Waves parameters:";
             // 
-            // setValueTrackBar
+            // waveSetButton
             // 
-            this.setValueTrackBar.Location = new System.Drawing.Point(6, 149);
-            this.setValueTrackBar.Maximum = 100;
-            this.setValueTrackBar.Name = "setValueTrackBar";
-            this.setValueTrackBar.Size = new System.Drawing.Size(206, 45);
-            this.setValueTrackBar.TabIndex = 26;
-            this.setValueTrackBar.Scroll += new System.EventHandler(this.setValueTrackBar_Scroll);
+            this.waveSetButton.Location = new System.Drawing.Point(9, 219);
+            this.waveSetButton.Name = "waveSetButton";
+            this.waveSetButton.Size = new System.Drawing.Size(51, 72);
+            this.waveSetButton.TabIndex = 14;
+            this.waveSetButton.Text = "Set waves parameters";
+            this.waveSetButton.UseVisualStyleBackColor = true;
+            // 
+            // waveOffsetTextBox
+            // 
+            this.waveOffsetTextBox.Location = new System.Drawing.Point(132, 270);
+            this.waveOffsetTextBox.Name = "waveOffsetTextBox";
+            this.waveOffsetTextBox.Size = new System.Drawing.Size(80, 20);
+            this.waveOffsetTextBox.TabIndex = 32;
+            this.waveOffsetTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // waveFrequencyTextBox
+            // 
+            this.waveFrequencyTextBox.Location = new System.Drawing.Point(132, 218);
+            this.waveFrequencyTextBox.Name = "waveFrequencyTextBox";
+            this.waveFrequencyTextBox.Size = new System.Drawing.Size(80, 20);
+            this.waveFrequencyTextBox.TabIndex = 31;
+            this.waveFrequencyTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // waveAmplitudeTextBox
+            // 
+            this.waveAmplitudeTextBox.Location = new System.Drawing.Point(132, 244);
+            this.waveAmplitudeTextBox.Name = "waveAmplitudeTextBox";
+            this.waveAmplitudeTextBox.Size = new System.Drawing.Size(80, 20);
+            this.waveAmplitudeTextBox.TabIndex = 30;
+            this.waveAmplitudeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(51, 22);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(57, 13);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "Input type:";
             // 
             // inputSetTextBox
             // 
@@ -430,127 +507,50 @@
             this.inputTypeComboBox.TabIndex = 28;
             this.inputTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.inputTypeComboBox_SelectedIndexChanged);
             // 
-            // label8
+            // setValueTrackBar
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(51, 22);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 13);
-            this.label8.TabIndex = 29;
-            this.label8.Text = "Input type:";
+            this.setValueTrackBar.Location = new System.Drawing.Point(6, 149);
+            this.setValueTrackBar.Maximum = 100;
+            this.setValueTrackBar.Name = "setValueTrackBar";
+            this.setValueTrackBar.Size = new System.Drawing.Size(206, 45);
+            this.setValueTrackBar.TabIndex = 26;
+            this.setValueTrackBar.Scroll += new System.EventHandler(this.setValueTrackBar_Scroll);
             // 
-            // waveAmplitudeTextBox
+            // label7
             // 
-            this.waveAmplitudeTextBox.Location = new System.Drawing.Point(132, 244);
-            this.waveAmplitudeTextBox.Name = "waveAmplitudeTextBox";
-            this.waveAmplitudeTextBox.Size = new System.Drawing.Size(80, 20);
-            this.waveAmplitudeTextBox.TabIndex = 30;
-            this.waveAmplitudeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 126);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(111, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Close loop - set value:";
             // 
-            // waveFrequencyTextBox
+            // inputTextBox
             // 
-            this.waveFrequencyTextBox.Location = new System.Drawing.Point(132, 218);
-            this.waveFrequencyTextBox.Name = "waveFrequencyTextBox";
-            this.waveFrequencyTextBox.Size = new System.Drawing.Size(80, 20);
-            this.waveFrequencyTextBox.TabIndex = 31;
-            this.waveFrequencyTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.inputTextBox.Location = new System.Drawing.Point(132, 46);
+            this.inputTextBox.Name = "inputTextBox";
+            this.inputTextBox.ReadOnly = true;
+            this.inputTextBox.Size = new System.Drawing.Size(80, 20);
+            this.inputTextBox.TabIndex = 23;
+            this.inputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // waveOffsetTextBox
+            // label6
             // 
-            this.waveOffsetTextBox.Location = new System.Drawing.Point(132, 270);
-            this.waveOffsetTextBox.Name = "waveOffsetTextBox";
-            this.waveOffsetTextBox.Size = new System.Drawing.Size(80, 20);
-            this.waveOffsetTextBox.TabIndex = 32;
-            this.waveOffsetTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(35, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(91, 13);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Open loop - input:";
             // 
-            // waveSetButton
+            // inputTrackBar
             // 
-            this.waveSetButton.Location = new System.Drawing.Point(9, 219);
-            this.waveSetButton.Name = "waveSetButton";
-            this.waveSetButton.Size = new System.Drawing.Size(51, 72);
-            this.waveSetButton.TabIndex = 14;
-            this.waveSetButton.Text = "Set waves parameters";
-            this.waveSetButton.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 197);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(99, 13);
-            this.label9.TabIndex = 33;
-            this.label9.Text = "Waves parameters:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(66, 221);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(60, 13);
-            this.label10.TabIndex = 34;
-            this.label10.Text = "Frequency:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(70, 247);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 13);
-            this.label11.TabIndex = 34;
-            this.label11.Text = "Amplitude:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(88, 273);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(38, 13);
-            this.label12.TabIndex = 35;
-            this.label12.Text = "Offset:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(71, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Set value:";
-            // 
-            // setValueTextBox
-            // 
-            this.setValueTextBox.Location = new System.Drawing.Point(132, 71);
-            this.setValueTextBox.Name = "setValueTextBox";
-            this.setValueTextBox.ReadOnly = true;
-            this.setValueTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.setValueTextBox.Size = new System.Drawing.Size(80, 20);
-            this.setValueTextBox.TabIndex = 14;
-            this.setValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // timeHorizonTextBox
-            // 
-            this.timeHorizonTextBox.Location = new System.Drawing.Point(111, 105);
-            this.timeHorizonTextBox.Name = "timeHorizonTextBox";
-            this.timeHorizonTextBox.Size = new System.Drawing.Size(100, 20);
-            this.timeHorizonTextBox.TabIndex = 10;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(35, 108);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(70, 13);
-            this.label13.TabIndex = 11;
-            this.label13.Text = "Time horizon:";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(5, 131);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Simulate";
-            this.button1.UseVisualStyleBackColor = true;
+            this.inputTrackBar.Location = new System.Drawing.Point(6, 72);
+            this.inputTrackBar.Maximum = 100;
+            this.inputTrackBar.Name = "inputTrackBar";
+            this.inputTrackBar.Size = new System.Drawing.Size(206, 45);
+            this.inputTrackBar.TabIndex = 23;
+            this.inputTrackBar.Scroll += new System.EventHandler(this.inputTrackBar_Scroll);
             // 
             // ControlPanel
             // 
@@ -561,9 +561,12 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.KeyPreview = true;
             this.Name = "ControlPanel";
             this.Text = "JTSim";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlPanel_FormClosing);
             this.Load += new System.EventHandler(this.ControlPanel_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ControlPanel_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.outputChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputChart)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -575,8 +578,8 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.inputTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.setValueTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputTrackBar)).EndInit();
             this.ResumeLayout(false);
 
         }

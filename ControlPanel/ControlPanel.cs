@@ -67,12 +67,14 @@ namespace ControlPanel
                 startButton.Text = "STOP";
                 startTextBox.Text = "RUNNING";
                 startTextBox.BackColor = Color.ForestGreen;
+                resetButton.Enabled = false;
             }
             else
             {
                 startButton.Text = "START";
                 startTextBox.Text = "STOPPED";
                 startTextBox.BackColor = Color.OrangeRed;
+                resetButton.Enabled = true;
             }
         }
 
@@ -98,12 +100,22 @@ namespace ControlPanel
                 {
                     BeginInvoke((MethodInvoker)delegate
                     {
-                        charts.AddData(data);
-                        UpdateValuesTextBoxes(data, iteration);
+                        if (controller.IsRunning())
+                            UpdateControls(data, iteration);
                     });
                 }
+                else
+                {
+                    UpdateControls(data, iteration);
+                }
             }
-            steps++;
+            steps++; 
+        }
+
+        public void UpdateControls(double[] data, int iteration)
+        {
+            charts.AddData(data);
+            UpdateValuesTextBoxes(data, iteration);
         }
 
         public void SetInputValue()
@@ -121,16 +133,21 @@ namespace ControlPanel
         private void startButton_Click(object sender, EventArgs e)
         {
             controller.StartStop();
-            UpdateStartStop(controller.running);
+            UpdateStartStop(controller.IsRunning());
         }
 
         private void closeLoopButton_Click(object sender, EventArgs e)
         {
-            bool newState = controller.OpenClose();
+            bool newState = controller.OpenClosedLoop();
             UpdateOpenClose(newState);
         }
 
         private void resetButton_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        private void Reset()
         {
             steps = 0;
             controller.Reset();
@@ -157,6 +174,25 @@ namespace ControlPanel
         private void setValueTrackBar_Scroll(object sender, EventArgs e)
         {
             inputSetTextBox.Text = setValueTrackBar.Value.ToString();
+        }
+
+        private void ControlPanel_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Q)
+            {
+                controller.StartStop();
+                UpdateStartStop(controller.IsRunning());
+            } 
+            else if (e.KeyCode == Keys.W)
+            {
+                Reset();
+            }
+        }
+
+        private void ControlPanel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!controller.timer.StopAndWait(100))
+                controller.timer.Abort();
         }
     }
 }

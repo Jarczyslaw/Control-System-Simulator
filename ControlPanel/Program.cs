@@ -22,19 +22,14 @@ namespace ControlPanel
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
-            double h = 0.01d;
+            double h = 0.0001d;
             Simulator simulator = new Simulator(h);
             simulator.AddRegulator(new P());
             simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d), 0d, new SolverEuler()));
-            //s.AddSystem(new DiscreteSystem(new DiscreteSecondOrder(0.0f, 0f), 1f));
-            //s.AddSystem(new AlphaFilter(0.5f));
-            //s.AddSystem(new DiscreteSystem(new AlphaFilter2(-0.5f), 1f));
-            //s.AddSystem(new DiscreteSystem(new AR(-1f, -1f, -1f)));
-            //simulator.AddSystem(new ContinousSystem(new HydraulicPlant(0.5f), 1f, new SolverEuler()));
             simulator.Init();
 
             Controller controller = new Controller(simulator);
-            ControlPanel controlPanel = new ControlPanel(5);
+            ControlPanel controlPanel = new ControlPanel(1000);
             controlPanel.AddController(controller);
 
             Application.Run(controlPanel);

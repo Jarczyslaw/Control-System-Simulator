@@ -29,7 +29,7 @@ namespace JTSim
         {
             simulator.AddRegulator(new TransparentRegulator());
             simulator.AddSystem(new ContinousSystem(new FirstOrder(0d), 0d, new SolverRK4()));
-            simulator.SetOpenLoop();
+            simulator.feedbackEnabled = false;
             simulator.Init();
             simulator.StepSimulation(10f);
 
@@ -40,7 +40,7 @@ namespace JTSim
         {
             simulator.AddRegulator(new TransparentRegulator());
             simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d), 0d, new SolverRK4()));
-            simulator.SetOpenLoop();
+            simulator.feedbackEnabled = false;
             simulator.Init();
             simulator.StepSimulation(10f);
 
@@ -51,7 +51,7 @@ namespace JTSim
         {
             simulator.AddRegulator(new PID(1.09, 3.16, 0.12));
             simulator.AddSystem(new ContinousSystem(new FirstOrder(0.5d, 2, 3), 1d, new SolverRK4()));
-            simulator.SetClosedLoop();
+            simulator.feedbackEnabled = true;
             simulator.Init();
             simulator.StepSimulation(20f);
 
@@ -62,7 +62,7 @@ namespace JTSim
         {
             simulator.AddRegulator(new TransparentRegulator());
             simulator.AddSystem(new DiscreteSystem(new DiscreteSecondOrder(0, 0), 2d));
-            simulator.SetOpenLoop();
+            simulator.feedbackEnabled = false;
             simulator.Init();
             simulator.StepSimulation(10f);
 

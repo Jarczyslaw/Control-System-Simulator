@@ -7,13 +7,8 @@ namespace JTSim
 {
     public class Simulator
     {
-        public enum Modes
-        {
-            OpenLoop, ClosedLoop
-        }
-
         public List<double[]> data = new List<double[]>();
-        public Modes mode = Modes.OpenLoop;
+        public bool feedbackEnabled = false;
 
         public double h { get; private set; }
 
@@ -39,9 +34,7 @@ namespace JTSim
             double time = GetCurrentTime();
             double controlValue;
             if (iteration == 0)
-            {
                 controlValue = GetControlValue(input, system.output);
-            }
             else
             {
                 controlValue = GetControlValue(input, system.output);
@@ -55,38 +48,10 @@ namespace JTSim
 
         private double GetControlValue (double input, double processValue)
         {
-            if (mode == Modes.OpenLoop)
-                return input;
-            else 
+            if (feedbackEnabled)
                 return regulator.Step(input, processValue, h);
-        }
-
-        public void AddSystem (GenericSystem system)
-        {
-            this.system = system;
-        }
-
-        public void AddRegulator (GenericRegulator regulator)
-        {
-            this.regulator = regulator;
-        }
-
-        public void SetOpenLoop()
-        {
-            mode = Modes.OpenLoop;
-        }
-
-        public void SetClosedLoop()
-        {
-            mode = Modes.ClosedLoop;
-        }
-
-        public void ToggleMode ()
-        {
-            if (mode == Modes.OpenLoop)
-                mode = Modes.ClosedLoop;
             else
-                mode = Modes.OpenLoop;
+                return input;
         }
 
         public void StepSimulation(double time)
@@ -102,17 +67,39 @@ namespace JTSim
                 Step(generator.GetSample(t));
         }
 
-        public double GetCurrentTime()
-        {
-            return iteration * h;
-        }
-
-        public void Init ()
+        public void Init()
         {
             iteration = -1;
             data.Clear();
             system.Init(h);
             regulator.Init(h);
         }
+
+        public double GetCurrentTime()
+        {
+            return iteration * h;
+        }
+
+        public void AddSystem(GenericSystem system)
+        {
+            this.system = system;
+        }
+
+        public void AddRegulator(GenericRegulator regulator)
+        {
+            this.regulator = regulator;
+        }
+
+        public void SetFeedback(bool enabled)
+        {
+            feedbackEnabled = enabled;
+        }
+
+        public bool ToggleFeedback()
+        {
+            feedbackEnabled = !feedbackEnabled;
+            return feedbackEnabled;
+        }
+        
     }
 }
