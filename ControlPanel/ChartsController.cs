@@ -11,31 +11,19 @@ namespace ControlPanel
 {
     public class ChartsController
     {
-        private Chart outputChart;
-        private Chart inputChart;
-        private Chart controlChart;
+        private ChartsConfig config;
 
         private Series output;
         private Series input;
         private Series control;
 
-        private double horizon;
-        private int capacity;
+        private int capacity = 100;
         private int chartPointer;
 
-        public ChartsController(Chart outputChart, Chart inputChart, Chart controlChart,
-            double horizon, int divider, double h)
+        public void Init (ChartsConfig config)
         {
-            this.outputChart = outputChart;
-            this.inputChart = inputChart;
-            this.controlChart = controlChart;
+            this.config = config;
 
-            capacity = Convert.ToInt32(horizon * 1d / (divider * h));
-            this.horizon = horizon;
-        }
-
-        public void Init ()
-        {
             output = new Series
             {
                 Name = "System output", Color = Color.ForestGreen, ChartType = SeriesChartType.Line, BorderWidth = 3
@@ -49,23 +37,29 @@ namespace ControlPanel
                 Name = "Regulator output", Color = Color.CadetBlue, ChartType = SeriesChartType.Line, BorderWidth = 3
             };
 
-            outputChart.Series.Add(output);
-            inputChart.Series.Add(input);
-            controlChart.Series.Add(control);
+            config.output.chart.Series.Add(output);
+            config.input.chart.Series.Add(input);
+            config.control.chart.Series.Add(control);
 
-            outputChart.ChartAreas[0].AxisX.Title = "Time [s]";
-            outputChart.ChartAreas[0].AxisY.Title = "Value";
-            outputChart.ChartAreas[0].AxisX.LabelStyle.Format = "{0.0}";
-            inputChart.ChartAreas[0].AxisX.Title = "Time [s]";
-            inputChart.ChartAreas[0].AxisY.Title = "Value";
-            inputChart.ChartAreas[0].AxisX.LabelStyle.Format = "{0.0}";
-            controlChart.ChartAreas[0].AxisX.Title = "Time [s]";
-            controlChart.ChartAreas[0].AxisY.Title = "Value";
-            controlChart.ChartAreas[0].AxisX.LabelStyle.Format = "{0.0}";
+            InitChart(config.output);
+            InitChart(config.input);
+            InitChart(config.control);
 
             Reset();
+        }
 
-            SetTimeAxis();
+        public void InitChart(ChartConfigEntry config)
+        {
+            config.chart.ChartAreas[0].AxisX.Title = "Time [s]";
+            config.chart.ChartAreas[0].AxisY.Title = config.title;
+            config.chart.ChartAreas[0].AxisX.LabelStyle.Format = "{0.0}";
+            config.chart.ChartAreas[0].AxisY.Minimum = config.min;
+            config.chart.ChartAreas[0].AxisY.Maximum = config.max;
+        }
+
+        public void SetHorizon(int stepsPerUpdate, double h)
+        {
+            capacity = Convert.ToInt32(config.horizon * 1d / (stepsPerUpdate * h));
         }
 
         public void Reset ()
@@ -76,32 +70,43 @@ namespace ControlPanel
             chartPointer = 0;
         }
 
-        public void AddData (double[] data)
+        public void AddSample (double[] data)
         {
             double time = data[0];
 
             DataPoint outputPoint = new DataPoint(time, data[3]);
             DataPoint controlPoint = new DataPoint(time, data[2]);
-            DataPoint setValuePoint = new DataPoint(time, data[1]);
+            DataPoint inputPoint = new DataPoint(time, data[1]);
 
             chartPointer++;
             if (chartPointer <= capacity)
             {
                 output.Points.Add(outputPoint);
+                input.Points.Add(inputPoint);
+                control.Points.Add(controlPoint);
             }
             else
             {
                 PushToSeries(output, outputPoint);
+                PushToSeries(input, inputPoint);
+                PushToSeries(control, controlPoint);
             }
-            SetTimeAxis();
+            SetTimeAxis(config.output.chart, output);
+            SetTimeAxis(config.input.chart, input);
+            SetTimeAxis(config.control.chart, control);
             UpdateCharts();
-            Console.WriteLine(time);
+        }
+
+        public void AddData(List<double[]> data)
+        {
+
         }
 
         private void UpdateCharts()
         {
-            outputChart.Update();
-            inputChart.Update();
+            config.output.chart.Update();
+            config.input.chart.Update();
+            config.control.chart.Update();
         }
 
         private void PushToSeries(Series serie, DataPoint point)
@@ -113,18 +118,18 @@ namespace ControlPanel
             serie.Points.Add(point);
         }
 
-        private void SetTimeAxis()
+        private void SetTimeAxis(Chart chart, Series serie)
         {
             double startTime = 0d;
-            if (output.Points.Count == 0)
+            if (serie.Points.Count == 0)
                 startTime = 0d;
             else
-                startTime = output.Points[0].XValue;
+                startTime = serie.Points[0].XValue;
 
-            double endTime = startTime + horizon - 1d;
-            outputChart.ChartAreas[0].AxisX.Minimum = startTime;
-            outputChart.ChartAreas[0].AxisX.Maximum = endTime;
-            outputChart.ChartAreas[0].RecalculateAxesScale();
+            double endTime = startTime + config.horizon;
+            chart.ChartAreas[0].AxisX.Minimum = startTime;
+            chart.ChartAreas[0].AxisX.Maximum = endTime;
+            chart.ChartAreas[0].RecalculateAxesScale();
         }
     }
 }

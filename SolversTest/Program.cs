@@ -27,7 +27,7 @@ namespace SolversTest
                 new SolverRK4Enhanced(),
                 new SolverDormandPrince(),
             });
-            tester.Test(2d, 0.001d);
+            tester.Test(2d, 0.00001d);
 
             Console.ReadKey();
         }

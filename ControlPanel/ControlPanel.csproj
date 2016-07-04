@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChartConfigEntry.cs" />
+    <Compile Include="ChartsConfig.cs" />
     <Compile Include="ChartsController.cs" />
     <Compile Include="ControlPanel.cs">
       <SubType>Form</SubType>

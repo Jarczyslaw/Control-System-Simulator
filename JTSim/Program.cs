@@ -10,8 +10,11 @@ namespace JTSim
     {
         static void Main(string[] args)
         {
-            Tests tests = new Tests(@"D:/tests/");
-            tests.DoAllTests();
+            /*Tests tests = new Tests(@"D:/tests/");
+            tests.DoAllTests();*/
+
+            // Solve a random linear equation system with 500 unknowns
+            
 
             Console.ReadKey();
             /*WaveGenerator gen = new WaveGenerator();

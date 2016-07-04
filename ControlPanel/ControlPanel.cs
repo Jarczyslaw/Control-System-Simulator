@@ -24,11 +24,6 @@ namespace ControlPanel
             Init();
         }
 
-        public ControlPanel()
-        {
-            Init();
-        }
-
         private void Init()
         {
             InitializeComponent();
@@ -38,6 +33,14 @@ namespace ControlPanel
             UpdateStartStop(false);
             UpdateOpenClose(false);
             UpdateValuesTextBoxes(new double[] { -1d, 0d, 0d, 0d }, -1);
+
+            charts = new ChartsController();
+            charts.Init(new ChartsConfig(
+                10,
+                new ChartConfigEntry() { chart = outputChart, title = "Value", min = 0, max = 2 },
+                new ChartConfigEntry() { chart = inputChart, title = "Value", min = 0, max = 2 },
+                new ChartConfigEntry() { chart = controlChart, title = "Value", min = 0, max = 2 }
+            ));
         }
 
         public void AddController(Controller controller)
@@ -45,9 +48,7 @@ namespace ControlPanel
             this.controller = controller;
             controller.realTimeUpdate += UpdateFromController;
 
-            charts = new ChartsController(outputChart, inputChart, controlChart,
-                10, stepsPerUpdate, controller.simulator.h);
-            charts.Init();
+            charts.SetHorizon(stepsPerUpdate, controller.simulator.h);
         }
 
         private void UpdateValuesTextBoxes(double[] data, int iteration)
@@ -114,7 +115,7 @@ namespace ControlPanel
 
         public void UpdateControls(double[] data, int iteration)
         {
-            charts.AddData(data);
+            charts.AddSample(data);
             UpdateValuesTextBoxes(data, iteration);
         }
 
@@ -193,6 +194,13 @@ namespace ControlPanel
         {
             if (!controller.timer.StopAndWait(100))
                 controller.timer.Abort();
+        }
+
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            UpdateControls(new double[] { 0, 1, 1, 1}, 1);
         }
     }
 }

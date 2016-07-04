@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.outputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.inputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -76,6 +76,7 @@
             this.inputTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.inputTrackBar = new System.Windows.Forms.TrackBar();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.outputChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputChart)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -93,12 +94,12 @@
             this.outputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea7.Name = "ChartArea1";
-            this.outputChart.ChartAreas.Add(chartArea7);
-            legend7.Alignment = System.Drawing.StringAlignment.Center;
-            legend7.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend7.Name = "Legend1";
-            this.outputChart.Legends.Add(legend7);
+            chartArea1.Name = "ChartArea1";
+            this.outputChart.ChartAreas.Add(chartArea1);
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Name = "Legend1";
+            this.outputChart.Legends.Add(legend1);
             this.outputChart.Location = new System.Drawing.Point(3, 3);
             this.outputChart.Name = "outputChart";
             this.outputChart.Size = new System.Drawing.Size(762, 196);
@@ -110,12 +111,12 @@
             this.inputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea8.Name = "ChartArea1";
-            this.inputChart.ChartAreas.Add(chartArea8);
-            legend8.Alignment = System.Drawing.StringAlignment.Center;
-            legend8.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend8.Name = "Legend1";
-            this.inputChart.Legends.Add(legend8);
+            chartArea2.Name = "ChartArea1";
+            this.inputChart.ChartAreas.Add(chartArea2);
+            legend2.Alignment = System.Drawing.StringAlignment.Center;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend2.Name = "Legend1";
+            this.inputChart.Legends.Add(legend2);
             this.inputChart.Location = new System.Drawing.Point(3, 205);
             this.inputChart.Name = "inputChart";
             this.inputChart.Size = new System.Drawing.Size(762, 191);
@@ -159,12 +160,12 @@
             this.controlChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea9.Name = "ChartArea1";
-            this.controlChart.ChartAreas.Add(chartArea9);
-            legend9.Alignment = System.Drawing.StringAlignment.Center;
-            legend9.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend9.Name = "Legend1";
-            this.controlChart.Legends.Add(legend9);
+            chartArea3.Name = "ChartArea1";
+            this.controlChart.ChartAreas.Add(chartArea3);
+            legend3.Alignment = System.Drawing.StringAlignment.Center;
+            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend3.Name = "Legend1";
+            this.controlChart.Legends.Add(legend3);
             this.controlChart.Location = new System.Drawing.Point(3, 402);
             this.controlChart.Name = "controlChart";
             this.controlChart.Size = new System.Drawing.Size(762, 192);
@@ -552,11 +553,22 @@
             this.inputTrackBar.TabIndex = 23;
             this.inputTrackBar.Scroll += new System.EventHandler(this.inputTrackBar_Scroll);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(545, 653);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 23;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // ControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 647);
+            this.ClientSize = new System.Drawing.Size(1027, 694);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -627,6 +639,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox timeHorizonTextBox;
+        private System.Windows.Forms.Button button2;
     }
 }
 
