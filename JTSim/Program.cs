@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MathNet.Numerics.LinearAlgebra;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace JTSim
             tests.DoAllTests();*/
 
             // Solve a random linear equation system with 500 unknowns
-            
+            Vector<double> v = Vector<double>.Build.Dense(10);
 
             Console.ReadKey();
             /*WaveGenerator gen = new WaveGenerator();
