@@ -50,20 +50,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChartConfigEntry.cs" />
-    <Compile Include="ChartsConfig.cs" />
-    <Compile Include="ChartsController.cs" />
+    <Compile Include="Charts\ChartConfig.cs" />
+    <Compile Include="Charts\ChartsController.cs" />
     <Compile Include="ControlPanel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ControlPanel.Designer.cs">
       <DependentUpon>ControlPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlPanelConfig.cs" />
+    <Compile Include="CustomVisualization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomVisualization.Designer.cs">
+      <DependentUpon>CustomVisualization.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="VisualizationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VisualizationForm.Designer.cs">
+      <DependentUpon>VisualizationForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ControlPanel.resx">
       <DependentUpon>ControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomVisualization.resx">
+      <DependentUpon>CustomVisualization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

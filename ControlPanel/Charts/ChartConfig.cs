@@ -7,11 +7,19 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ControlPanel
 {
-    public class ChartConfigEntry
+    public class ChartConfig
     {
-        public Chart chart;
         public string title;
         public double min;
         public double max;
+
+        public ChartConfig() : this("Value", 0, 1) { }
+
+        public ChartConfig(string title, double min, double max)
+        {
+            this.title = title;
+            this.min = min;
+            this.max = max;
+        }
     }
 }

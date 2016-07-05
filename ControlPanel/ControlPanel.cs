@@ -12,43 +12,50 @@ namespace ControlPanel
 {
     public partial class ControlPanel : Form
     {
+        private VisualizationForm visualization;
+
         private ChartsController charts;
         private Controller controller;
 
-        private int stepsPerUpdate = 10;
+        private ControlPanelConfig config;
+        
         private int steps = 0;
 
-        public ControlPanel(int stepsPerUpdate)
-        {
-            this.stepsPerUpdate = stepsPerUpdate;
-            Init();
-        }
-
-        private void Init()
+        public ControlPanel(Controller controller)
         {
             InitializeComponent();
+            InitControls();
 
+            this.controller = controller;
+            controller.realTimeUpdate += UpdateFromController;
+        }
+
+        public void Init(ControlPanelConfig config)
+        {
+            this.config = config;
+           
+            inputTextBox.Text = config.inputMin.ToString("0.00");
+            inputSetTextBox.Text = config.setValueMin.ToString("0.00");
+
+            charts = new ChartsController(outputChart, inputChart, controlChart);
+            charts.Init(config, controller.simulator.h);
+            charts.SetHorizon(config, controller.simulator.h);
+
+            visualization?.Show();
+        }
+
+        private void InitControls()
+        {
             inputTypeComboBox.SelectedIndex = 0;
             Icon = Properties.Resources.JT;
             UpdateStartStop(false);
             UpdateOpenClose(false);
             UpdateValuesTextBoxes(new double[] { -1d, 0d, 0d, 0d }, -1);
-
-            charts = new ChartsController();
-            charts.Init(new ChartsConfig(
-                10,
-                new ChartConfigEntry() { chart = outputChart, title = "Value", min = 0, max = 2 },
-                new ChartConfigEntry() { chart = inputChart, title = "Value", min = 0, max = 2 },
-                new ChartConfigEntry() { chart = controlChart, title = "Value", min = 0, max = 2 }
-            ));
         }
 
-        public void AddController(Controller controller)
+        public void AddVisualization(VisualizationForm visualization)
         {
-            this.controller = controller;
-            controller.realTimeUpdate += UpdateFromController;
-
-            charts.SetHorizon(stepsPerUpdate, controller.simulator.h);
+            this.visualization = visualization;
         }
 
         private void UpdateValuesTextBoxes(double[] data, int iteration)
@@ -69,6 +76,7 @@ namespace ControlPanel
                 startTextBox.Text = "RUNNING";
                 startTextBox.BackColor = Color.ForestGreen;
                 resetButton.Enabled = false;
+                visualization?.Start();
             }
             else
             {
@@ -76,6 +84,7 @@ namespace ControlPanel
                 startTextBox.Text = "STOPPED";
                 startTextBox.BackColor = Color.OrangeRed;
                 resetButton.Enabled = true;
+                visualization?.Stop();
             }
         }
 
@@ -84,18 +93,19 @@ namespace ControlPanel
             if (val)
             {
                 closeLoopTextBox.Text = "ON";
-                closeLoopTextBox.BackColor = Color.ForestGreen; 
+                closeLoopTextBox.BackColor = Color.ForestGreen;
             }
             else
             {
                 closeLoopTextBox.Text = "OFF";
                 closeLoopTextBox.BackColor = Color.OrangeRed;
             }
+            visualization?.OpenCloseLoop(val);
         }
 
         public void UpdateFromController(double[] data, int iteration)
         {
-            if (steps % stepsPerUpdate == 0)
+            if (steps % config.stepsPerUpdate == 0)
             {
                 if (InvokeRequired)
                 {
@@ -117,6 +127,7 @@ namespace ControlPanel
         {
             charts.AddSample(data);
             UpdateValuesTextBoxes(data, iteration);
+            visualization?.Update(data, iteration);
         }
 
         public void SetInputValue()
@@ -131,9 +142,51 @@ namespace ControlPanel
             }
         }
 
+        private void Reset()
+        {
+            steps = 0;
+            controller.Reset();
+            charts.Reset();
+            UpdateStartStop(false);
+            UpdateValuesTextBoxes(new double[] { -1d, 0d, 0d, 0d }, -1);
+            visualization?.Reset();
+        }
+
+        private double GetInputValue(double min, double max, int percentage)
+        {
+            double range = max - min;
+            double step = range / 100;
+            return min + step * percentage;
+        }
+
+        #region EVENTS
+        private void fixedSimulationButton_Click(object sender, EventArgs e)
+        {
+            if (controller.IsRunning())
+            {
+                DialogResult result = MessageBox.Show("Do you want to reset simulation and perform fixed simulation?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Cancel)
+                    return;
+            }
+                
+
+        }
+
         private void startButton_Click(object sender, EventArgs e)
         {
             controller.StartStop();
+            UpdateStartStop(controller.IsRunning());
+        }
+
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.Start();
+            UpdateStartStop(controller.IsRunning());
+        }
+
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.Stop();
             UpdateStartStop(controller.IsRunning());
         }
 
@@ -148,13 +201,9 @@ namespace ControlPanel
             Reset();
         }
 
-        private void Reset()
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            steps = 0;
-            controller.Reset();
-            charts.Reset();
-            UpdateStartStop(false);
-            UpdateValuesTextBoxes(new double[] { -1d, 0d, 0d, 0d }, -1);
+            Reset();
         }
 
         private void inputTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -162,19 +211,16 @@ namespace ControlPanel
 
         }
 
-        private void ControlPanel_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void inputTrackBar_Scroll(object sender, EventArgs e)
         {
-            inputTextBox.Text = inputTrackBar.Value.ToString();
+            double value = GetInputValue(config.inputMin, config.inputMax, inputTrackBar.Value);
+            inputTextBox.Text = value.ToString("0.00");
         }
 
         private void setValueTrackBar_Scroll(object sender, EventArgs e)
         {
-            inputSetTextBox.Text = setValueTrackBar.Value.ToString();
+            double value = GetInputValue(config.setValueMin, config.setValueMax, setValueTrackBar.Value);
+            inputSetTextBox.Text = value.ToString("0.00");
         }
 
         private void ControlPanel_KeyDown(object sender, KeyEventArgs e)
@@ -183,7 +229,7 @@ namespace ControlPanel
             {
                 controller.StartStop();
                 UpdateStartStop(controller.IsRunning());
-            } 
+            }
             else if (e.KeyCode == Keys.W)
             {
                 Reset();
@@ -197,10 +243,8 @@ namespace ControlPanel
         }
 
 
+        #endregion
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            UpdateControls(new double[] { 0, 1, 1, 1}, 1);
-        }
+        
     }
 }

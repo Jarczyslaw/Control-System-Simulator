@@ -10,7 +10,7 @@ namespace JVector
 {
     public class JVector
     {
-        private double[] data;
+        public double[] data { get; private set; } 
 
         public JVector(int size) : this(size, 0) { }
 
@@ -26,6 +26,12 @@ namespace JVector
             this.data = new double[data.Length];
             for (int i = 0; i < data.Length; i++)
                 this.data[i] = data[i];
+        }
+
+        public double this[int i]
+        {
+            get { return data[i]; }
+            set { data[i] = value; }
         }
 
         public double Max()
@@ -60,6 +66,14 @@ namespace JVector
             JVector result = new JVector(data.Length);
             for (int i = 0; i < data.Length; i++)
                 result[i] = 1d / data[i];
+            return result;
+        }
+
+        public JVector Neg()
+        {
+            JVector result = new JVector(data.Length);
+            for (int i = 0; i < data.Length; i++)
+                result[i] = -data[i];
             return result;
         }
 
@@ -134,12 +148,6 @@ namespace JVector
         #endregion
 
         #region OPERATORS
-        public double this[int i]
-        {
-            get { return data[i]; }
-            set { data[i] = value; }
-        }
-
         public static JVector operator +(JVector vector1, JVector vector2)
         {
             if (vector1.Count() != vector2.Count())
@@ -154,14 +162,15 @@ namespace JVector
 
         public static JVector operator +(double value, JVector vector)
         {
-            JVector temp = new JVector(vector.Count(), value);
-            return temp + vector;
+            JVector result = new JVector(vector.Count());
+            for (int i = 0; i < result.Count(); i++)
+                result[i] = vector[i] + value;
+            return result;
         }
 
         public static JVector operator +(JVector vector, double value)
         {
-            JVector temp = new JVector(vector.Count(), value);
-            return temp + vector;
+            return value + vector;
         }
 
         public static JVector operator -(JVector vector1, JVector vector2)
@@ -178,14 +187,18 @@ namespace JVector
 
         public static JVector operator -(double value, JVector vector)
         {
-            JVector temp = new JVector(vector.Count(), value);
-            return temp - vector;
+            JVector result = new JVector(vector.Count());
+            for (int i = 0; i < result.Count(); i++)
+                result[i] = value - vector[i];
+            return result;
         }
 
         public static JVector operator -(JVector vector, double value)
         {
-            JVector temp = new JVector(vector.Count(), value);
-            return temp - vector;
+            JVector result = new JVector(vector.Count());
+            for (int i = 0; i < result.Count(); i++)
+                result[i] = vector[i] - value;
+            return result;
         }
 
         public static JVector operator *(JVector vector1, JVector vector2)
@@ -202,14 +215,20 @@ namespace JVector
 
         public static JVector operator *(double value, JVector vector)
         {
-            JVector temp = new JVector(vector.Count(), value);
-            return temp * vector;
+            JVector result = new JVector(vector.Count());
+            for (int i = 0; i < result.Count(); i++)
+                result[i] = vector[i] * value;
+            return result;
         }
 
         public static JVector operator *(JVector vector, double value)
         {
-            JVector temp = new JVector(vector.Count(), value);
-            return temp * vector;
+            return value * vector;
+        }
+
+        public static JVector operator -(JVector vector)
+        {
+            return vector.Neg();
         }
         #endregion
     }

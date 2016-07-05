@@ -29,8 +29,17 @@ namespace ControlPanel
             simulator.Init();
 
             Controller controller = new Controller(simulator);
-            ControlPanel controlPanel = new ControlPanel(1000);
-            controlPanel.AddController(controller);
+            ControlPanel controlPanel = new ControlPanel(controller);
+            controlPanel.AddVisualization(new CustomVisualization());
+            controlPanel.Init(new ControlPanelConfig()
+            {
+                stepsPerUpdate = 500,
+                inputMin = 0, inputMax = 2,
+                setValueMin = 0, setValueMax = 2,
+                outputChartConfig = new ChartConfig("output value", 0, 3),
+                inputChartConfig = new ChartConfig("input value", 0, 2),
+                controlChartConfig = new ChartConfig("control value", 0, 2)
+            });
 
             Application.Run(controlPanel);
         }
