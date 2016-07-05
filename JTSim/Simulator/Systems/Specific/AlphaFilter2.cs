@@ -1,5 +1,5 @@
 ﻿using System;
-using MathNet.Numerics.LinearAlgebra;
+using JVectors;
 
 namespace JTSim
 {
@@ -10,17 +10,17 @@ namespace JTSim
 
         public AlphaFilter2 (double initState)
         {
-            this.initStates = Vector<double>.Build.Dense(1, initState);
-            this.initInputs = Vector<double>.Build.Dense(1, 0d);
+            this.initStates = new JVector(1, initState);
+            this.initInputs = new JVector(1, 0d);
         }
 
-        public override double DifferenceEquasion(Vector<double> states, Vector<double> inputs, double t, double h)
+        public override double DifferenceEquasion(JVector states, JVector inputs, double t, double h)
         {
             double alpha = (double)Math.Exp(-h / T);
             return states[0] * alpha + (1d - alpha) * k * inputs[0]; 
         }
 
-        public override double OutputEquation(Vector<double> states, Vector<double> inputs)
+        public override double OutputEquation(JVector states, JVector inputs)
         {
             return states[0];
         }

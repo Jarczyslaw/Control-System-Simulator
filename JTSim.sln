@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroTimerWinFormsDemo", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolversTest", "SolversTest\SolversTest.csproj", "{5371E81D-0075-4B26-A3F2-D17C85F5A4E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JVector", "JVector\JVector.csproj", "{7206C2B1-E7F1-42AD-A346-1D9FB933E5C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JVectors", "JVectors\JVectors.csproj", "{7206C2B1-E7F1-42AD-A346-1D9FB933E5C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

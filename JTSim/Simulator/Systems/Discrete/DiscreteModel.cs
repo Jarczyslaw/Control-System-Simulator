@@ -1,14 +1,14 @@
-﻿using MathNet.Numerics.LinearAlgebra;
+﻿using JVectors;
 
 namespace JTSim
 {
     public abstract class DiscreteModel
     {
-        public Vector<double> initStates;
-        public Vector<double> initInputs;
+        public JVector initStates;
+        public JVector initInputs;
 
-        public abstract double DifferenceEquasion(Vector<double> states, Vector<double> inputs, double t, double h);
+        public abstract double DifferenceEquasion(JVector states, JVector inputs, double t, double h);
 
-        public abstract double OutputEquation(Vector<double> states, Vector<double> inputs);
+        public abstract double OutputEquation(JVector states, JVector inputs);
     }
 }

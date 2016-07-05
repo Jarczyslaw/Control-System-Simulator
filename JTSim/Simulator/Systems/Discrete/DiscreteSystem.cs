@@ -1,12 +1,12 @@
-﻿using MathNet.Numerics.LinearAlgebra;
+﻿using JVectors;
 
 namespace JTSim
 {
     public class DiscreteSystem : GenericSystem
     {
         public DiscreteModel model;
-        public Vector<double> states;
-        public Vector<double> inputs;
+        public JVector states;
+        public JVector inputs;
         private TransportDelay transportDelay;
         private double delay;
 
@@ -20,8 +20,8 @@ namespace JTSim
 
         public override void Step(double u, double t, double h)
         {
-            PushToVectorF(inputs, u);
-            PushToVectorF(states, model.DifferenceEquasion(states, inputs, t, h));
+            inputs.Push(u);
+            states.Push(model.DifferenceEquasion(states, inputs, t, h));
             output = model.OutputEquation(states, inputs);
 
             output = transportDelay.Step(output);
@@ -34,13 +34,6 @@ namespace JTSim
             double initOutput = model.OutputEquation(states, inputs);
             transportDelay = new TransportDelay(delay, initOutput, h);
             output = initOutput;
-        }
-
-        private void PushToVectorF (Vector<double> vect, double newVal)
-        {
-            for (int i = vect.Count - 2; i >= 0; i--)
-                vect[i + 1] = vect[i];
-            vect[0] = newVal;
         }
     }
 }

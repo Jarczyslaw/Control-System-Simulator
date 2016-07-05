@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JTSim;
 using System.Diagnostics;
-using MathNet.Numerics.LinearAlgebra;
+using JVectors;
 
 namespace SolversTest
 {
@@ -14,7 +14,7 @@ namespace SolversTest
         public double[] data;
 
         private TestModel model;
-        private Vector<double> state;
+        private JVector state;
 
         private ISolver solver;
 

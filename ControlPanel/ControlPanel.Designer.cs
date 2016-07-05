@@ -780,6 +780,7 @@
             this.Name = "ControlPanel";
             this.Text = "JTSim";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlPanel_FormClosing);
+            this.Shown += new System.EventHandler(this.ControlPanel_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ControlPanel_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.outputChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputChart)).EndInit();

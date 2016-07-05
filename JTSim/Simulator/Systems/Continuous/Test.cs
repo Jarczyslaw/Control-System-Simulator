@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MathNet.Numerics.LinearAlgebra;
+using JVectors;
 
 namespace JTSim
 {
@@ -11,15 +11,15 @@ namespace JTSim
     {
         public Test()
         {
-            initState = Vector<double>.Build.Dense(1, 0d);
+            initState = new JVector(1, 0d);
         }
 
-        public override Vector<double> DifferentialEquasions(Vector<double> state, double input, double t)
+        public override JVector DifferentialEquasions(JVector state, double input, double t)
         {
-            return Vector<double>.Build.Dense(1, t);
+            return new JVector(1, t);
         }
 
-        public override double OutputEquation(Vector<double> state, double input)
+        public override double OutputEquation(JVector state, double input)
         {
             return state[0];
         }

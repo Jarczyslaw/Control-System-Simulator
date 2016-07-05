@@ -4,29 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JTSim;
-using MathNet.Numerics.LinearAlgebra;
+using JVectors;
 
 namespace SolversTest
 {
     public class TestModel : ContinousModel
     {
         Func<double, double> function;
-        Func<double, Vector<double>, Vector<double>> differential;
+        Func<double, JVector, JVector> differential;
 
-        public TestModel(Func<double, double> function, Func<double, Vector<double>, Vector<double>> differential)
+        public TestModel(Func<double, double> function, Func<double, JVector, JVector> differential)
         {
             this.function = function;
             this.differential = differential;
-            initState = Vector<double>.Build.Dense(1, ExactSolution(0f));
+            initState = new JVector(1, ExactSolution(0f));
         }
 
-        public override Vector<double> DifferentialEquasions(Vector<double> state, double input, double t)
+        public override JVector DifferentialEquasions(JVector state, double input, double t)
         {
-            Vector<double> diff = differential(t, state);
+            JVector diff = differential(t, state);
             return diff;
         }
 
-        public override double OutputEquation(Vector<double> state, double input) { return 0; }
+        public override double OutputEquation(JVector state, double input) { return 0; }
 
         public double ExactSolution(double t)
         {

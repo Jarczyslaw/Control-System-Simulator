@@ -21,27 +21,26 @@ namespace ControlPanel
         
         private int steps = 0;
 
-        public ControlPanel(Controller controller)
+        public ControlPanel(Controller controller, ControlPanelConfig config)
         {
             InitializeComponent();
             InitControls();
 
             this.controller = controller;
             controller.realTimeUpdate += UpdateFromController;
+
+            this.config = config;
+            Init(config);
         }
 
         public void Init(ControlPanelConfig config)
         {
-            this.config = config;
-           
             inputTextBox.Text = config.inputMin.ToString("0.00");
             inputSetTextBox.Text = config.setValueMin.ToString("0.00");
 
             charts = new ChartsController(outputChart, inputChart, controlChart);
             charts.Init(config, controller.simulator.h);
             charts.SetHorizon(config, controller.simulator.h);
-
-            visualization?.Show();
         }
 
         private void InitControls()
@@ -243,8 +242,13 @@ namespace ControlPanel
         }
 
 
+        private void ControlPanel_Shown(object sender, EventArgs e)
+        {
+            visualization?.Show();
+            visualization?.BringToFront();
+        }
         #endregion
 
-        
+
     }
 }

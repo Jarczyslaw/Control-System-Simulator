@@ -1,12 +1,12 @@
-﻿using MathNet.Numerics.LinearAlgebra;
+﻿using JVectors;
 
 namespace JTSim
 {
     public class SolverEuler : ISolver
     {
-        public Vector<double> Solve(ContinousModel model, Vector<double> state, double input, double t, double h)
+        public JVector Solve(ContinousModel model, JVector state, double input, double t, double h)
         {
-            Vector<double> diffs = model.DifferentialEquasions(state, input, t);
+            JVector diffs = model.DifferentialEquasions(state, input, t);
             return state + h * diffs;
         }
 

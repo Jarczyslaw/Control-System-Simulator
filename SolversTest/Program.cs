@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JTSim;
-using MathNet.Numerics.LinearAlgebra;
+using JVectors;
 
 namespace SolversTest
 {
@@ -18,7 +18,7 @@ namespace SolversTest
                 );*/
             TestModel model = new TestModel(
                             (double t) => (Math.Exp(0.5 * t * t + 1)),
-                            (double t, Vector<double> y) => (t * y)
+                            (double t, JVector y) => (t * y)
                             );
             Tester tester = new Tester(model, new ISolver[] {
                 new SolverEuler(),

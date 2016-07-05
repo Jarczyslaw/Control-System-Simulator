@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MathNet.Numerics.LinearAlgebra;
+using JVectors;
 
 namespace JTSim
 {
@@ -19,15 +19,15 @@ namespace JTSim
         double[] a6 = new double[] { 9017d / 3168d, -355d / 33d, 46732d / 5247d, 49d / 176d, -5103d / 18656d };
         double[] a7 = new double[] { 35d / 384d, 0d, 500d / 1113d, 125d / 192d, -2187d / 6784d, 11d / 84d };
 
-        public Vector<double> Solve(ContinousModel model, Vector<double> state, double input, double t, double h)
+        public JVector Solve(ContinousModel model, JVector state, double input, double t, double h)
         {
-            Vector<double> k1 = h * model.DifferentialEquasions(state, input, t);
-            Vector<double> k2 = h * model.DifferentialEquasions(state + a2[0] * k1, input, t + c[0] * h);
-            Vector<double> k3 = h * model.DifferentialEquasions(state + a3[0] * k1 + a3[1] * k2, input, t + c[1] * h);
-            Vector<double> k4 = h * model.DifferentialEquasions(state + a4[0] * k1 + a4[1] * k2 + a4[2] * k3, input, t + c[2] * h);
-            Vector<double> k5 = h * model.DifferentialEquasions(state + a5[0] * k1 + a5[1] * k2 + a5[2] * k3 + a5[3] * k4, input, t + c[3] * h);
-            Vector<double> k6 = h * model.DifferentialEquasions(state + a6[0] * k1 + a6[1] * k2 + a6[2] * k3 + a6[3] * k4 + a6[4] * k5, input, t + c[4] * h);
-            Vector<double> k7 = h * model.DifferentialEquasions(state + a7[0] * k1 + a7[1] * k2 + a7[2] * k3 + a7[3] * k4 + a7[4] * k5 + a7[5] * k6, input, t + c[5] * h);
+            JVector k1 = h * model.DifferentialEquasions(state, input, t);
+            JVector k2 = h * model.DifferentialEquasions(state + a2[0] * k1, input, t + c[0] * h);
+            JVector k3 = h * model.DifferentialEquasions(state + a3[0] * k1 + a3[1] * k2, input, t + c[1] * h);
+            JVector k4 = h * model.DifferentialEquasions(state + a4[0] * k1 + a4[1] * k2 + a4[2] * k3, input, t + c[2] * h);
+            JVector k5 = h * model.DifferentialEquasions(state + a5[0] * k1 + a5[1] * k2 + a5[2] * k3 + a5[3] * k4, input, t + c[3] * h);
+            JVector k6 = h * model.DifferentialEquasions(state + a6[0] * k1 + a6[1] * k2 + a6[2] * k3 + a6[3] * k4 + a6[4] * k5, input, t + c[4] * h);
+            JVector k7 = h * model.DifferentialEquasions(state + a7[0] * k1 + a7[1] * k2 + a7[2] * k3 + a7[3] * k4 + a7[4] * k5 + a7[5] * k6, input, t + c[5] * h);
             //return state + b1[0] * k1 + b1[1] * k2 + b1[2] * k3 + b1[3] * k4 + b1[4] * k5 + b1[5] * k6 + b1[6] * k7;
             return state + b2[0] * k1 + b2[1] * k2 + b2[2] * k3 + b2[3] * k4 + b2[4] * k5 + b2[5] * k6 + b2[6] * k7;
         }

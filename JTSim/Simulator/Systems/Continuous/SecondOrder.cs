@@ -1,4 +1,4 @@
-﻿using MathNet.Numerics.LinearAlgebra;
+﻿using JVectors;
 
 namespace JTSim
 {
@@ -10,7 +10,7 @@ namespace JTSim
 
         public SecondOrder(double initState, double initSpeed)
         {
-            this.initState = Vector<double>.Build.Dense(new double[] { initState, initSpeed });
+            this.initState =new JVector(new double[] { initState, initSpeed });
         }
 
         public SecondOrder(double initState, double initSpeed, double k, double T1, double T2) : this(initState, initSpeed)
@@ -20,16 +20,16 @@ namespace JTSim
             this.T2 = T2;
         }
 
-        public override Vector<double> DifferentialEquasions(Vector<double> state, double input, double t)
+        public override JVector DifferentialEquasions(JVector state, double input, double t)
         {
             double d = T1 * T2;
             double first = state[1];
             double second = -(T1 + T2) / d * state[1] - 1d / d * state[0] + k / d * input;
-            Vector<double> diff = Vector<double>.Build.Dense(new double[] { first, second });
+            JVector diff = new JVector(new double[] { first, second });
             return diff;
         }
 
-        public override double OutputEquation(Vector<double> state, double u)
+        public override double OutputEquation(JVector state, double u)
         {
             return state[0];
         }

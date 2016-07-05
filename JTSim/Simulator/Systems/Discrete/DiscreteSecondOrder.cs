@@ -1,4 +1,4 @@
-﻿using MathNet.Numerics.LinearAlgebra;
+﻿using JVectors;
 
 namespace JTSim
 {
@@ -10,8 +10,8 @@ namespace JTSim
 
         public DiscreteSecondOrder(double y_1, double y_2)
         {
-            initStates = Vector<double>.Build.Dense(new double[] { y_1, y_2 });
-            initInputs = Vector<double>.Build.Dense(1, 0d);
+            initStates = new JVector(new double[] { y_1, y_2 });
+            initInputs = new JVector(1, 0d);
         }
 
         public DiscreteSecondOrder(double y_1, double y_2, double k, double T1, double T2) : this(y_1, y_2)
@@ -21,7 +21,7 @@ namespace JTSim
             this.T2 = T2;
         }
 
-        public override double DifferenceEquasion(Vector<double> states, Vector<double> inputs, double t, double h)
+        public override double DifferenceEquasion(JVector states, JVector inputs, double t, double h)
         {
             double A = h * h + h * (T1 + T2) + T1 * T2;
             double B = -2d * T1 * T2 - h * (T1 + T2);
@@ -31,7 +31,7 @@ namespace JTSim
             return -B/A * states[0] - C/A * states[1] + D/A * inputs[0];
         }
 
-        public override double OutputEquation(Vector<double> states, Vector<double> inputs)
+        public override double OutputEquation(JVector states, JVector inputs)
         {
             return states[0];
         }

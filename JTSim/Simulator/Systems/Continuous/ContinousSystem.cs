@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MathNet.Numerics.LinearAlgebra;
+using JVectors;
 
 namespace JTSim
 {
@@ -8,7 +8,7 @@ namespace JTSim
     {
         private ISolver solver;
         private ContinousModel model;
-        private Vector<double> state;
+        private JVector state;
         private TransportDelay transportDelay;
         private double delay;
 

@@ -22,24 +22,31 @@ namespace ControlPanel
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
+            // create simulator with plant and regulator
             double h = 0.0001d;
             Simulator simulator = new Simulator(h);
             simulator.AddRegulator(new P());
             simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d), 0d, new SolverEuler()));
             simulator.Init();
 
+            // create controller with simulator
             Controller controller = new Controller(simulator);
-            ControlPanel controlPanel = new ControlPanel(controller);
+            // create control panel with controller and controlPanelConfig
+            ControlPanel controlPanel = new ControlPanel(
+                controller,
+                new ControlPanelConfig()
+                {
+                    stepsPerUpdate = 500,
+                    inputMin = 0,
+                    inputMax = 2,
+                    setValueMin = 0,
+                    setValueMax = 2,
+                    outputChartConfig = new ChartConfig("output value", 0, 3),
+                    inputChartConfig = new ChartConfig("input value", 0, 2),
+                    controlChartConfig = new ChartConfig("control value", 0, 2)
+                });
+            // optionally add visualization form
             controlPanel.AddVisualization(new CustomVisualization());
-            controlPanel.Init(new ControlPanelConfig()
-            {
-                stepsPerUpdate = 500,
-                inputMin = 0, inputMax = 2,
-                setValueMin = 0, setValueMax = 2,
-                outputChartConfig = new ChartConfig("output value", 0, 3),
-                inputChartConfig = new ChartConfig("input value", 0, 2),
-                controlChartConfig = new ChartConfig("control value", 0, 2)
-            });
 
             Application.Run(controlPanel);
         }
