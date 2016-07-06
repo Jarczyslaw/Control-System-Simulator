@@ -23,8 +23,8 @@ namespace JVectors
 
         public JMatrix(double[,] data)
         {
-            int x, y;
-            Size(data, out x, out y);
+            int x = data.GetLength(0);
+            int y = data.GetLength(1);
             this.data = new double[x, y];
             for (int i = 0; i < x; i++)
                 for (int j = 0; j < y; j++)
@@ -33,11 +33,20 @@ namespace JVectors
 
         public JMatrix(JMatrix matrix) : this(matrix.data) { }
 
-        public JMatrix(JVector vector)
+        public JMatrix(JVector vector, bool column = true)
         {
-            data = new double[vector.Count(), 1];
-            for (int i = 0; i < vector.Count(); i++)
-                data[i, 0] = vector[i];
+            if (column)
+            {
+                data = new double[vector.Count(), 1];
+                for (int i = 0; i < vector.Count(); i++)
+                    data[i, 0] = vector[i];
+            }
+            else
+            {
+                data = new double[1, vector.Count()];
+                for (int i = 0; i < vector.Count(); i++)
+                    data[0, i] = vector[i];
+            }
         }
 
         public double this[int i, int j]
@@ -46,11 +55,7 @@ namespace JVectors
             set { data[i,j] = value; }
         }
 
-        public void Size(out int x, out int y)
-        {
-            Size(this.data, out x, out y);
-        }
-
+        #region BASIC FUNCTIONS
         public int SizeX()
         {
             return data.GetLength(0);
@@ -61,17 +66,9 @@ namespace JVectors
             return data.GetLength(1);
         }
 
-        public void Size(double[,] data, out int x, out int y)
-        {
-            x = data.GetLength(0);
-            y = data.GetLength(1);
-        }
-
         public int Count()
         {
-            int x, y;
-            Size(out x, out y);
-            return x * y;
+            return SizeX() * SizeY();
         }
 
         public double Min()
@@ -92,6 +89,65 @@ namespace JVectors
         public double Sum()
         {
             return data.Cast<double>().Sum();
+        }
+
+        public double Det()
+        {
+            if (SizeX() != SizeY())
+                throw new NonSquareMatrixException("Can't get determinant for non square matrix.");
+
+            if (SizeX() == 1)
+                return data[0, 0];
+            else if (SizeX() == 2)
+                return data[0, 0] * data[1, 1] - data[1, 0] * data[0, 1];
+            else if (SizeX() == 3)
+                return data[0, 0] * data[1, 1] * data[2, 2] +
+                    data[1, 0] * data[2, 1] * data[0, 2] +
+                    data[2, 0] * data[0, 1] * data[1, 2] -
+                    data[1, 0] * data[0, 1] * data[2, 2] -
+                    data[0, 0] * data[2, 1] * data[1, 2] -
+                    data[2, 0] * data[1, 1] * data[0, 2];
+            else
+                throw new NotImplementedException("Determinant for matrix larger than 3x3 is not implemented yet.");
+        }
+
+        public JMatrix Inv()
+        {
+            double det = Det();
+            if (Math.Abs(det) < 0.0001)
+                throw new MatrixInversionException("Determinant to low to calculate inversion.");
+
+            JMatrix result = new JMatrix(SizeX(), SizeY());
+            if (SizeX() == 1)
+            {
+                result[0, 0] = 1 / data[0, 0];
+                return result;
+            }
+            else if (SizeX() == 2)
+            {
+                result[0, 0] = data[1, 1];
+                result[0, 1] = -data[0, 1];
+                result[1, 0] = -data[1, 0];
+                result[1, 1] = data[0, 0];
+                result = 1 / det * result;
+                return result;
+            }
+            else if (SizeX() == 3)
+            {
+                result[0, 0] = data[1,1] * data[2,2] - data[1,2] * data[2,1];
+                result[0, 1] = data[0, 2] * data[2, 1] - data[0, 1] * data[2, 2];
+                result[0, 2] = data[0, 1] * data[1, 2] - data[0, 2] * data[1, 1];
+                result[1, 0] = data[1, 2] * data[2, 0] - data[1, 0] * data[2, 2];
+                result[1, 1] = data[0, 0] * data[2, 2] - data[0, 2] * data[2, 0];
+                result[1, 2] = data[0, 2] * data[1, 0] - data[0, 0] * data[1, 2];
+                result[2, 0] = data[1, 0] * data[2, 1] - data[1, 1] * data[2, 0];
+                result[2, 1] = data[0, 1] * data[2, 0] - data[0, 0] * data[2, 1];
+                result[2, 2] = data[0, 0] * data[1, 1] - data[0, 1] * data[1, 0];
+                result = 1 / det * result;
+                return result;
+            }
+            else
+                throw new NotImplementedException("Inversion of matrix larger than 3x3 is not implemented yet."); 
         }
 
         public JMatrix Neg()
@@ -121,8 +177,8 @@ namespace JVectors
 
         public override string ToString()
         {
-            int x, y;
-            Size(out x, out y);
+            int x = SizeX();
+            int y = SizeY();
             string result = "JMatrix, size: " + x + "x" + y + Environment.NewLine;
             for (int i = 0;i < x;i++)
             {
@@ -137,14 +193,15 @@ namespace JVectors
             }
             return result;
         }
+        #endregion
 
         #region OPERATORS
         public static JMatrix operator +(JMatrix m1, JMatrix m2)
         {
-            int m1x, m1y;
-            int m2x, m2y;
-            m1.Size(out m1x, out m1y);
-            m2.Size(out m2x, out m2y);
+            int m1x = m1.SizeX();
+            int m1y = m1.SizeY();
+            int m2x = m2.SizeX();
+            int m2y = m2.SizeY();
 
             if (m1x != m2x || m1y != m2y)
                 throw new InvalidMatrixSizeException("Invalid matrix size. Matrix should have the same rows and columns count.");
@@ -172,19 +229,7 @@ namespace JVectors
 
         public static JMatrix operator -(JMatrix m1, JMatrix m2)
         {
-            int m1x, m1y;
-            int m2x, m2y;
-            m1.Size(out m1x, out m1y);
-            m2.Size(out m2x, out m2y);
-
-            if (m1x != m2x || m1y != m2y)
-                throw new InvalidMatrixSizeException("Invalid matrix size. Matrix should have the same rows and columns count.");
-
-            JMatrix result = new JMatrix(m1x, m1y);
-            for (int i = 0; i < m1x; i++)
-                for (int j = 0; j < m1y; j++)
-                    result[i, j] = m1[i, j] - m2[i, j];
-            return result;
+            return m1 + m2.Neg();
         }
 
         public static JMatrix operator -(double d, JMatrix m)
@@ -199,10 +244,10 @@ namespace JVectors
 
         public static JMatrix operator *(JMatrix m1, JMatrix m2)
         {
-            int m1x, m1y;
-            int m2x, m2y;
-            m1.Size(out m1x, out m1y);
-            m2.Size(out m2x, out m2y);
+            int m1x = m1.SizeX();
+            int m1y = m1.SizeY();
+            int m2x = m2.SizeX();
+            int m2y = m2.SizeY();
 
             if (m1y != m2x)
                 throw new InvalidMatrixSizeException("Invalid matrix size. Left side matrix should have the sam columns as right side matrix has.");

@@ -16,16 +16,16 @@ namespace JTSim
     public class StateSpaceModel : ContinousModel
     {
         private JMatrix A;
-        private JVector B;
-        private JVector C;
+        private JMatrix B;
+        private JMatrix C;
         private double D;
 
         public StateSpaceModel(JMatrix A, JVector B, JVector C, double D,
             JVector initState)
         {
             this.A = A;
-            this.B = B;
-            this.C = C;
+            this.B = new JMatrix(B);
+            this.C = new JMatrix(C, false);
             this.D = D;
 
             this.initState = initState;
@@ -33,15 +33,18 @@ namespace JTSim
 
         public override JVector DifferentialEquasions(JVector state, double input, double t)
         {
-            JVector diff = A * state + B * input;
-            return diff;
+            JMatrix s = new JMatrix(state);
+
+            JMatrix diff = A * s + B * input;
+            return new JVector(diff);
         }
 
         public override double OutputEquation(JVector state, double input)
         {
-            // wektory nie maja drugiego wymiaru wiec zeby przemnozyc wektor 1xN oraz Nx1 trzeba przemnozyc wszystkie elementy a potem jest zsumowac
-            double v = (C * state).Sum() + D * input;
-            return v;
+            JMatrix s = new JMatrix(state);
+
+            JMatrix output = C * s + D * input;
+            return output[0,0];
         }
     }
 }

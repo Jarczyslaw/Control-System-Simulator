@@ -49,6 +49,9 @@
   <ItemGroup>
     <Compile Include="Exceptions\InvalidMatrixSizeException.cs" />
     <Compile Include="Exceptions\InvalidVectorsLengthException.cs" />
+    <Compile Include="Exceptions\MatrixInversionException.cs" />
+    <Compile Include="Exceptions\NonSquareMatrixException.cs" />
+    <Compile Include="Exceptions\NotImplementedYet.cs" />
     <Compile Include="JMatrix.cs" />
     <Compile Include="JVector.cs" />
     <Compile Include="Program.cs" />

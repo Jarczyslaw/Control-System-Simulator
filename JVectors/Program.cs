@@ -17,7 +17,7 @@ namespace JVectors
             var m3 = new JMatrix(new double[,] { { 1, 2 }, { 3, 4 } });
             var v1 = new JVector(new double[] { 2, 1 });
 
-            Console.WriteLine(m1 * v1);
+            Console.WriteLine((new JMatrix(new double[,] { { 1, 2 }, { 3, 4 } })).Inv());
 
             Console.ReadKey();
         }

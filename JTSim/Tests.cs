@@ -22,7 +22,7 @@ namespace JTSim
             this.directory = directory;
             Directory.CreateDirectory(directory);
 
-            simulator = new Simulator(0.01);
+            simulator = new Simulator(0.001);
             fileWriter = new FileWriter();
         }
 

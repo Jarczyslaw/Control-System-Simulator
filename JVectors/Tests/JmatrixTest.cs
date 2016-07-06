@@ -35,11 +35,6 @@ namespace JVectors.Tests
             Assert.AreEqual(3, m.SizeX());
             Assert.AreEqual(2, m.SizeY());
 
-            int x, y;
-            m.Size(out x, out y);
-            Assert.AreEqual(3, x);
-            Assert.AreEqual(2, y);
-
             Assert.AreEqual(6, m.Max());
             Assert.AreEqual(1, m.Min());
             Assert.AreEqual(3.5, m.Average());

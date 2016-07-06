@@ -30,12 +30,21 @@ namespace JVectors
 
         public JVector(JVector vector) : this(vector.data) { }
 
+        public JVector(JMatrix matrix)
+        {
+            int len = matrix.SizeX();
+            data = new double[len];
+            for (int i = 0; i < len; i++)
+                data[i] = matrix[i, 0];
+        }
+
         public double this[int i]
         {
             get { return data[i]; }
             set { data[i] = value; }
         }
 
+        #region BASIC FUNCTIONS
         public double Max()
         {
             return data.Max();
@@ -111,6 +120,7 @@ namespace JVectors
             data[0] = value;
             return result;
         }
+        #endregion
 
         #region MATH FUNCTIONS
         public JVector Abs()
@@ -182,14 +192,7 @@ namespace JVectors
 
         public static JVector operator -(JVector vector1, JVector vector2)
         {
-            if (vector1.Count() != vector2.Count())
-                throw new InvalidVectorsLengthException("Vectors have different length");
-
-            JVector result = new JVector(vector1.Count());
-            for (int i = 0; i < vector1.Count(); i++)
-                result[i] = vector1[i] - vector2[i];
-
-            return result;
+            return vector1 + vector2.Neg();
         }
 
         public static JVector operator -(double value, JVector vector)
