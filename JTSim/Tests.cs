@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
+using JVectors;
 
 namespace JTSim
 {
@@ -16,12 +17,12 @@ namespace JTSim
         private FileWriter fileWriter;
         private Stopwatch stopwatch = new Stopwatch();
 
-        public Tests (string directory)
+        public Tests(string directory)
         {
             this.directory = directory;
             Directory.CreateDirectory(directory);
 
-            simulator = new Simulator(0.1);
+            simulator = new Simulator(0.01);
             fileWriter = new FileWriter();
         }
 
@@ -81,15 +82,33 @@ namespace JTSim
         {
             StepsGenerator steps = new StepsGenerator(
                 new double[] { 0, 5, 8, 14 },
-                new double[] { 1, -3, 2, 0});
+                new double[] { 1, -3, 2, 0 });
             var data = steps.GetSteps(20, 0.1);
 
             fileWriter.DataToFile(data, directory + fileName);
         }
 
-        public void DoAllTests ()
+        public void Test7(string fileName)
         {
-            foreach(MethodInfo method in this.GetType().GetMethods())
+            simulator.AddRegulator(new TransparentRegulator());
+
+            var A = new JMatrix(new double[,] { { 0, 1 }, { -2, -3 } });
+            var B = new JVector(new double[] { 0, 4 });
+            var C = new JVector(new double[] { 1, 0 });
+            var D = 0d;
+            var initState = new JVector(new double[] { 1, -1 });
+
+            simulator.AddSystem(new ContinousSystem(new StateSpaceModel(A, B, C, D, initState), 0d, new SolverRK4()));
+            simulator.feedbackEnabled = false;
+            simulator.Init();
+            simulator.StepSimulation(10f);
+
+            fileWriter.SimulatorDataToFile(simulator, directory + fileName);
+        }
+
+        public void DoAllTests()
+        {
+            foreach (MethodInfo method in this.GetType().GetMethods())
             {
                 string methodName = method.Name.ToLower();
                 if (methodName.StartsWith("test"))
@@ -99,7 +118,7 @@ namespace JTSim
                     method.Invoke(this, new object[] { methodName + ".txt" });
                     stopwatch.Stop();
                     Console.WriteLine("Test: " + method.Name + " done in: " + stopwatch.ElapsedMilliseconds + "ms");
-                } 
+                }
             }
         }
     }

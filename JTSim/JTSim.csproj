@@ -52,6 +52,7 @@
     <Compile Include="Simulator\Solvers\SolverRK4Enhanced.cs" />
     <Compile Include="Simulator\Generators\StepsGenerator.cs" />
     <Compile Include="Simulator\Generators\WaveGenerator.cs" />
+    <Compile Include="Simulator\Systems\Continuous\StateSpaceModel.cs" />
     <Compile Include="Simulator\Systems\Continuous\Test.cs" />
     <Compile Include="Simulator\Systems\Specific\AlphaFilter.cs" />
     <Compile Include="Simulator\Systems\Specific\AlphaFilter2.cs" />

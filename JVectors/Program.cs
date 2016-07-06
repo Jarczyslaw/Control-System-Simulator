@@ -10,8 +10,14 @@ namespace JVectors
     {
         static void Main(string[] args)
         {
-            JVector v = new JVector(new double[] { 1,2,3,4,5 });
-            Console.WriteLine(v.Inv().ToString());
+
+
+            var m1 = new JMatrix(new double[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } });
+            var m2 = new JMatrix(new double[,] { { 2, 3 }, { 4, 5 }, { 6, 7 } });
+            var m3 = new JMatrix(new double[,] { { 1, 2 }, { 3, 4 } });
+            var v1 = new JVector(new double[] { 2, 1 });
+
+            Console.WriteLine(m1 * v1);
 
             Console.ReadKey();
         }

@@ -28,12 +28,7 @@ namespace JVectors
                 this.data[i] = data[i];
         }
 
-        public JVector(JVector vector)
-        {
-            data = new double[vector.Count()];
-            for (int i = 0; i < data.Count(); i++)
-                data[i] = vector[i];
-        }
+        public JVector(JVector vector) : this(vector.data) { }
 
         public double this[int i]
         {
@@ -199,18 +194,12 @@ namespace JVectors
 
         public static JVector operator -(double value, JVector vector)
         {
-            JVector result = new JVector(vector.Count());
-            for (int i = 0; i < result.Count(); i++)
-                result[i] = value - vector[i];
-            return result;
+            return value + vector.Neg();
         }
 
         public static JVector operator -(JVector vector, double value)
         {
-            JVector result = new JVector(vector.Count());
-            for (int i = 0; i < result.Count(); i++)
-                result[i] = vector[i] - value;
-            return result;
+            return vector + (-value);
         }
 
         public static JVector operator *(JVector vector1, JVector vector2)

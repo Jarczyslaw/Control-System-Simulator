@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using JTSim;
 using System.Diagnostics;
-using MathNet.Numerics.LinearAlgebra;
 
 namespace SolversTest
 {

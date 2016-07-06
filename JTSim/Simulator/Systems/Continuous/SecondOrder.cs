@@ -10,7 +10,7 @@ namespace JTSim
 
         public SecondOrder(double initState, double initSpeed)
         {
-            this.initState =new JVector(new double[] { initState, initSpeed });
+            this.initState = new JVector(new double[] { initState, initSpeed });
         }
 
         public SecondOrder(double initState, double initSpeed, double k, double T1, double T2) : this(initState, initSpeed)
