@@ -16,6 +16,8 @@ namespace ControlPanel
         public Action<double[], int> realTimeUpdate;
         public double input = 1d;
         public Simulator simulator { get; private set; }
+        public WaveGenerator waves { get; private set; }
+        public StepsGenerator steps { get; private set; }
 
         public MicroLibrary.MicroTimer timer;
        
@@ -25,6 +27,9 @@ namespace ControlPanel
             this.simulator = simulator;
             InitTimer(1000000d * simulator.h);
             timer.MicroTimerElapsed += OnTimedEvent;
+
+            waves = new WaveGenerator(0.5, 1, 1);
+            steps = new StepsGenerator(new double[] { 5, 10 }, new double[] { 1, 2 });
         }
 
         private void InitTimer(double delay)

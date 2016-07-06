@@ -14,9 +14,7 @@ namespace JTSim
 
         public StepsGenerator(double[] stepTimes, double[] stepValues)
         {
-            this.stepTimes = stepTimes;
-            this.stepValues = stepValues;
-            Array.Sort(stepTimes, stepValues);
+            SetParams(stepTimes, stepValues);
         }
 
         public StepsGenerator(double stepValue) : this(stepValue, 0d) { }
@@ -25,6 +23,55 @@ namespace JTSim
         {
             stepTimes = new double[] { stepTime };
             stepValues = new double[] { stepValue };
+        }
+
+        public void SetParams(double[] stepTimes, double[] stepValues)
+        {
+            this.stepTimes = stepTimes;
+            this.stepValues = stepValues;
+            Array.Sort(stepTimes, stepValues);
+        }
+
+        public bool ValidParams(string times, string values, out double[] tim, out double[] val)
+        {
+            bool valid = false;
+            tim = null; val = null;
+            string[] t = times.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] v = values.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            if (t.Length == v.Length)
+            {
+                int len = t.Length;
+                double[] newTimes = new double[len];
+                double[] newValues = new double[len];
+                int cnt = 0;
+                for (int i = 0;i < len;i++)
+                {
+                    double nt = 0;
+                    double nv = 0;
+                    if (double.TryParse(t[i], out nt) && double.TryParse(v[i], out nv))
+                    {
+                        if (nt >= 0 && nv >= 0)
+                        {
+                            newTimes[i] = nt;
+                            newValues[i] = nv;
+                            cnt++;
+                        }
+                        else
+                            break;
+                    }
+                    else
+                        break;
+                }
+
+                if (cnt == len)
+                {
+                    tim = newTimes;
+                    val = newValues;
+                    valid = true;
+                }
+            }
+
+            return valid;
         }
 
         public double GetSample(double t)

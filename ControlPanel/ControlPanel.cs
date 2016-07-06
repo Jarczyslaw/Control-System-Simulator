@@ -23,13 +23,13 @@ namespace ControlPanel
 
         public ControlPanel(Controller controller, ControlPanelConfig config)
         {
-            InitializeComponent();
-            InitControls();
-
             this.controller = controller;
             controller.realTimeUpdate += UpdateFromController;
 
             this.config = config;
+
+            InitializeComponent();
+            InitControls();
             Init(config);
         }
 
@@ -50,6 +50,8 @@ namespace ControlPanel
             UpdateStartStop(false);
             UpdateOpenClose(false);
             UpdateValuesTextBoxes(new double[] { -1d, 0d, 0d, 0d }, -1);
+            UpdateWavesData();
+            UpdateStepsData();
         }
 
         public void AddVisualization(VisualizationForm visualization)
@@ -85,6 +87,32 @@ namespace ControlPanel
                 resetButton.Enabled = true;
                 visualization?.Stop();
             }
+        }
+
+        private void UpdateWavesData()
+        {
+            waveCurrentAmplitudeTextBox.Text = controller.waves.amplitude.ToString();
+            waveCurrentFrequencyTextBox.Text = controller.waves.frequency.ToString();
+            waveCurrentOffsetTextBox.Text = controller.waves.offset.ToString();
+        }
+
+        private void UpdateStepsData()
+        {
+            stepsCurrentTimesTextBox.Text = ArrayToString(controller.steps.stepTimes);
+            stepsCurrentValuesTextBox.Text = ArrayToString(controller.steps.stepValues);
+        }
+
+        private string ArrayToString(double[] array)
+        {
+            string result = "";
+            int len = array.Length;
+            for (int i = 0; i < len; i++)
+            {
+                result += array[i].ToString();
+                if (i != len - 1)
+                    result += ", ";
+            }
+            return result;
         }
 
         private void UpdateOpenClose(bool val)
@@ -246,6 +274,35 @@ namespace ControlPanel
         {
             visualization?.Show();
             visualization?.BringToFront();
+        }
+
+        private void waveSetButton_Click(object sender, EventArgs e)
+        {
+            double freq = 0, amp = 0, off = 0;
+            if(controller.waves.ValidParams(
+                waveFrequencyTextBox.Text, waveAmplitudeTextBox.Text, waveOffsetTextBox.Text,
+                ref freq, ref amp, ref off
+                ))
+            {
+                controller.waves.SetParams(freq, amp, off);
+                UpdateWavesData();
+            }
+            else
+                MessageBox.Show("Invalid waves' parameters values. Parameters should be positive (frequency and amplitude) double values.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+        }
+
+        private void stepsSetButton_Click(object sender, EventArgs e)
+        {
+            double[] times;
+            double[] values;
+            if (controller.steps.ValidParams(stepsTimes.Text, stepsValues.Text, out times, out values))
+            {
+                controller.steps.SetParams(times, values);
+                UpdateStepsData();
+            }
+            else
+                MessageBox.Show("Invalid steps parameters. They should be positive double values separated by ','. Number of steps should be equal to numbers of values.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
 

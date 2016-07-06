@@ -29,14 +29,33 @@ namespace JTSim
 
         public WaveGenerator(double frequency, double amplitude, double offset) : this()
         {
-            this.frequency = frequency;
-            this.amplitude = amplitude;
-            this.offset = offset;
+            SetParams(frequency, amplitude, offset);
         }
 
         public WaveGenerator(Waves wave, double frequency, double amplitude, double offset) : this(frequency, amplitude, offset)
         {
             this.wave = wave;
+        }
+
+        public void SetParams(double frequency, double amplitude, double offset)
+        {
+            this.frequency = frequency;
+            this.amplitude = amplitude;
+            this.offset = offset;
+        }
+
+        public bool ValidParams(string freq, string amp, string off, 
+            ref double frequency, ref double amplitude, ref double offset)
+        {
+            bool valid = false;
+            if (double.TryParse(amp, out amplitude) &&
+                double.TryParse(freq, out frequency) &&
+                double.TryParse(off, out offset))
+            {
+                if (amplitude > 0 && frequency > 0)
+                    valid = true;
+            }
+            return valid;
         }
 
         private double Sine(double t)

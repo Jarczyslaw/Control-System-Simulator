@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.outputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.inputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -61,17 +61,17 @@
             this.setValueTextBox = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.stepsSetButton = new System.Windows.Forms.Button();
+            this.stepsCurrentValuesTextBox = new System.Windows.Forms.TextBox();
+            this.stepsValues = new System.Windows.Forms.TextBox();
+            this.stepsCurrentTimesTextBox = new System.Windows.Forms.TextBox();
+            this.stepsTimes = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.waveCurrentOffsetTextBox = new System.Windows.Forms.TextBox();
+            this.waveCurrentAmplitudeTextBox = new System.Windows.Forms.TextBox();
+            this.waveCurrentFrequencyTextBox = new System.Windows.Forms.TextBox();
             this.waveFrequencyTextBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.waveSetButton = new System.Windows.Forms.Button();
@@ -117,12 +117,12 @@
             this.outputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.outputChart.ChartAreas.Add(chartArea1);
-            legend1.Alignment = System.Drawing.StringAlignment.Center;
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend1.Name = "Legend1";
-            this.outputChart.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.outputChart.ChartAreas.Add(chartArea4);
+            legend4.Alignment = System.Drawing.StringAlignment.Center;
+            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend4.Name = "Legend1";
+            this.outputChart.Legends.Add(legend4);
             this.outputChart.Location = new System.Drawing.Point(3, 3);
             this.outputChart.Name = "outputChart";
             this.outputChart.Size = new System.Drawing.Size(762, 196);
@@ -134,12 +134,12 @@
             this.inputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Name = "ChartArea1";
-            this.inputChart.ChartAreas.Add(chartArea2);
-            legend2.Alignment = System.Drawing.StringAlignment.Center;
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend2.Name = "Legend1";
-            this.inputChart.Legends.Add(legend2);
+            chartArea5.Name = "ChartArea1";
+            this.inputChart.ChartAreas.Add(chartArea5);
+            legend5.Alignment = System.Drawing.StringAlignment.Center;
+            legend5.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend5.Name = "Legend1";
+            this.inputChart.Legends.Add(legend5);
             this.inputChart.Location = new System.Drawing.Point(3, 205);
             this.inputChart.Name = "inputChart";
             this.inputChart.Size = new System.Drawing.Size(762, 191);
@@ -183,12 +183,12 @@
             this.controlChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea3.Name = "ChartArea1";
-            this.controlChart.ChartAreas.Add(chartArea3);
-            legend3.Alignment = System.Drawing.StringAlignment.Center;
-            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend3.Name = "Legend1";
-            this.controlChart.Legends.Add(legend3);
+            chartArea6.Name = "ChartArea1";
+            this.controlChart.ChartAreas.Add(chartArea6);
+            legend6.Alignment = System.Drawing.StringAlignment.Center;
+            legend6.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend6.Name = "Legend1";
+            this.controlChart.Legends.Add(legend6);
             this.controlChart.Location = new System.Drawing.Point(3, 402);
             this.controlChart.Name = "controlChart";
             this.controlChart.Size = new System.Drawing.Size(762, 192);
@@ -426,11 +426,11 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.button2);
-            this.groupBox6.Controls.Add(this.textBox6);
-            this.groupBox6.Controls.Add(this.textBox7);
-            this.groupBox6.Controls.Add(this.textBox5);
-            this.groupBox6.Controls.Add(this.textBox4);
+            this.groupBox6.Controls.Add(this.stepsSetButton);
+            this.groupBox6.Controls.Add(this.stepsCurrentValuesTextBox);
+            this.groupBox6.Controls.Add(this.stepsValues);
+            this.groupBox6.Controls.Add(this.stepsCurrentTimesTextBox);
+            this.groupBox6.Controls.Add(this.stepsTimes);
             this.groupBox6.Controls.Add(this.label14);
             this.groupBox6.Controls.Add(this.label9);
             this.groupBox6.Location = new System.Drawing.Point(6, 333);
@@ -440,48 +440,49 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Steps generator";
             // 
-            // button2
+            // stepsSetButton
             // 
-            this.button2.Location = new System.Drawing.Point(6, 123);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(193, 23);
-            this.button2.TabIndex = 39;
-            this.button2.Text = "Set steps parameters";
-            this.button2.UseVisualStyleBackColor = true;
+            this.stepsSetButton.Location = new System.Drawing.Point(6, 123);
+            this.stepsSetButton.Name = "stepsSetButton";
+            this.stepsSetButton.Size = new System.Drawing.Size(193, 23);
+            this.stepsSetButton.TabIndex = 39;
+            this.stepsSetButton.Text = "Set steps parameters";
+            this.stepsSetButton.UseVisualStyleBackColor = true;
+            this.stepsSetButton.Click += new System.EventHandler(this.stepsSetButton_Click);
             // 
-            // textBox6
+            // stepsCurrentValuesTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(73, 97);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(126, 20);
-            this.textBox6.TabIndex = 42;
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.stepsCurrentValuesTextBox.Location = new System.Drawing.Point(73, 97);
+            this.stepsCurrentValuesTextBox.Name = "stepsCurrentValuesTextBox";
+            this.stepsCurrentValuesTextBox.ReadOnly = true;
+            this.stepsCurrentValuesTextBox.Size = new System.Drawing.Size(126, 20);
+            this.stepsCurrentValuesTextBox.TabIndex = 42;
+            this.stepsCurrentValuesTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox7
+            // stepsValues
             // 
-            this.textBox7.Location = new System.Drawing.Point(73, 71);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(126, 20);
-            this.textBox7.TabIndex = 41;
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.stepsValues.Location = new System.Drawing.Point(73, 71);
+            this.stepsValues.Name = "stepsValues";
+            this.stepsValues.Size = new System.Drawing.Size(126, 20);
+            this.stepsValues.TabIndex = 41;
+            this.stepsValues.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox5
+            // stepsCurrentTimesTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(73, 45);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(126, 20);
-            this.textBox5.TabIndex = 40;
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.stepsCurrentTimesTextBox.Location = new System.Drawing.Point(73, 45);
+            this.stepsCurrentTimesTextBox.Name = "stepsCurrentTimesTextBox";
+            this.stepsCurrentTimesTextBox.ReadOnly = true;
+            this.stepsCurrentTimesTextBox.Size = new System.Drawing.Size(126, 20);
+            this.stepsCurrentTimesTextBox.TabIndex = 40;
+            this.stepsCurrentTimesTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox4
+            // stepsTimes
             // 
-            this.textBox4.Location = new System.Drawing.Point(73, 19);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(126, 20);
-            this.textBox4.TabIndex = 39;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.stepsTimes.Location = new System.Drawing.Point(73, 19);
+            this.stepsTimes.Name = "stepsTimes";
+            this.stepsTimes.Size = new System.Drawing.Size(126, 20);
+            this.stepsTimes.TabIndex = 39;
+            this.stepsTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label14
             // 
@@ -503,9 +504,9 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.textBox3);
-            this.groupBox5.Controls.Add(this.textBox2);
-            this.groupBox5.Controls.Add(this.textBox1);
+            this.groupBox5.Controls.Add(this.waveCurrentOffsetTextBox);
+            this.groupBox5.Controls.Add(this.waveCurrentAmplitudeTextBox);
+            this.groupBox5.Controls.Add(this.waveCurrentFrequencyTextBox);
             this.groupBox5.Controls.Add(this.waveFrequencyTextBox);
             this.groupBox5.Controls.Add(this.label12);
             this.groupBox5.Controls.Add(this.waveSetButton);
@@ -520,32 +521,32 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Wave generator";
             // 
-            // textBox3
+            // waveCurrentOffsetTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(139, 71);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(60, 20);
-            this.textBox3.TabIndex = 38;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.waveCurrentOffsetTextBox.Location = new System.Drawing.Point(139, 71);
+            this.waveCurrentOffsetTextBox.Name = "waveCurrentOffsetTextBox";
+            this.waveCurrentOffsetTextBox.ReadOnly = true;
+            this.waveCurrentOffsetTextBox.Size = new System.Drawing.Size(60, 20);
+            this.waveCurrentOffsetTextBox.TabIndex = 38;
+            this.waveCurrentOffsetTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox2
+            // waveCurrentAmplitudeTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(139, 45);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(60, 20);
-            this.textBox2.TabIndex = 37;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.waveCurrentAmplitudeTextBox.Location = new System.Drawing.Point(139, 45);
+            this.waveCurrentAmplitudeTextBox.Name = "waveCurrentAmplitudeTextBox";
+            this.waveCurrentAmplitudeTextBox.ReadOnly = true;
+            this.waveCurrentAmplitudeTextBox.Size = new System.Drawing.Size(60, 20);
+            this.waveCurrentAmplitudeTextBox.TabIndex = 37;
+            this.waveCurrentAmplitudeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox1
+            // waveCurrentFrequencyTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(139, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(60, 20);
-            this.textBox1.TabIndex = 36;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.waveCurrentFrequencyTextBox.Location = new System.Drawing.Point(139, 19);
+            this.waveCurrentFrequencyTextBox.Name = "waveCurrentFrequencyTextBox";
+            this.waveCurrentFrequencyTextBox.ReadOnly = true;
+            this.waveCurrentFrequencyTextBox.Size = new System.Drawing.Size(60, 20);
+            this.waveCurrentFrequencyTextBox.TabIndex = 36;
+            this.waveCurrentFrequencyTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // waveFrequencyTextBox
             // 
@@ -572,6 +573,7 @@
             this.waveSetButton.TabIndex = 14;
             this.waveSetButton.Text = "Set waves parameters";
             this.waveSetButton.UseVisualStyleBackColor = true;
+            this.waveSetButton.Click += new System.EventHandler(this.waveSetButton_Click);
             // 
             // waveAmplitudeTextBox
             // 
@@ -849,17 +851,17 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox timeHorizonTextBox;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button stepsSetButton;
+        private System.Windows.Forms.TextBox stepsCurrentValuesTextBox;
+        private System.Windows.Forms.TextBox stepsValues;
+        private System.Windows.Forms.TextBox stepsCurrentTimesTextBox;
+        private System.Windows.Forms.TextBox stepsTimes;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox waveCurrentOffsetTextBox;
+        private System.Windows.Forms.TextBox waveCurrentAmplitudeTextBox;
+        private System.Windows.Forms.TextBox waveCurrentFrequencyTextBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem simulationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;

@@ -46,7 +46,7 @@ namespace ControlPanel
                     controlChartConfig = new ChartConfig("control value", 0, 2)
                 });
             // optionally add visualization form
-            controlPanel.AddVisualization(new CustomVisualization());
+            // controlPanel.AddVisualization(new CustomVisualization());
 
             Application.Run(controlPanel);
         }
