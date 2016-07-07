@@ -38,7 +38,7 @@ namespace JTSim
             tim = null; val = null;
             string[] t = times.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] v = values.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            if (t.Length == v.Length)
+            if (t.Length == v.Length && t.Length != 0 && v.Length != 0)
             {
                 int len = t.Length;
                 double[] newTimes = new double[len];

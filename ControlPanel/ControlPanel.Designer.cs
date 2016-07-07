@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
@@ -38,11 +36,8 @@
             this.inputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.controlChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.startButton = new System.Windows.Forms.Button();
-            this.startTextBox = new System.Windows.Forms.TextBox();
             this.closeLoopButton = new System.Windows.Forms.Button();
-            this.closeLoopTextBox = new System.Windows.Forms.TextBox();
             this.resetButton = new System.Windows.Forms.Button();
             this.iterationTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,9 +48,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.fixedSimulationButton = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.timeHorizonTextBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.setValueTextBox = new System.Windows.Forms.TextBox();
@@ -97,11 +89,12 @@
             this.visualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startLabel = new System.Windows.Forms.Label();
+            this.openLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.outputChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputChart)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.controlChart)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -117,15 +110,15 @@
             this.outputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea4.Name = "ChartArea1";
-            this.outputChart.ChartAreas.Add(chartArea4);
-            legend4.Alignment = System.Drawing.StringAlignment.Center;
-            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend4.Name = "Legend1";
-            this.outputChart.Legends.Add(legend4);
+            chartArea5.Name = "ChartArea1";
+            this.outputChart.ChartAreas.Add(chartArea5);
+            legend5.Alignment = System.Drawing.StringAlignment.Center;
+            legend5.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend5.Name = "Legend1";
+            this.outputChart.Legends.Add(legend5);
             this.outputChart.Location = new System.Drawing.Point(3, 3);
             this.outputChart.Name = "outputChart";
-            this.outputChart.Size = new System.Drawing.Size(762, 196);
+            this.outputChart.Size = new System.Drawing.Size(704, 282);
             this.outputChart.TabIndex = 2;
             this.outputChart.Text = "chart1";
             // 
@@ -134,15 +127,15 @@
             this.inputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea5.Name = "ChartArea1";
-            this.inputChart.ChartAreas.Add(chartArea5);
-            legend5.Alignment = System.Drawing.StringAlignment.Center;
-            legend5.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend5.Name = "Legend1";
-            this.inputChart.Legends.Add(legend5);
-            this.inputChart.Location = new System.Drawing.Point(3, 205);
+            chartArea6.Name = "ChartArea1";
+            this.inputChart.ChartAreas.Add(chartArea6);
+            legend6.Alignment = System.Drawing.StringAlignment.Center;
+            legend6.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend6.Name = "Legend1";
+            this.inputChart.Legends.Add(legend6);
+            this.inputChart.Location = new System.Drawing.Point(3, 291);
             this.inputChart.Name = "inputChart";
-            this.inputChart.Size = new System.Drawing.Size(762, 191);
+            this.inputChart.Size = new System.Drawing.Size(704, 283);
             this.inputChart.TabIndex = 3;
             this.inputChart.Text = "regulatorChart";
             // 
@@ -153,7 +146,7 @@
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Location = new System.Drawing.Point(235, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(780, 622);
+            this.groupBox1.Size = new System.Drawing.Size(722, 602);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Charts";
@@ -165,83 +158,41 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.controlChart, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.outputChart, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.inputChart, 0, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 19);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(768, 597);
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(710, 577);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // controlChart
-            // 
-            this.controlChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea6.Name = "ChartArea1";
-            this.controlChart.ChartAreas.Add(chartArea6);
-            legend6.Alignment = System.Drawing.StringAlignment.Center;
-            legend6.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend6.Name = "Legend1";
-            this.controlChart.Legends.Add(legend6);
-            this.controlChart.Location = new System.Drawing.Point(3, 402);
-            this.controlChart.Name = "controlChart";
-            this.controlChart.Size = new System.Drawing.Size(762, 192);
-            this.controlChart.TabIndex = 4;
-            this.controlChart.Text = "chart1";
             // 
             // startButton
             // 
             this.startButton.Location = new System.Drawing.Point(6, 19);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(100, 23);
+            this.startButton.Size = new System.Drawing.Size(100, 40);
             this.startButton.TabIndex = 5;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
-            // startTextBox
-            // 
-            this.startTextBox.BackColor = System.Drawing.Color.OrangeRed;
-            this.startTextBox.Location = new System.Drawing.Point(112, 21);
-            this.startTextBox.Name = "startTextBox";
-            this.startTextBox.ReadOnly = true;
-            this.startTextBox.Size = new System.Drawing.Size(100, 20);
-            this.startTextBox.TabIndex = 6;
-            this.startTextBox.Text = "STOPPED";
-            this.startTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // closeLoopButton
             // 
-            this.closeLoopButton.Location = new System.Drawing.Point(6, 48);
+            this.closeLoopButton.Location = new System.Drawing.Point(6, 65);
             this.closeLoopButton.Name = "closeLoopButton";
-            this.closeLoopButton.Size = new System.Drawing.Size(100, 23);
+            this.closeLoopButton.Size = new System.Drawing.Size(100, 40);
             this.closeLoopButton.TabIndex = 7;
             this.closeLoopButton.Text = "Close loop";
             this.closeLoopButton.UseVisualStyleBackColor = true;
             this.closeLoopButton.Click += new System.EventHandler(this.closeLoopButton_Click);
             // 
-            // closeLoopTextBox
-            // 
-            this.closeLoopTextBox.BackColor = System.Drawing.Color.OrangeRed;
-            this.closeLoopTextBox.Location = new System.Drawing.Point(112, 50);
-            this.closeLoopTextBox.Name = "closeLoopTextBox";
-            this.closeLoopTextBox.ReadOnly = true;
-            this.closeLoopTextBox.Size = new System.Drawing.Size(100, 20);
-            this.closeLoopTextBox.TabIndex = 8;
-            this.closeLoopTextBox.Text = "OFF";
-            this.closeLoopTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(6, 131);
+            this.resetButton.Location = new System.Drawing.Point(6, 111);
             this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(206, 23);
+            this.resetButton.Size = new System.Drawing.Size(206, 40);
             this.resetButton.TabIndex = 9;
             this.resetButton.Text = "RESET";
             this.resetButton.UseVisualStyleBackColor = true;
@@ -325,46 +276,17 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.fixedSimulationButton);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.timeHorizonTextBox);
+            this.groupBox2.Controls.Add(this.openLabel);
+            this.groupBox2.Controls.Add(this.startLabel);
             this.groupBox2.Controls.Add(this.startButton);
-            this.groupBox2.Controls.Add(this.startTextBox);
             this.groupBox2.Controls.Add(this.closeLoopButton);
-            this.groupBox2.Controls.Add(this.closeLoopTextBox);
             this.groupBox2.Controls.Add(this.resetButton);
             this.groupBox2.Location = new System.Drawing.Point(12, 27);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(217, 164);
+            this.groupBox2.Size = new System.Drawing.Size(217, 157);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Control";
-            // 
-            // fixedSimulationButton
-            // 
-            this.fixedSimulationButton.Location = new System.Drawing.Point(6, 102);
-            this.fixedSimulationButton.Name = "fixedSimulationButton";
-            this.fixedSimulationButton.Size = new System.Drawing.Size(206, 23);
-            this.fixedSimulationButton.TabIndex = 12;
-            this.fixedSimulationButton.Text = "Fixed simulation";
-            this.fixedSimulationButton.UseVisualStyleBackColor = true;
-            this.fixedSimulationButton.Click += new System.EventHandler(this.fixedSimulationButton_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(36, 79);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(70, 13);
-            this.label13.TabIndex = 11;
-            this.label13.Text = "Time horizon:";
-            // 
-            // timeHorizonTextBox
-            // 
-            this.timeHorizonTextBox.Location = new System.Drawing.Point(112, 76);
-            this.timeHorizonTextBox.Name = "timeHorizonTextBox";
-            this.timeHorizonTextBox.Size = new System.Drawing.Size(100, 20);
-            this.timeHorizonTextBox.TabIndex = 10;
             // 
             // groupBox3
             // 
@@ -379,9 +301,9 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.iterationTextBox);
             this.groupBox3.Controls.Add(this.outputTextBox);
-            this.groupBox3.Location = new System.Drawing.Point(235, 655);
+            this.groupBox3.Location = new System.Drawing.Point(235, 635);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(780, 45);
+            this.groupBox3.Size = new System.Drawing.Size(722, 45);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Data";
@@ -417,9 +339,9 @@
             this.groupBox4.Controls.Add(this.inputTextBox);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.inputTrackBar);
-            this.groupBox4.Location = new System.Drawing.Point(12, 197);
+            this.groupBox4.Location = new System.Drawing.Point(12, 191);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(217, 503);
+            this.groupBox4.Size = new System.Drawing.Size(217, 489);
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Input";
@@ -612,7 +534,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(51, 22);
+            this.label8.Location = new System.Drawing.Point(69, 22);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(57, 13);
             this.label8.TabIndex = 29;
@@ -631,15 +553,9 @@
             // 
             this.inputTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputTypeComboBox.FormattingEnabled = true;
-            this.inputTypeComboBox.Items.AddRange(new object[] {
-            "Slider",
-            "Sine wave",
-            "Square wave",
-            "Triangle wave",
-            "Saw wave"});
-            this.inputTypeComboBox.Location = new System.Drawing.Point(112, 19);
+            this.inputTypeComboBox.Location = new System.Drawing.Point(132, 19);
             this.inputTypeComboBox.Name = "inputTypeComboBox";
-            this.inputTypeComboBox.Size = new System.Drawing.Size(100, 21);
+            this.inputTypeComboBox.Size = new System.Drawing.Size(80, 21);
             this.inputTypeComboBox.TabIndex = 28;
             this.inputTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.inputTypeComboBox_SelectedIndexChanged);
             // 
@@ -696,7 +612,7 @@
             this.visualizationToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1027, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(969, 24);
             this.menuStrip1.TabIndex = 23;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -765,11 +681,31 @@
             this.hideToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.hideToolStripMenuItem.Text = "Hide";
             // 
+            // startLabel
+            // 
+            this.startLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.startLabel.Location = new System.Drawing.Point(112, 19);
+            this.startLabel.Name = "startLabel";
+            this.startLabel.Size = new System.Drawing.Size(100, 40);
+            this.startLabel.TabIndex = 10;
+            this.startLabel.Text = "STOPPED";
+            this.startLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // openLabel
+            // 
+            this.openLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.openLabel.Location = new System.Drawing.Point(112, 65);
+            this.openLabel.Name = "openLabel";
+            this.openLabel.Size = new System.Drawing.Size(100, 40);
+            this.openLabel.TabIndex = 11;
+            this.openLabel.Text = "OFF";
+            this.openLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // ControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 712);
+            this.ClientSize = new System.Drawing.Size(969, 692);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -788,9 +724,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputChart)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.controlChart)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -814,9 +748,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.TextBox startTextBox;
         private System.Windows.Forms.Button closeLoopButton;
-        private System.Windows.Forms.TextBox closeLoopTextBox;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.TextBox iterationTextBox;
         private System.Windows.Forms.Label label1;
@@ -830,7 +762,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TrackBar inputTrackBar;
-        private System.Windows.Forms.DataVisualization.Charting.Chart controlChart;
         private System.Windows.Forms.TrackBar setValueTrackBar;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox inputTextBox;
@@ -847,9 +778,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox setValueTextBox;
-        private System.Windows.Forms.Button fixedSimulationButton;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox timeHorizonTextBox;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button stepsSetButton;
         private System.Windows.Forms.TextBox stepsCurrentValuesTextBox;
@@ -872,6 +800,8 @@
         private System.Windows.Forms.ToolStripMenuItem visualizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideToolStripMenuItem;
+        private System.Windows.Forms.Label openLabel;
+        private System.Windows.Forms.Label startLabel;
     }
 }
 

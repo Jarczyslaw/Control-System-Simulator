@@ -25,7 +25,7 @@ namespace ControlPanel
             // create simulator with plant and regulator
             double h = 0.0001d;
             Simulator simulator = new Simulator(h);
-            simulator.AddRegulator(new P());
+            simulator.AddRegulator(new P(10));
             simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d), 0d, new SolverEuler()));
             simulator.Init();
 
@@ -43,7 +43,7 @@ namespace ControlPanel
                     setValueMax = 2,
                     outputChartConfig = new ChartConfig("output value", 0, 3),
                     inputChartConfig = new ChartConfig("input value", 0, 2),
-                    controlChartConfig = new ChartConfig("control value", 0, 2)
+                    controlChartConfig = new ChartConfig("control value", -2, 2)
                 });
             // optionally add visualization form
             // controlPanel.AddVisualization(new CustomVisualization());
