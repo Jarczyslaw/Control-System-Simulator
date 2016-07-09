@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using JTSim;
 using System.Threading;
 
-namespace ControlPanel
+namespace RealtimeSimulator
 {
     public class Controller
     {
@@ -26,7 +26,7 @@ namespace ControlPanel
         public InputType selectedInput = InputType.Slider;
         public double setValue = 0;
         public double inputValue = 0;
-        public WaveGenerator waves { get; private set; }
+        public WavesGenerator waves { get; private set; }
         public StepsGenerator steps { get; private set; }
 
         public Controller(Simulator simulator)
@@ -35,7 +35,7 @@ namespace ControlPanel
             InitTimer(1000000d * simulator.h);
             timer.MicroTimerElapsed += OnTimedEvent;
 
-            waves = new WaveGenerator(0.5, 1, 1);
+            waves = new WavesGenerator(0.5, 1, 1);
             steps = new StepsGenerator(new double[] { 5, 10 }, new double[] { 1, 2 });
         }
 
@@ -121,13 +121,13 @@ namespace ControlPanel
             else if (selectedInput == InputType.Steps)
                 return steps.GetSample(simulator.GetCurrentTime());
             else if (selectedInput == InputType.Sine)
-                return waves.GetSample(WaveGenerator.Waves.Sine, simulator.GetCurrentTime());
+                return waves.GetSample(WavesGenerator.Waves.Sine, simulator.GetCurrentTime());
             else if (selectedInput == InputType.Square)
-                return waves.GetSample(WaveGenerator.Waves.Square, simulator.GetCurrentTime());
+                return waves.GetSample(WavesGenerator.Waves.Square, simulator.GetCurrentTime());
             else if (selectedInput == InputType.Triangle)
-                return waves.GetSample(WaveGenerator.Waves.Triangle, simulator.GetCurrentTime());
+                return waves.GetSample(WavesGenerator.Waves.Triangle, simulator.GetCurrentTime());
             else if (selectedInput == InputType.Saw)
-                return waves.GetSample(WaveGenerator.Waves.Saw, simulator.GetCurrentTime());
+                return waves.GetSample(WavesGenerator.Waves.Saw, simulator.GetCurrentTime());
             else
                 return 0;
         }

@@ -72,7 +72,7 @@ namespace JTSim
 
         public void Test5(string fileName)
         {
-            WaveGenerator wave = new WaveGenerator(0.5, 3, 1);
+            WavesGenerator wave = new WavesGenerator(0.5, 3, 1);
             var data = wave.GetWaves(10, 0.1);
 
             fileWriter.DataToFile(data, directory + fileName);

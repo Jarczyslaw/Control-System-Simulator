@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JTSim
 {
-    public class WaveGenerator : ISignalGenerator
+    public class WavesGenerator : ISignalGenerator
     {
         public enum Waves
         {
@@ -22,17 +22,17 @@ namespace JTSim
 
         private Waves[] wavesArray;
 
-        public WaveGenerator ()
+        public WavesGenerator ()
         {
             wavesArray = new Waves[] { Waves.Sine, Waves.Square, Waves.Triangle, Waves.Saw };
         }
 
-        public WaveGenerator(double frequency, double amplitude, double offset) : this()
+        public WavesGenerator(double frequency, double amplitude, double offset) : this()
         {
             SetParams(frequency, amplitude, offset);
         }
 
-        public WaveGenerator(Waves wave, double frequency, double amplitude, double offset) : this(frequency, amplitude, offset)
+        public WavesGenerator(Waves wave, double frequency, double amplitude, double offset) : this(frequency, amplitude, offset)
         {
             this.wave = wave;
         }
@@ -42,6 +42,12 @@ namespace JTSim
             this.frequency = frequency;
             this.amplitude = amplitude;
             this.offset = offset;
+        }
+
+        public void SetParams(int defaultType, double frequency, double amplitude, double offset)
+        {
+            wave = wavesArray[defaultType];
+            SetParams(frequency, amplitude, offset);
         }
 
         public bool ValidParams(string freq, string amp, string off, 
@@ -61,7 +67,7 @@ namespace JTSim
         private double Sine(double t)
         {
             double phase = 0d;
-            return amplitude * (double)Math.Sin(2d * Math.PI * frequency * t + phase) + offset;
+            return amplitude * Math.Sin(2d * Math.PI * frequency * t + phase) + offset;
         }
 
         private double Square(double t)

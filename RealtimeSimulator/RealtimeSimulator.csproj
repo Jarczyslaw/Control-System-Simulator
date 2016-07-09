@@ -7,8 +7,8 @@
     <ProjectGuid>{FDD9ADAC-ED62-494E-B91D-6D8F41A5E6BD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ControlPanel</RootNamespace>
-    <AssemblyName>ControlPanel</AssemblyName>
+    <RootNamespace>RealtimeSimulator</RootNamespace>
+    <AssemblyName>RealtimeSimulator</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -52,33 +52,33 @@
   <ItemGroup>
     <Compile Include="Charts\ChartConfig.cs" />
     <Compile Include="Charts\ChartsController.cs" />
-    <Compile Include="ControlPanel.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ControlPanel.Designer.cs">
-      <DependentUpon>ControlPanel.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlPanelConfig.cs" />
-    <Compile Include="CustomVisualization.cs">
+    <Compile Include="Classes\RealtimeSimulatorConfig.cs" />
+    <Compile Include="Visualizations\CustomVisualization.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomVisualization.Designer.cs">
+    <Compile Include="Visualizations\CustomVisualization.Designer.cs">
       <DependentUpon>CustomVisualization.cs</DependentUpon>
     </Compile>
-    <Compile Include="InterlockedBool.cs" />
+    <Compile Include="Classes\InterlockedBool.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controller.cs" />
-    <Compile Include="VisualizationForm.cs">
+    <Compile Include="Classes\Controller.cs" />
+    <Compile Include="Visualizations\VisualizationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VisualizationForm.Designer.cs">
+    <Compile Include="Visualizations\VisualizationForm.Designer.cs">
       <DependentUpon>VisualizationForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ControlPanel.resx">
-      <DependentUpon>ControlPanel.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomVisualization.resx">
+    <EmbeddedResource Include="Visualizations\CustomVisualization.resx">
       <DependentUpon>CustomVisualization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

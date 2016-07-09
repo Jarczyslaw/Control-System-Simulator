@@ -1,4 +1,4 @@
-﻿namespace ControlPanel
+﻿namespace RealtimeSimulator
 {
     partial class VisualizationForm
     {

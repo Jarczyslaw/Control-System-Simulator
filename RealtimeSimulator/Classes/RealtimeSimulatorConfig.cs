@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControlPanel
+namespace RealtimeSimulator
 {
-    public class ControlPanelConfig
+    public class RealtimeSimulatorConfig
     {
         public int stepsPerUpdate = 10;
 

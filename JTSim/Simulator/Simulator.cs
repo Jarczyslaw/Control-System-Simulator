@@ -10,7 +10,7 @@ namespace JTSim
         public List<double[]> data = new List<double[]>();
         public bool feedbackEnabled = false;
 
-        public double h { get; private set; }
+        public double h;
 
         private GenericSystem system;
         private GenericRegulator regulator;

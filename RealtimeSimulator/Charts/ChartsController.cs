@@ -7,14 +7,14 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace ControlPanel
+namespace RealtimeSimulator
 {
     public class ChartsController
     {
         private Chart outputChart;
         private Chart inputChart;
 
-        private ControlPanelConfig config;
+        private RealtimeSimulatorConfig config;
 
         private Series output;
         private Series input;
@@ -25,7 +25,7 @@ namespace ControlPanel
 
         private double horizon;
 
-        public ChartsController(Chart outputChart, Chart inputChart, ControlPanelConfig config)
+        public ChartsController(Chart outputChart, Chart inputChart, RealtimeSimulatorConfig config)
         {
             this.outputChart = outputChart;
             this.inputChart = inputChart;
@@ -89,7 +89,7 @@ namespace ControlPanel
             chart.ChartAreas[0].AxisX.MinorGrid.Interval = 1;
         }
 
-        public void SetHorizon(ControlPanelConfig controlPanelConfig, double h)
+        public void SetHorizon(RealtimeSimulatorConfig controlPanelConfig, double h)
         {
             capacity = Convert.ToInt32(controlPanelConfig.chartHorizon * 1d / (controlPanelConfig.stepsPerUpdate * h));
             horizon = controlPanelConfig.chartHorizon;

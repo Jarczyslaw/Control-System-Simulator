@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ControlPanel
+namespace RealtimeSimulator
 {
-    public partial class ControlPanel : Form
+    public partial class MainForm : Form
     {
         private class InputComboboxItem
         {
@@ -28,13 +28,13 @@ namespace ControlPanel
         private ChartsController charts;
         private Controller controller;
 
-        private ControlPanelConfig config;
+        private RealtimeSimulatorConfig config;
         
         private int steps = 0;
 
         private Controller.InputType[] inputTypes;
 
-        public ControlPanel(Controller controller, ControlPanelConfig config)
+        public MainForm(Controller controller, RealtimeSimulatorConfig config)
         {
             this.controller = controller;
             controller.realTimeUpdate += UpdateFromController;
@@ -46,7 +46,7 @@ namespace ControlPanel
             InitControls(); 
         }
 
-        public void InitConfig(ControlPanelConfig config)
+        public void InitConfig(RealtimeSimulatorConfig config)
         {
             inputTextBox.Text = config.inputMin.ToString("0.00");
             inputSetTextBox.Text = config.setValueMin.ToString("0.00");

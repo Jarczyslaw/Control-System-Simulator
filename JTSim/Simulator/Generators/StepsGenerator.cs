@@ -12,10 +12,7 @@ namespace JTSim
         public double[] stepTimes;
         public double[] stepValues;
 
-        public StepsGenerator(double[] stepTimes, double[] stepValues)
-        {
-            SetParams(stepTimes, stepValues);
-        }
+        public StepsGenerator() : this(1, 0) { }
 
         public StepsGenerator(double stepValue) : this(stepValue, 0d) { }
 
@@ -23,6 +20,11 @@ namespace JTSim
         {
             stepTimes = new double[] { stepTime };
             stepValues = new double[] { stepValue };
+        }
+
+        public StepsGenerator(double[] stepTimes, double[] stepValues)
+        {
+            SetParams(stepTimes, stepValues);
         }
 
         public void SetParams(double[] stepTimes, double[] stepValues)

@@ -1,6 +1,6 @@
-﻿namespace ControlPanel
+﻿namespace RealtimeSimulator
 {
-    partial class ControlPanel
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.outputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.inputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -48,6 +48,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.openLabel = new System.Windows.Forms.Label();
+            this.startLabel = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.setValueTextBox = new System.Windows.Forms.TextBox();
@@ -89,8 +91,6 @@
             this.visualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startLabel = new System.Windows.Forms.Label();
-            this.openLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.outputChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputChart)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -110,12 +110,12 @@
             this.outputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea5.Name = "ChartArea1";
-            this.outputChart.ChartAreas.Add(chartArea5);
-            legend5.Alignment = System.Drawing.StringAlignment.Center;
-            legend5.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend5.Name = "Legend1";
-            this.outputChart.Legends.Add(legend5);
+            chartArea3.Name = "ChartArea1";
+            this.outputChart.ChartAreas.Add(chartArea3);
+            legend3.Alignment = System.Drawing.StringAlignment.Center;
+            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend3.Name = "Legend1";
+            this.outputChart.Legends.Add(legend3);
             this.outputChart.Location = new System.Drawing.Point(3, 3);
             this.outputChart.Name = "outputChart";
             this.outputChart.Size = new System.Drawing.Size(704, 282);
@@ -127,12 +127,12 @@
             this.inputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea6.Name = "ChartArea1";
-            this.inputChart.ChartAreas.Add(chartArea6);
-            legend6.Alignment = System.Drawing.StringAlignment.Center;
-            legend6.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend6.Name = "Legend1";
-            this.inputChart.Legends.Add(legend6);
+            chartArea4.Name = "ChartArea1";
+            this.inputChart.ChartAreas.Add(chartArea4);
+            legend4.Alignment = System.Drawing.StringAlignment.Center;
+            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend4.Name = "Legend1";
+            this.inputChart.Legends.Add(legend4);
             this.inputChart.Location = new System.Drawing.Point(3, 291);
             this.inputChart.Name = "inputChart";
             this.inputChart.Size = new System.Drawing.Size(704, 283);
@@ -287,6 +287,26 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Control";
+            // 
+            // openLabel
+            // 
+            this.openLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.openLabel.Location = new System.Drawing.Point(112, 65);
+            this.openLabel.Name = "openLabel";
+            this.openLabel.Size = new System.Drawing.Size(100, 40);
+            this.openLabel.TabIndex = 11;
+            this.openLabel.Text = "OFF";
+            this.openLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // startLabel
+            // 
+            this.startLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.startLabel.Location = new System.Drawing.Point(112, 19);
+            this.startLabel.Name = "startLabel";
+            this.startLabel.Size = new System.Drawing.Size(100, 40);
+            this.startLabel.TabIndex = 10;
+            this.startLabel.Text = "STOPPED";
+            this.startLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox3
             // 
@@ -681,27 +701,7 @@
             this.hideToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.hideToolStripMenuItem.Text = "Hide";
             // 
-            // startLabel
-            // 
-            this.startLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.startLabel.Location = new System.Drawing.Point(112, 19);
-            this.startLabel.Name = "startLabel";
-            this.startLabel.Size = new System.Drawing.Size(100, 40);
-            this.startLabel.TabIndex = 10;
-            this.startLabel.Text = "STOPPED";
-            this.startLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // openLabel
-            // 
-            this.openLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.openLabel.Location = new System.Drawing.Point(112, 65);
-            this.openLabel.Name = "openLabel";
-            this.openLabel.Size = new System.Drawing.Size(100, 40);
-            this.openLabel.TabIndex = 11;
-            this.openLabel.Text = "OFF";
-            this.openLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ControlPanel
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -715,8 +715,8 @@
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.Name = "ControlPanel";
-            this.Text = "JTSim";
+            this.Name = "MainForm";
+            this.Text = "JTSim - real-time simulator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlPanel_FormClosing);
             this.Shown += new System.EventHandler(this.ControlPanel_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ControlPanel_KeyDown);

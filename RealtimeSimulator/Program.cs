@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JTSim;
 
-namespace ControlPanel
+namespace RealtimeSimulator
 {
     static class Program
     {
@@ -32,9 +32,9 @@ namespace ControlPanel
             // create controller with simulator
             Controller controller = new Controller(simulator);
             // create control panel with controller and controlPanelConfig
-            ControlPanel controlPanel = new ControlPanel(
+            MainForm controlPanel = new MainForm(
                 controller,
-                new ControlPanelConfig()
+                new RealtimeSimulatorConfig()
                 {
                     stepsPerUpdate = 500,
                     inputMin = 0,

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ControlPanel
+namespace RealtimeSimulator
 {
     public partial class CustomVisualization : VisualizationForm
     {
