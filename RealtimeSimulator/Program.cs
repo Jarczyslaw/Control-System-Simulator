@@ -23,10 +23,9 @@ namespace RealtimeSimulator
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
             // create simulator with plant and regulator
-            double h = 0.0001d;
-            Simulator simulator = new Simulator(h);
-            simulator.AddRegulator(new P(10));
-            simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d), 0d, new SolverEuler()));
+            Simulator simulator = new Simulator(0.0001);
+            simulator.AddRegulator(new PID(3.0255, 2.7713, 0.69893));
+            simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d, 2, 1, 0.5), 0d, new SolverEuler()));
             simulator.Init();
 
             // create controller with simulator
@@ -46,7 +45,7 @@ namespace RealtimeSimulator
                     controlChartConfig = new ChartConfig("control value", -2, 2)
                 });
             // optionally add visualization form
-            // controlPanel.AddVisualization(new CustomVisualization());
+            controlPanel.AddVisualization(new CustomVisualization());
 
             Application.Run(controlPanel);
         }

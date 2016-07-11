@@ -29,6 +29,8 @@ namespace RealtimeSimulator
         public WavesGenerator waves { get; private set; }
         public StepsGenerator steps { get; private set; }
 
+        private FileWriter fileWriter;
+
         public Controller(Simulator simulator)
         {
             this.simulator = simulator;
@@ -37,6 +39,8 @@ namespace RealtimeSimulator
 
             waves = new WavesGenerator(0.5, 1, 1);
             steps = new StepsGenerator(new double[] { 5, 10 }, new double[] { 1, 2 });
+
+            fileWriter = new FileWriter();
         }
 
         private void InitTimer(double delay)
@@ -98,15 +102,15 @@ namespace RealtimeSimulator
             simulator.Init();
         }
 
-        public List<double[]> FixedSimulation(double time)
+        public bool SaveDataToFile(string filePath)
         {
-            simulator.Init();
-            int iterations = Convert.ToInt32(time / simulator.h);
-            for (int i = 0;i < iterations;i++)
+            if (simulator.data.Count == 0)
+                return false;
+            else
             {
-                simulator.Step(ApplyInput());
+                fileWriter.DataToFile(simulator.data, filePath);
+                return true;
             }
-            return simulator.data;
         }
 
         private double ApplyInput()

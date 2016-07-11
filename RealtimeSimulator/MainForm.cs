@@ -194,16 +194,6 @@ namespace RealtimeSimulator
 
 
         #region EVENTS
-        private void fixedSimulationButton_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Do you want to reset simulation and perform fixed simulation?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (result == DialogResult.Cancel)
-                return;
-
-            List<double[]> data = controller.FixedSimulation(1);
-            charts.AddData(data);
-        }
-
         private void startButton_Click(object sender, EventArgs e)
         {
             controller.StartStop();
@@ -312,8 +302,55 @@ namespace RealtimeSimulator
             else
                 MessageBox.Show("Invalid steps parameters. They should be positive double values separated by ','. Number of steps should be equal to numbers of values.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void enableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateOpenClose(true);
+        }
+
+        private void disableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateOpenClose(false);
+        }
+
+        private void saveToFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!controller.IsRunning())
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.FileName = "data";
+                sfd.DefaultExt = "txt";
+                sfd.ValidateNames = true;
+                sfd.Filter = "Text file (.txt)|*.txt";
+
+                DialogResult dr = sfd.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    if (controller.SaveDataToFile(sfd.FileName))
+                        MessageBox.Show("File saved!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Data is empty. Run simulation before saving!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+                MessageBox.Show("Simulation is running. Stop it and than save data to file.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (visualization == null)
+                MessageBox.Show("Visualization is not set.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                visualization.ShowVisualization();
+        }
+
+        private void hideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (visualization == null)
+                MessageBox.Show("Visualization is not set.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                visualization.HideVisualization();
+        }
         #endregion
-
-
     }
 }

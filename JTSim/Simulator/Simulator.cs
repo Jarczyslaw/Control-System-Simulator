@@ -17,6 +17,8 @@ namespace JTSim
 
         public int iteration { get; private set; } = -1;
 
+        public Simulator() : this(0.01) { }
+
         public Simulator (double h)
         {
             this.h = h;

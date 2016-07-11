@@ -24,10 +24,9 @@ namespace OfflineSimulator
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             Thread.CurrentThread.CurrentCulture = customCulture;
 
-            double h = 0.0001d;
-            Simulator simulator = new Simulator(h);
-            simulator.AddRegulator(new P(20));
-            simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d), 0d, new SolverEuler()));
+            Simulator simulator = new Simulator();
+            simulator.AddRegulator(new PID(3.0255, 1.0917, 0.23101));
+            simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d, 2, 1, 0.5), 0d, new SolverRK4()));
             simulator.Init();
 
             Controller controller = new Controller(simulator);

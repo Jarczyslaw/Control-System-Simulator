@@ -58,9 +58,8 @@ namespace OfflineSimulator
 
         public long simulationTime;
 
-        private Stopwatch stopwatch = new Stopwatch();
-
-        public List<double[]> lastData;
+        private FileWriter fileWriter;
+        private Stopwatch stopwatch;
 
         public Controller(Simulator simulator)
         {
@@ -68,6 +67,9 @@ namespace OfflineSimulator
 
             steps = new StepsGenerator();
             waves = new WavesGenerator();
+
+            fileWriter = new FileWriter();
+            stopwatch = new Stopwatch();
 
             WorkerReportsProgress = true;
             WorkerSupportsCancellation = true;
@@ -95,6 +97,17 @@ namespace OfflineSimulator
         public void Stop()
         {
             CancelAsync();    
+        }
+
+        public bool SaveDataToFile(string path)
+        {
+            if (simulator.data.Count == 0)
+                return false;
+            else
+            {
+                fileWriter.DataToFile(simulator.data, path);
+                return true;
+            }
         }
 
         public void SetInputParams(int type, double amplitude, double frequency, double offset,
@@ -169,7 +182,6 @@ namespace OfflineSimulator
                     simulationTime = stopwatch.ElapsedMilliseconds;
 
                     List<double[]> data = e.Result as List<double[]>;
-                    lastData = data;
                     parent.WorkFinished(0, data);
                 }
                 else

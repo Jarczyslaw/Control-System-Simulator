@@ -18,6 +18,16 @@ namespace RealtimeSimulator
             MaximizeBox = false;
         }
 
+        public virtual void ShowVisualization()
+        {
+            Show();
+        }
+
+        public virtual void HideVisualization()
+        {
+            Hide();
+        }
+
         public virtual void Start()
         {
             Console.WriteLine("Visualization start");
@@ -41,6 +51,12 @@ namespace RealtimeSimulator
         public virtual void Update(double[] data, int iteration)
         {
             Console.WriteLine("Visualization update");
+        }
+
+        private void VisualizationForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Hide();
+            e.Cancel = true;
         }
     }
 }

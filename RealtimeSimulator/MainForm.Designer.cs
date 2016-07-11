@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.outputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.inputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -85,12 +85,14 @@
             this.simulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fixedSimulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.feedbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.outputChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputChart)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -110,12 +112,12 @@
             this.outputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea3.Name = "ChartArea1";
-            this.outputChart.ChartAreas.Add(chartArea3);
-            legend3.Alignment = System.Drawing.StringAlignment.Center;
-            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend3.Name = "Legend1";
-            this.outputChart.Legends.Add(legend3);
+            chartArea11.Name = "ChartArea1";
+            this.outputChart.ChartAreas.Add(chartArea11);
+            legend11.Alignment = System.Drawing.StringAlignment.Center;
+            legend11.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend11.Name = "Legend1";
+            this.outputChart.Legends.Add(legend11);
             this.outputChart.Location = new System.Drawing.Point(3, 3);
             this.outputChart.Name = "outputChart";
             this.outputChart.Size = new System.Drawing.Size(704, 282);
@@ -127,12 +129,12 @@
             this.inputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea4.Name = "ChartArea1";
-            this.inputChart.ChartAreas.Add(chartArea4);
-            legend4.Alignment = System.Drawing.StringAlignment.Center;
-            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend4.Name = "Legend1";
-            this.inputChart.Legends.Add(legend4);
+            chartArea12.Name = "ChartArea1";
+            this.inputChart.ChartAreas.Add(chartArea12);
+            legend12.Alignment = System.Drawing.StringAlignment.Center;
+            legend12.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend12.Name = "Legend1";
+            this.inputChart.Legends.Add(legend12);
             this.inputChart.Location = new System.Drawing.Point(3, 291);
             this.inputChart.Name = "inputChart";
             this.inputChart.Size = new System.Drawing.Size(704, 283);
@@ -641,7 +643,7 @@
             this.simulationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startToolStripMenuItem,
             this.stopToolStripMenuItem,
-            this.fixedSimulationToolStripMenuItem,
+            this.feedbackToolStripMenuItem,
             this.resetToolStripMenuItem});
             this.simulationToolStripMenuItem.Name = "simulationToolStripMenuItem";
             this.simulationToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
@@ -650,27 +652,21 @@
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.stopToolStripMenuItem.Text = "Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
-            // 
-            // fixedSimulationToolStripMenuItem
-            // 
-            this.fixedSimulationToolStripMenuItem.Name = "fixedSimulationToolStripMenuItem";
-            this.fixedSimulationToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.fixedSimulationToolStripMenuItem.Text = "Fixed simulation";
             // 
             // resetToolStripMenuItem
             // 
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.resetToolStripMenuItem.Text = "Reset";
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
             // 
@@ -679,6 +675,7 @@
             this.saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
             this.saveToFileToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.saveToFileToolStripMenuItem.Text = "Save to file";
+            this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.saveToFileToolStripMenuItem_Click);
             // 
             // visualizationToolStripMenuItem
             // 
@@ -692,14 +689,39 @@
             // showToolStripMenuItem
             // 
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // hideToolStripMenuItem
             // 
             this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
-            this.hideToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.hideToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.hideToolStripMenuItem.Text = "Hide";
+            this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
+            // 
+            // feedbackToolStripMenuItem
+            // 
+            this.feedbackToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.enableToolStripMenuItem,
+            this.disableToolStripMenuItem});
+            this.feedbackToolStripMenuItem.Name = "feedbackToolStripMenuItem";
+            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.feedbackToolStripMenuItem.Text = "Feedback";
+            // 
+            // enableToolStripMenuItem
+            // 
+            this.enableToolStripMenuItem.Name = "enableToolStripMenuItem";
+            this.enableToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.enableToolStripMenuItem.Text = "Enable";
+            this.enableToolStripMenuItem.Click += new System.EventHandler(this.enableToolStripMenuItem_Click);
+            // 
+            // disableToolStripMenuItem
+            // 
+            this.disableToolStripMenuItem.Name = "disableToolStripMenuItem";
+            this.disableToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.disableToolStripMenuItem.Text = "Disable";
+            this.disableToolStripMenuItem.Click += new System.EventHandler(this.disableToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -794,7 +816,6 @@
         private System.Windows.Forms.ToolStripMenuItem simulationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fixedSimulationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizationToolStripMenuItem;
@@ -802,6 +823,9 @@
         private System.Windows.Forms.ToolStripMenuItem hideToolStripMenuItem;
         private System.Windows.Forms.Label openLabel;
         private System.Windows.Forms.Label startLabel;
+        private System.Windows.Forms.ToolStripMenuItem feedbackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem disableToolStripMenuItem;
     }
 }
 

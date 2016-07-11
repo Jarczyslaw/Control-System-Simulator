@@ -30,38 +30,38 @@ namespace OfflineSimulator
 
         private void Start()
         {
-            double timeHorizon = 0;
-            if (!double.TryParse(timeHorizonTextBox.Text, out timeHorizon))
-            {
-                MessageBox.Show("Invalid start time or end time value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; 
-            }
-
-            double stepSize = 0, pointsPerSecond = 0;
-            if (!double.TryParse(stepSizeTextBox.Text, out stepSize) || !double.TryParse(pointsPerSecondTextBox.Text, out pointsPerSecond))
-            {
-                MessageBox.Show("Invalid step size or steps per point value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            double frequency = 0, amplitude = 0, offset = 0;
-            if(!controller.waves.ValidParams(frequencyTextBox.Text, amplitudeTextBox.Text, offsetTextBox.Text,
-                ref frequency, ref amplitude, ref offset))
-            {
-                MessageBox.Show("Invalid waves generator parameters.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            double[] times, values;
-            if(!controller.steps.ValidParams(stepsTimesTextBox.Text, stepsValuesTextBox.Text,
-                out times, out values))
-            {
-                MessageBox.Show("Invalid steps generator parameters.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             if(!controller.running)
             {
+                double timeHorizon = 0;
+                if (!double.TryParse(timeHorizonTextBox.Text, out timeHorizon))
+                {
+                    MessageBox.Show("Invalid start time or end time value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                double stepSize = 0, pointsPerSecond = 0;
+                if (!double.TryParse(stepSizeTextBox.Text, out stepSize) || !double.TryParse(pointsPerSecondTextBox.Text, out pointsPerSecond))
+                {
+                    MessageBox.Show("Invalid step size or steps per point value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                double frequency = 0, amplitude = 0, offset = 0;
+                if (!controller.waves.ValidParams(frequencyTextBox.Text, amplitudeTextBox.Text, offsetTextBox.Text,
+                    ref frequency, ref amplitude, ref offset))
+                {
+                    MessageBox.Show("Invalid waves generator parameters.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                double[] times, values;
+                if (!controller.steps.ValidParams(stepsTimesTextBox.Text, stepsValuesTextBox.Text,
+                    out times, out values))
+                {
+                    MessageBox.Show("Invalid steps generator parameters.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 int inputType = 0;
                 if (wavesRadioButton.Checked)
                     inputType = 1;
@@ -84,6 +84,25 @@ namespace OfflineSimulator
 
         private void SaveToFile()
         {
+            if (!controller.running)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.FileName = "data";
+                sfd.DefaultExt = "txt";
+                sfd.ValidateNames = true;
+                sfd.Filter = "Text file (.txt)|*.txt";
+
+                DialogResult dr = sfd.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    if (controller.SaveDataToFile(sfd.FileName))
+                        MessageBox.Show("File saved!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Data is empty. Run simulation before saving!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+                MessageBox.Show("Simulator is currently working. Wait for simulation complete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void UpdateProgress(int i)
@@ -123,7 +142,7 @@ namespace OfflineSimulator
 
         private void saveToFileButton_Click(object sender, EventArgs e)
         {
-
+            SaveToFile();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
