@@ -50,6 +50,7 @@ namespace SolversTest
             FileWriter fw = new FileWriter();
             fw.DataToFile(data, @"D://tests/solvers_test.txt");
 
+            entries.Sort((x, y) => x.mse.CompareTo(y.mse));
             foreach (TestEntry entry in entries)
                 entry.ShowInfo();
         }

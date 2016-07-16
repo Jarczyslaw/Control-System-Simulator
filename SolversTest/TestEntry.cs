@@ -64,7 +64,8 @@ namespace SolversTest
 
         public void ShowInfo ()
         {
-            Console.WriteLine("Solver: {0}, duration: {1}, MSE: {2}", solver.GetType().Name, duration, mse);
+            Console.WriteLine("Solver: {0}, duration: {1}" + Environment.NewLine
+                + "\tMSE: {2:E8}", solver.GetType().Name, duration, mse);
         }
     }
 }

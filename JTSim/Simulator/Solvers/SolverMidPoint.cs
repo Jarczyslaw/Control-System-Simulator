@@ -15,7 +15,7 @@ namespace JTSim
         {
             JVector k1 = model.DifferentialEquasions(state, input, t);
             JVector k2 = model.DifferentialEquasions(state + halfStep * k1, input, t + halfStep);
-            return state + halfStep * (k1 + k2);
+            return state + h * k2;
         }
 
         public void Init(double h)

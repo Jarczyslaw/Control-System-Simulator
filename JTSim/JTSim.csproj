@@ -44,9 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Simulator\FileWriter.cs" />
+    <Compile Include="Simulator\Solvers\SolverAdamsMoulton.cs" />
+    <Compile Include="Simulator\Solvers\SolverEulerTrapezoidal.cs" />
+    <Compile Include="Simulator\Solvers\SolverHeun.cs" />
+    <Compile Include="Simulator\Utilities\FileWriter.cs" />
     <Compile Include="Simulator\Generators\ISignalGenerator.cs" />
+    <Compile Include="Simulator\Utilities\JQueue.cs" />
     <Compile Include="Simulator\Regulators\P.cs" />
+    <Compile Include="Simulator\Solvers\SolverAdamsBashforth.cs" />
     <Compile Include="Simulator\Solvers\SolverDormandPrince.cs" />
     <Compile Include="Simulator\Solvers\SolverMidPoint.cs" />
     <Compile Include="Simulator\Solvers\SolverRK4Enhanced.cs" />

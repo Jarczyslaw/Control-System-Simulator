@@ -129,6 +129,10 @@ namespace OfflineSimulator
             }
         }
 
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            progressProgressBar.Width = Width - 112;
+        }
         #region EVENTS
         private void startButton_Click(object sender, EventArgs e)
         {
@@ -155,5 +159,7 @@ namespace OfflineSimulator
             }
         }
         #endregion
+
+        
     }
 }

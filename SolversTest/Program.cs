@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using JTSim;
 using JVectors;
 
@@ -20,14 +16,22 @@ namespace SolversTest
                             (double t) => (Math.Exp(0.5 * t * t + 1)),
                             (double t, JVector y) => (t * y)
                             );
+            /*TestModel model = new TestModel(
+                            (double t) => (2 + 2 * t + t * t - Math.Exp(t)),
+                            (double t, JVector y) => (y - t*t)
+                            );*/
             Tester tester = new Tester(model, new ISolver[] {
                 new SolverEuler(),
+                new SolverEulerTrapezoidal(),
+                new SolverHeun(),
                 new SolverMidPoint(),
                 new SolverRK4(),
                 new SolverRK4Enhanced(),
                 new SolverDormandPrince(),
+                new SolverAdamsBashforth(5),
+                new SolverAdamsMoulton(5)
             });
-            tester.Test(2d, 0.00001d);
+            tester.Test(2d, 0.0001d);
 
             Console.ReadKey();
         }

@@ -106,6 +106,26 @@ namespace JTSim
             fileWriter.SimulatorDataToFile(simulator, directory + fileName);
         }
 
+        public void Test8(string fileName)
+        {
+            simulator.AddRegulator(new PID(4.2382, 1.5278, 0.1868));
+
+            var A = new JMatrix(new double[,] { { 0, 1 }, { -2, -3 } });
+            var B = new JVector(new double[] { 0, 4 });
+            var C = new JVector(new double[] { 1, 0 });
+            var D = 0d;
+            var initState = new JVector(new double[] { 1, 0 });
+
+            simulator.AddSystem(new ContinousSystem(new StateSpaceModel(A, B, C, D, initState), 0d, new SolverRK4()));
+            simulator.feedbackEnabled = true;
+            simulator.Init();
+
+            StepsGenerator steps = new StepsGenerator(new double[] { 0, 5, 10 }, new double[] { 2, -2, 2 });
+            simulator.SignalSimulation(15, steps);
+
+            fileWriter.SimulatorDataToFile(simulator, directory + fileName);
+        }
+
         public void DoAllTests()
         {
             foreach (MethodInfo method in this.GetType().GetMethods())
