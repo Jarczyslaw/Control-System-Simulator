@@ -126,6 +126,17 @@ namespace JTSim
             fileWriter.SimulatorDataToFile(simulator, directory + fileName);
         }
 
+        public void Test9(string fileName)
+        {
+            simulator.AddRegulator(new TransparentRegulator());
+            simulator.AddSystem(new ContinousSystem(new TransferFunction(new double[] { 2, 6 }, new double[] { 2, 4, 2, 2 }), new SolverEuler()));
+            simulator.feedbackEnabled = false;
+            simulator.Init();
+            simulator.StepSimulation(10);
+
+            fileWriter.SimulatorDataToFile(simulator, directory + fileName);
+        }
+
         public void DoAllTests()
         {
             foreach (MethodInfo method in this.GetType().GetMethods())

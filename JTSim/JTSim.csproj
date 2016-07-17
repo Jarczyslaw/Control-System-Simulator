@@ -47,6 +47,7 @@
     <Compile Include="Simulator\Solvers\SolverAdamsMoulton.cs" />
     <Compile Include="Simulator\Solvers\SolverEulerTrapezoidal.cs" />
     <Compile Include="Simulator\Solvers\SolverHeun.cs" />
+    <Compile Include="Simulator\Systems\Continuous\TransferFunction.cs" />
     <Compile Include="Simulator\Utilities\FileWriter.cs" />
     <Compile Include="Simulator\Generators\ISignalGenerator.cs" />
     <Compile Include="Simulator\Utilities\JQueue.cs" />

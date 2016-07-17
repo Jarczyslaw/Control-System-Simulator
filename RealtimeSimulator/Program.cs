@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
+using System.Globalization;
 using System.Windows.Forms;
 using JTSim;
 
@@ -18,12 +19,12 @@ namespace RealtimeSimulator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            CultureInfo customCulture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
-            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+            Thread.CurrentThread.CurrentCulture = customCulture;
 
             // create simulator with plant and regulator
-            Simulator simulator = new Simulator(0.0001);
+            Simulator simulator = new Simulator(0.001);
             simulator.AddRegulator(new PID(3.0255, 2.7713, 0.69893));
             simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d, 2, 1, 0.5), 0d, new SolverEuler()));
             simulator.Init();
@@ -35,7 +36,7 @@ namespace RealtimeSimulator
                 controller,
                 new RealtimeSimulatorConfig()
                 {
-                    stepsPerUpdate = 500,
+                    stepsPerUpdate = 50,
                     inputMin = 0,
                     inputMax = 2,
                     setValueMin = 0,
@@ -45,7 +46,7 @@ namespace RealtimeSimulator
                     controlChartConfig = new ChartConfig("control value", -2, 2)
                 });
             // optionally add visualization form
-            controlPanel.AddVisualization(new CustomVisualization());
+            //controlPanel.AddVisualization(new CustomVisualization());
 
             Application.Run(controlPanel);
         }

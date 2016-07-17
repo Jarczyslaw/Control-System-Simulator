@@ -98,7 +98,6 @@ namespace RealtimeSimulator
         public void Reset()
         {
             Stop();
-            selectedInput = InputType.Slider;
             simulator.Init();
         }
 

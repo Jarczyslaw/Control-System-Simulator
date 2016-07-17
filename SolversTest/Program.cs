@@ -31,7 +31,7 @@ namespace SolversTest
                 new SolverAdamsBashforth(5),
                 new SolverAdamsMoulton(5)
             });
-            tester.Test(2d, 0.0001d);
+            tester.Test(2d, 0.001);
 
             Console.ReadKey();
         }
