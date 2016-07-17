@@ -24,8 +24,8 @@ namespace RealtimeSimulator
         public Action<double[], int> realTimeUpdate;
 
         public InputType selectedInput = InputType.Slider;
-        public double setValue = 0;
-        public double inputValue = 0;
+        public double setValue = 0.0;
+        public double inputValue = 0.0;
         public WavesGenerator waves { get; private set; }
         public StepsGenerator steps { get; private set; }
 
@@ -37,8 +37,8 @@ namespace RealtimeSimulator
             InitTimer(1000000d * simulator.h);
             timer.MicroTimerElapsed += OnTimedEvent;
 
-            waves = new WavesGenerator(0.5, 1, 1);
-            steps = new StepsGenerator(new double[] { 5, 10 }, new double[] { 1, 2 });
+            waves = new WavesGenerator(0.5, 1.0, 1.0);
+            steps = new StepsGenerator(new double[] { 5.0, 10.0 }, new double[] { 1.0, 2.0 });
 
             fileWriter = new FileWriter();
         }

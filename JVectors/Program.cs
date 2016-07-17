@@ -12,12 +12,12 @@ namespace JVectors
         {
 
 
-            var m1 = new JMatrix(new double[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } });
-            var m2 = new JMatrix(new double[,] { { 2, 3 }, { 4, 5 }, { 6, 7 } });
-            var m3 = new JMatrix(new double[,] { { 1, 2 }, { 3, 4 } });
-            var v1 = new JVector(new double[] { 2, 1 });
+            var m1 = new JMatrix(new double[,] { { 1.0, 2.0 }, { 3.0, 4.0 }, { 5.0, 6.0 } });
+            var m2 = new JMatrix(new double[,] { { 2.0, 3.0 }, { 4.0, 5.0 }, { 6.0, 7.0 } });
+            var m3 = new JMatrix(new double[,] { { 1.0, 2.0 }, { 3.0, 4.0 } });
+            var v1 = new JVector(new double[] { 2.0, 1.0 });
 
-            Console.WriteLine((new JMatrix(new double[,] { { 1, 2 }, { 3, 4 } })).Inv());
+            Console.WriteLine((new JMatrix(new double[,] { { 1.0, 2.0 }, { 3.0, 4.0 } })).Inv());
 
             Console.ReadKey();
         }

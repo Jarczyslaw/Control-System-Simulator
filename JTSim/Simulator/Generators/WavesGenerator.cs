@@ -58,7 +58,7 @@ namespace JTSim
                 double.TryParse(freq, out frequency) &&
                 double.TryParse(off, out offset))
             {
-                if (amplitude > 0 && frequency > 0)
+                if (amplitude > 0.0 && frequency > 0.0)
                     valid = true;
             }
             return valid;

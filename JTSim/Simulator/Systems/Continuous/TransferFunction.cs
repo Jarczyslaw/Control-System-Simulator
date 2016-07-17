@@ -44,20 +44,20 @@ namespace JTSim
                 den[i] = den[i] / a;
 
             int len = den.Length - 1;
-            JMatrix A = new JMatrix(len, len, 0);
+            JMatrix A = new JMatrix(len, len, 0.0);
             for (int i = 0;i < len;i++)
                 A[len - 1, i] = -den[den.Length - 1 - i];
             int ones = len - 1;
             for (int i = 0; i < ones; i++)
-                A[i, i + 1] = 1;
-            JVector B = new JVector(len, 0);
-            B[len - 1] = 1;
-            JVector C = new JVector(len, 0);
+                A[i, i + 1] = 1.0;
+            JVector B = new JVector(len, 0.0);
+            B[len - 1] = 1.0;
+            JVector C = new JVector(len, 0.0);
             for (int i = num.Length - 1; i >= 0; i--)
                 C[num.Length - 1 - i] = num[i];
-            double D = 0;
+            double D = 0.0;
 
-            initState = new JVector(len, 0);
+            initState = new JVector(len, 0.0);
             stateSpace = new StateSpaceModel(A, B, C, D, null);
         }
     }

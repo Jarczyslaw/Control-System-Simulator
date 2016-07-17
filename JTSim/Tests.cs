@@ -43,7 +43,7 @@ namespace JTSim
             simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d), 0d, new SolverRK4()));
             simulator.feedbackEnabled = false;
             simulator.Init();
-            simulator.StepSimulation(10f);
+            simulator.StepSimulation(10d);
 
             fileWriter.SimulatorDataToFile(simulator, directory + fileName);
         }
@@ -51,7 +51,7 @@ namespace JTSim
         public void Test3(string fileName)
         {
             simulator.AddRegulator(new PID(1.09, 3.16, 0.12));
-            simulator.AddSystem(new ContinousSystem(new FirstOrder(0.5d, 2, 3), 1d, new SolverRK4()));
+            simulator.AddSystem(new ContinousSystem(new FirstOrder(0.5d, 2.0, 3.0), 1d, new SolverRK4()));
             simulator.feedbackEnabled = true;
             simulator.Init();
             simulator.StepSimulation(20f);
@@ -62,18 +62,18 @@ namespace JTSim
         public void Test4(string fileName)
         {
             simulator.AddRegulator(new TransparentRegulator());
-            simulator.AddSystem(new DiscreteSystem(new DiscreteSecondOrder(0, 0), 2d));
+            simulator.AddSystem(new DiscreteSystem(new DiscreteSecondOrder(0.0, 0.0), 2d));
             simulator.feedbackEnabled = false;
             simulator.Init();
-            simulator.StepSimulation(10f);
+            simulator.StepSimulation(10.0);
 
             fileWriter.SimulatorDataToFile(simulator, directory + fileName);
         }
 
         public void Test5(string fileName)
         {
-            WavesGenerator wave = new WavesGenerator(0.5, 3, 1);
-            var data = wave.GetWaves(10, 0.1);
+            WavesGenerator wave = new WavesGenerator(0.5, 3.0, 1.0);
+            var data = wave.GetWaves(10.0, 0.1);
 
             fileWriter.DataToFile(data, directory + fileName);
         }
@@ -81,9 +81,9 @@ namespace JTSim
         public void Test6(string fileName)
         {
             StepsGenerator steps = new StepsGenerator(
-                new double[] { 0, 5, 8, 14 },
-                new double[] { 1, -3, 2, 0 });
-            var data = steps.GetSteps(20, 0.1);
+                new double[] { 0.0, 5.0, 8.0, 14.0 },
+                new double[] { 1.0, -3.0, 2.0, 0.0 });
+            var data = steps.GetSteps(20.0, 0.1);
 
             fileWriter.DataToFile(data, directory + fileName);
         }
@@ -92,11 +92,11 @@ namespace JTSim
         {
             simulator.AddRegulator(new TransparentRegulator());
 
-            var A = new JMatrix(new double[,] { { 0, 1 }, { -2, -3 } });
-            var B = new JVector(new double[] { 0, 4 });
-            var C = new JVector(new double[] { 1, 0 });
+            var A = new JMatrix(new double[,] { { 0.0, 1.0 }, { -2.0, -3.0 } });
+            var B = new JVector(new double[] { 0.0, 4.0 });
+            var C = new JVector(new double[] { 1.0, 0.0 });
             var D = 0d;
-            var initState = new JVector(new double[] { 1, -1 });
+            var initState = new JVector(new double[] { 1.0, -1.0 });
 
             simulator.AddSystem(new ContinousSystem(new StateSpaceModel(A, B, C, D, initState), 0d, new SolverRK4()));
             simulator.feedbackEnabled = false;
@@ -110,18 +110,18 @@ namespace JTSim
         {
             simulator.AddRegulator(new PID(4.2382, 1.5278, 0.1868));
 
-            var A = new JMatrix(new double[,] { { 0, 1 }, { -2, -3 } });
-            var B = new JVector(new double[] { 0, 4 });
-            var C = new JVector(new double[] { 1, 0 });
+            var A = new JMatrix(new double[,] { { 0.0, 1.0 }, { -2.0, -3.0 } });
+            var B = new JVector(new double[] { 0.0, 4.0 });
+            var C = new JVector(new double[] { 1.0, 0.0 });
             var D = 0d;
-            var initState = new JVector(new double[] { 1, 0 });
+            var initState = new JVector(new double[] { 1.0, 0.0 });
 
             simulator.AddSystem(new ContinousSystem(new StateSpaceModel(A, B, C, D, initState), 0d, new SolverRK4()));
             simulator.feedbackEnabled = true;
             simulator.Init();
 
-            StepsGenerator steps = new StepsGenerator(new double[] { 0, 5, 10 }, new double[] { 2, -2, 2 });
-            simulator.SignalSimulation(15, steps);
+            StepsGenerator steps = new StepsGenerator(new double[] { 0.0, 5.0, 10.0 }, new double[] { 2.0, -2.0, 2.0 });
+            simulator.SignalSimulation(15.0, steps);
 
             fileWriter.SimulatorDataToFile(simulator, directory + fileName);
         }
@@ -129,10 +129,10 @@ namespace JTSim
         public void Test9(string fileName)
         {
             simulator.AddRegulator(new TransparentRegulator());
-            simulator.AddSystem(new ContinousSystem(new TransferFunction(new double[] { 2, 6 }, new double[] { 2, 4, 2, 2 }), new SolverEuler()));
+            simulator.AddSystem(new ContinousSystem(new TransferFunction(new double[] { 2.0, 6.0 }, new double[] { 2.0, 4.0, 2.0, 2.0 }), new SolverEuler()));
             simulator.feedbackEnabled = false;
             simulator.Init();
-            simulator.StepSimulation(10);
+            simulator.StepSimulation(10.0);
 
             fileWriter.SimulatorDataToFile(simulator, directory + fileName);
         }

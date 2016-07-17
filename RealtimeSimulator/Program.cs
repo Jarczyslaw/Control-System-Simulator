@@ -26,7 +26,7 @@ namespace RealtimeSimulator
             // create simulator with plant and regulator
             Simulator simulator = new Simulator(0.001);
             simulator.AddRegulator(new PID(3.0255, 2.7713, 0.69893));
-            simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d, 2, 1, 0.5), 0d, new SolverEuler()));
+            simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d, 2.0, 1.0, 0.5), 0d, new SolverEuler()));
             simulator.Init();
 
             // create controller with simulator
@@ -37,13 +37,13 @@ namespace RealtimeSimulator
                 new RealtimeSimulatorConfig()
                 {
                     stepsPerUpdate = 50,
-                    inputMin = 0,
-                    inputMax = 2,
-                    setValueMin = 0,
-                    setValueMax = 2,
-                    outputChartConfig = new ChartConfig("output value", 0, 3),
-                    inputChartConfig = new ChartConfig("input value", 0, 2),
-                    controlChartConfig = new ChartConfig("control value", -2, 2)
+                    inputMin = 0.0,
+                    inputMax = 2.0,
+                    setValueMin = 0.0,
+                    setValueMax = 2.0,
+                    outputChartConfig = new ChartConfig("output value", 0.0, 3.0),
+                    inputChartConfig = new ChartConfig("input value", 0.0, 2.0),
+                    controlChartConfig = new ChartConfig("control value", -2.0, 2.0)
                 });
             // optionally add visualization form
             //controlPanel.AddVisualization(new CustomVisualization());

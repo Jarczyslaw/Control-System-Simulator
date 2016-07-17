@@ -22,21 +22,21 @@ namespace JVectors.Tests
             Assert.AreEqual(len, v2.Count());
 
             JVector v3 = new JVector(len, 1);
-            CollectionAssert.AreEqual(new double[] { 1, 1, 1, 1, 1 }, v3.data);
+            CollectionAssert.AreEqual(new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 }, v3.data);
         }
 
         [Test]
         public void BasicFunctionsTest()
         {
-            JVector v = new JVector(new double[] { 1, 2, 3, 4, 5 });
+            JVector v = new JVector(new double[] { 1.0, 2.0, 3.0, 4.0, 5.0 });
 
-            Assert.AreEqual(v.Min(), 1);
-            Assert.AreEqual(v.Max(), 5);
-            Assert.AreEqual(v.Average(), 3);
-            Assert.AreEqual(v.Sum(), 15);
+            Assert.AreEqual(v.Min(), 1.0);
+            Assert.AreEqual(v.Max(), 5.0);
+            Assert.AreEqual(v.Average(), 3.0);
+            Assert.AreEqual(v.Sum(), 15.0);
 
             v.Push(123);
-            CollectionAssert.AreEqual(new double[] { 123, 1, 2, 3, 4 }, v.data);
+            CollectionAssert.AreEqual(new double[] { 123.0, 1.0, 2.0, 3.0, 4.0 }, v.data);
 
 
         }
@@ -44,28 +44,28 @@ namespace JVectors.Tests
         [Test]
         public void OperatorsTest()
         {
-            JVector v1 = new JVector(new double[] { 1, 2, 3 });
-            JVector v2 = new JVector(new double[] { 4, 5, 6 });
+            JVector v1 = new JVector(new double[] { 1.0, 2.0, 3.0 });
+            JVector v2 = new JVector(new double[] { 4.0, 5.0, 6.0 });
 
-            CollectionAssert.AreEqual(new double[] { 5, 7, 9 }, (v1 + v2).data);
-            CollectionAssert.AreEqual(new double[] { 6, 7, 8 }, (v1 + 5).data);
-            CollectionAssert.AreEqual(new double[] { 6, 7, 8 }, (5 + v1).data);
-            CollectionAssert.AreEqual(new double[] { -3, -3, -3 }, (v1 - v2).data);
-            CollectionAssert.AreEqual(new double[] { 0, 1, 2 }, (v1 - 1).data);
-            CollectionAssert.AreEqual(new double[] { 0, -1, -2 }, (1 - v1).data);
-            CollectionAssert.AreEqual(new double[] { 4, 10, 18 }, (v1 * v2).data);
-            CollectionAssert.AreEqual(new double[] { 2, 4, 6 }, (v1 * 2).data);
-            CollectionAssert.AreEqual(new double[] { 2, 4, 6 }, (2 * v1).data);
-            CollectionAssert.AreEqual(new double[] { -1, -2, -3 }, (-v1).data);
+            CollectionAssert.AreEqual(new double[] { 5.0, 7.0, 9.0 }, (v1 + v2).data);
+            CollectionAssert.AreEqual(new double[] { 6.0, 7.0, 8.0 }, (v1 + 5.0).data);
+            CollectionAssert.AreEqual(new double[] { 6.0, 7.0, 8.0 }, (5.0 + v1).data);
+            CollectionAssert.AreEqual(new double[] { -3.0, -3.0, -3.0 }, (v1 - v2).data);
+            CollectionAssert.AreEqual(new double[] { 0.0, 1.0, 2.0 }, (v1 - 1.0).data);
+            CollectionAssert.AreEqual(new double[] { 0.0, -1.0, -2.0 }, (1.0 - v1).data);
+            CollectionAssert.AreEqual(new double[] { 4.0, 10.0, 18.0 }, (v1 * v2).data);
+            CollectionAssert.AreEqual(new double[] { 2.0, 4.0, 6.0 }, (v1 * 2.0).data);
+            CollectionAssert.AreEqual(new double[] { 2.0, 4.0, 6.0 }, (2.0 * v1).data);
+            CollectionAssert.AreEqual(new double[] { -1.0, -2.0, -3.0 }, (-v1).data);
 
-            CollectionAssert.AreEqual(new double[] { 3, 8, 15 }, (v1 * v2 - v1).data);
+            CollectionAssert.AreEqual(new double[] { 3.0, 8.0, 15.0 }, (v1 * v2 - v1).data);
         }
 
         [Test]
         public void InvalidSizeTest()
         {
-            var v1 = new JVector(new double[] { 1, 2, 3 });
-            var v2 = new JVector(new double[] { 1, 2 });
+            var v1 = new JVector(new double[] { 1.0, 2.0, 3.0 });
+            var v2 = new JVector(new double[] { 1.0, 2.0 });
             Assert.Throws<InvalidVectorsLengthException>(
                 () => { var v3 = v1 + v2; });
         }

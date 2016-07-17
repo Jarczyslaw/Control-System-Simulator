@@ -12,7 +12,7 @@ namespace JVectors
     {
         public double[] data { get; private set; } 
 
-        public JVector(int size) : this(size, 0) { }
+        public JVector(int size) : this(size, 0.0) { }
 
         public JVector(int size, double value)
         {

@@ -26,7 +26,7 @@ namespace OfflineSimulator
 
             Simulator simulator = new Simulator();
             simulator.AddRegulator(new PID(3.0255, 1.0917, 0.23101));
-            simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d, 2, 1, 0.5), 0d, new SolverRK4()));
+            simulator.AddSystem(new ContinousSystem(new SecondOrder(0d, 0d, 2.0, 1.0, 0.5), 0d, new SolverRK4()));
             simulator.Init();
 
             Controller controller = new Controller(simulator);

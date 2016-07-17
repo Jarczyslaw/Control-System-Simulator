@@ -12,7 +12,7 @@ namespace JTSim
         public double[] stepTimes;
         public double[] stepValues;
 
-        public StepsGenerator() : this(1, 0) { }
+        public StepsGenerator() : this(1.0, 0.0) { }
 
         public StepsGenerator(double stepValue) : this(stepValue, 0d) { }
 
@@ -48,11 +48,11 @@ namespace JTSim
                 int cnt = 0;
                 for (int i = 0;i < len;i++)
                 {
-                    double nt = 0;
-                    double nv = 0;
+                    double nt = 0.0;
+                    double nv = 0.0;
                     if (double.TryParse(t[i], out nt) && double.TryParse(v[i], out nv))
                     {
-                        if (nt >= 0 && nv >= 0)
+                        if (nt >= 0.0 && nv >= 0.0)
                         {
                             newTimes[i] = nt;
                             newValues[i] = nv;

@@ -40,7 +40,7 @@ namespace JTSim
             else
             {
                 JVector prediction = starter.Solve(model, state, input, t, h);
-                JVector sum = new JVector(state.Count(), 0);
+                JVector sum = new JVector(state.Count(), 0.0);
                 sum += coeffs[0] * model.DifferentialEquasions(prediction, input, t + h);
                 for (int i = 0; i < order - 1; i++)
                     sum += coeffs[i + 1] * diffs[i];

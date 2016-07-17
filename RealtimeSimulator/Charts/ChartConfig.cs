@@ -13,7 +13,7 @@ namespace RealtimeSimulator
         public double min;
         public double max;
 
-        public ChartConfig() : this("Value", 0, 1) { }
+        public ChartConfig() : this("Value", 0.0, 1.0) { }
 
         public ChartConfig(string title, double min, double max)
         {

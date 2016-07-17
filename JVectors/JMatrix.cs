@@ -11,7 +11,7 @@ namespace JVectors
     {
         public double[,] data { get; private set; }
 
-        public JMatrix(int x, int y) : this(x, y, 0) { }
+        public JMatrix(int x, int y) : this(x, y, 0.0) { }
 
         public JMatrix(int x, int y, double value)
         {

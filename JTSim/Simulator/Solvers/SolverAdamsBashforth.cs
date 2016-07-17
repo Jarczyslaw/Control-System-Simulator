@@ -43,7 +43,7 @@ namespace JTSim
                 return rk4.Solve(model, state, input, t, h);
             else
             {
-                JVector sum = new JVector(state.Count(), 0);
+                JVector sum = new JVector(state.Count(), 0.0);
                 for (int i = 0; i < order; i++)
                     sum += coeffs[i] * diffs[i];
                 JVector ds = h * sum;

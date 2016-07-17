@@ -17,7 +17,7 @@ namespace SolversTest
         {
             this.function = function;
             this.differential = differential;
-            initState = new JVector(1, ExactSolution(0f));
+            initState = new JVector(1, ExactSolution(0.0));
         }
 
         public override JVector DifferentialEquasions(JVector state, double input, double t)
@@ -26,7 +26,7 @@ namespace SolversTest
             return diff;
         }
 
-        public override double OutputEquation(JVector state, double input) { return 0; }
+        public override double OutputEquation(JVector state, double input) { return 0.0; }
 
         public double ExactSolution(double t)
         {
