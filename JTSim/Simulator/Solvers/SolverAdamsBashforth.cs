@@ -38,7 +38,7 @@ namespace JTSim
 
         public JVector Solve(ContinousModel model, JVector state, double input, double t, double h)
         {
-            diffs.Push(model.DifferentialEquasions(state, input, t));
+            diffs.Push(model.DifferentialEquations(state, input, t));
             if (diffs.Count() < order)
                 return rk4.Solve(model, state, input, t, h);
             else

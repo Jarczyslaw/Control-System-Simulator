@@ -20,7 +20,7 @@ namespace JTSim
             this.T2 = T2;
         }
 
-        public override JVector DifferentialEquasions(JVector state, double input, double t)
+        public override JVector DifferentialEquations(JVector state, double input, double t)
         {
             double d = T1 * T2;
             double first = state[1];

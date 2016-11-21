@@ -31,7 +31,7 @@ namespace JTSim
             this.initState = initState;
         }
 
-        public override JVector DifferentialEquasions(JVector state, double input, double t)
+        public override JVector DifferentialEquations(JVector state, double input, double t)
         {
             JMatrix s = new JMatrix(state);
 

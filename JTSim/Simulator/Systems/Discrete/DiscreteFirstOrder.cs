@@ -19,7 +19,7 @@ namespace JTSim
             this.T = T;
         }
 
-        public override double DifferenceEquasion(JVector states, JVector inputs, double t, double h)
+        public override double DifferenceEquation(JVector states, JVector inputs, double t, double h)
         {
             return (1d - h / T) * states[0] + k * h / T * inputs[0];
         }

@@ -21,7 +21,7 @@ namespace JTSim
         public override void Step(double u, double t, double h)
         {
             inputs.Push(u);
-            states.Push(model.DifferenceEquasion(states, inputs, t, h));
+            states.Push(model.DifferenceEquation(states, inputs, t, h));
             output = model.OutputEquation(states, inputs);
 
             output = transportDelay.Step(output);

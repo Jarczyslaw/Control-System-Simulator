@@ -16,7 +16,7 @@ namespace JTSim
             initInputs = new JVector(3, 0d);
         }
 
-        public override double DifferenceEquasion(JVector states, JVector inputs, double t, double h)
+        public override double DifferenceEquation(JVector states, JVector inputs, double t, double h)
         {
             return 0.5d * states[0] + 0.2d * states[1] + 0.2d * states[2] + 0.5d * inputs[1] + 1d * inputs[2];
         }

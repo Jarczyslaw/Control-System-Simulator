@@ -9,10 +9,10 @@ namespace JTSim
 
         public JVector Solve(ContinousModel model, JVector state, double input, double t, double h)
         {
-            JVector k1 = model.DifferentialEquasions(state, input, t);
-            JVector k2 = model.DifferentialEquasions(state + halfStep * k1, input, t + halfStep);
-            JVector k3 = model.DifferentialEquasions(state + halfStep * k2, input, t + halfStep);
-            JVector k4 = model.DifferentialEquasions(state + h * k3, input, t + h);
+            JVector k1 = model.DifferentialEquations(state, input, t);
+            JVector k2 = model.DifferentialEquations(state + halfStep * k1, input, t + halfStep);
+            JVector k3 = model.DifferentialEquations(state + halfStep * k2, input, t + halfStep);
+            JVector k4 = model.DifferentialEquations(state + h * k3, input, t + h);
             JVector diff = oneSixStep * (k1 + 2d * k2 + 2d * k3 + k4);
             return state + diff;
         }

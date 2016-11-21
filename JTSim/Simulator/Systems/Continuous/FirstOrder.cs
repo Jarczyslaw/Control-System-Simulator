@@ -18,7 +18,7 @@ namespace JTSim
             this.T = T;
         }
 
-        public override JVector DifferentialEquasions(JVector state, double input, double t)
+        public override JVector DifferentialEquations(JVector state, double input, double t)
         {
             JVector diff = -1.0d / T * state + k / T * input;
             return diff;

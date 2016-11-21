@@ -6,7 +6,7 @@ namespace JTSim
     {
         public JVector Solve(ContinousModel model, JVector state, double input, double t, double h)
         {
-            JVector diffs = model.DifferentialEquasions(state, input, t);
+            JVector diffs = model.DifferentialEquations(state, input, t);
             return state + h * diffs;
         }
 

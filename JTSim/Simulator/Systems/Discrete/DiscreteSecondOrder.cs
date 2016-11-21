@@ -21,7 +21,7 @@ namespace JTSim
             this.T2 = T2;
         }
 
-        public override double DifferenceEquasion(JVector states, JVector inputs, double t, double h)
+        public override double DifferenceEquation(JVector states, JVector inputs, double t, double h)
         {
             double A = h * h + h * (T1 + T2) + T1 * T2;
             double B = -2d * T1 * T2 - h * (T1 + T2);

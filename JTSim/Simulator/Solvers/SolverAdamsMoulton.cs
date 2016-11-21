@@ -34,14 +34,14 @@ namespace JTSim
 
         public JVector Solve(ContinousModel model, JVector state, double input, double t, double h)
         {
-            diffs.Push(model.DifferentialEquasions(state, input, t));
+            diffs.Push(model.DifferentialEquations(state, input, t));
             if (diffs.Count() < order - 1)
                 return starter.Solve(model, state, input, t, h);
             else
             {
                 JVector prediction = starter.Solve(model, state, input, t, h);
                 JVector sum = new JVector(state.Count(), 0.0);
-                sum += coeffs[0] * model.DifferentialEquasions(prediction, input, t + h);
+                sum += coeffs[0] * model.DifferentialEquations(prediction, input, t + h);
                 for (int i = 0; i < order - 1; i++)
                     sum += coeffs[i + 1] * diffs[i];
                 JVector ds = h * sum;

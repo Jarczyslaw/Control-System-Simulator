@@ -6,7 +6,7 @@ namespace JTSim
     {
         public JVector initState;
 
-        public abstract JVector DifferentialEquasions(JVector state, double input, double t);
+        public abstract JVector DifferentialEquations(JVector state, double input, double t);
 
         public abstract double OutputEquation(JVector state, double input);
     }

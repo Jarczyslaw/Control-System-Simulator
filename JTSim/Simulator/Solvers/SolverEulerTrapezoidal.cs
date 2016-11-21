@@ -18,9 +18,9 @@ namespace JTSim
 
         public JVector Solve(ContinousModel model, JVector state, double input, double t, double h)
         {
-            JVector diffs = model.DifferentialEquasions(state, input, t);
+            JVector diffs = model.DifferentialEquations(state, input, t);
             JVector prediction = state + h * diffs;
-            return state + halfStep * (diffs + model.DifferentialEquasions(prediction, input, t + h)); // trapezoidal rule
+            return state + halfStep * (diffs + model.DifferentialEquations(prediction, input, t + h)); // trapezoidal rule
         }
     }
 }

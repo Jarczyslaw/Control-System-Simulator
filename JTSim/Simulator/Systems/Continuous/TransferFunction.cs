@@ -19,9 +19,9 @@ namespace JTSim
             ToStateSpace(num, den);
         }
 
-        public override JVector DifferentialEquasions(JVector state, double input, double t)
+        public override JVector DifferentialEquations(JVector state, double input, double t)
         {
-            return stateSpace.DifferentialEquasions(state, input, t);
+            return stateSpace.DifferentialEquations(state, input, t);
         }
 
         public override double OutputEquation(JVector state, double input)

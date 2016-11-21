@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTSim", "JTSim\JTSim.csproj", "{687FC768-AD47-4A82-AEA7-B1006C01576F}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealtimeSimulator", "RealtimeSimulator\RealtimeSimulator.csproj", "{FDD9ADAC-ED62-494E-B91D-6D8F41A5E6BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfflineSimulator", "OfflineSimulator\OfflineSimulator.csproj", "{B2FF633D-1C7E-475F-AA63-47808216788C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HydraulicSystem", "HydraulicSystem\HydraulicSystem.csproj", "{AE431354-8F54-4E22-A3A9-7A1AB99A347B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,14 @@ Global
 		{B2FF633D-1C7E-475F-AA63-47808216788C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B2FF633D-1C7E-475F-AA63-47808216788C}.Release|x86.ActiveCfg = Release|Any CPU
 		{B2FF633D-1C7E-475F-AA63-47808216788C}.Release|x86.Build.0 = Release|Any CPU
+		{AE431354-8F54-4E22-A3A9-7A1AB99A347B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE431354-8F54-4E22-A3A9-7A1AB99A347B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE431354-8F54-4E22-A3A9-7A1AB99A347B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AE431354-8F54-4E22-A3A9-7A1AB99A347B}.Debug|x86.Build.0 = Debug|Any CPU
+		{AE431354-8F54-4E22-A3A9-7A1AB99A347B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE431354-8F54-4E22-A3A9-7A1AB99A347B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE431354-8F54-4E22-A3A9-7A1AB99A347B}.Release|x86.ActiveCfg = Release|Any CPU
+		{AE431354-8F54-4E22-A3A9-7A1AB99A347B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

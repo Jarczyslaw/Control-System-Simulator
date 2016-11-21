@@ -20,7 +20,7 @@ namespace SolversTest
             initState = new JVector(1, ExactSolution(0.0));
         }
 
-        public override JVector DifferentialEquasions(JVector state, double input, double t)
+        public override JVector DifferentialEquations(JVector state, double input, double t)
         {
             JVector diff = differential(t, state);
             return diff;
