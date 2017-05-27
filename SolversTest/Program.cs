@@ -1,6 +1,6 @@
 ﻿using System;
 using JTSim;
-using JVectors;
+using JMath;
 
 namespace SolversTest
 {

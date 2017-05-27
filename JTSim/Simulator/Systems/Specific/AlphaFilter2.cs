@@ -1,5 +1,5 @@
 ﻿using System;
-using JVectors;
+using JMath;
 
 namespace JTSim
 {

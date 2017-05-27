@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
-using JVectors;
+using JMath;
 
 namespace JTSim
 {

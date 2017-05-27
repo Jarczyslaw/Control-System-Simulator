@@ -1,6 +1,6 @@
-﻿using System;
+﻿using JMath;
+using System;
 using System.Collections.Generic;
-using JVectors;
 
 namespace JTSim
 {

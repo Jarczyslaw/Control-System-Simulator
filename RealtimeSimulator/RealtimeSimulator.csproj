@@ -112,9 +112,9 @@
       <Project>{687fc768-ad47-4a82-aea7-b1006c01576f}</Project>
       <Name>JTSim</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MicroTimerWinFormsDemo\MicroTimerWinFormsDemo.csproj">
-      <Project>{6bef2da1-0b43-4573-963a-3693970bc99f}</Project>
-      <Name>MicroTimerWinFormsDemo</Name>
+    <ProjectReference Include="..\MicroLibrary\MicroLibrary.csproj">
+      <Project>{c0a0b500-a54c-4b93-9701-5433cf50beeb}</Project>
+      <Name>MicroLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

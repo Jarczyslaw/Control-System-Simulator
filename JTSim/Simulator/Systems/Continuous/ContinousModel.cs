@@ -1,4 +1,4 @@
-﻿using JVectors;
+﻿using JMath;
 
 namespace JTSim
 {

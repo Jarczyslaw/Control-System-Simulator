@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JTSim;
 using System.Diagnostics;
-using JVectors;
+using JMath;
 
 namespace SolversTest
 {
