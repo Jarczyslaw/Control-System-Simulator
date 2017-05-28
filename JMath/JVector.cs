@@ -10,11 +10,11 @@ namespace JMath
 {
     public class JVector
     {
-        public double[] data { get; private set; }
+        public double[] data;
 
         #region CONSTRUCTORS
 
-        public JVector(int size) : this(size, 0.0) { }
+        public JVector(int size) : this(size, 0d) { }
 
         public JVector(int size, double value)
         {
@@ -34,10 +34,20 @@ namespace JMath
 
         public JVector(JMatrix matrix)
         {
-            int len = matrix.SizeX();
+            int len = matrix.Rows();
             data = new double[len];
             for (int i = 0; i < len; i++)
                 data[i] = matrix[i, 0];
+        }
+
+        #endregion
+
+        #region ACCESS
+
+        public void ForEach(Action<int, double> callback)
+        {
+            for (int i = 0; i < data.Length; i++)
+                callback(i, data[i]);
         }
 
         #endregion

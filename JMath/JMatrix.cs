@@ -9,11 +9,11 @@ namespace JMath
 {
     public class JMatrix
     {
-        public double[,] data { get; private set; }
+        public double[,] data;
 
         #region CONSTRUCTORS
 
-        public JMatrix(int x, int y) : this(x, y, 0.0) { }
+        public JMatrix(int x, int y) : this(x, y, 0d) { }
 
         public JMatrix(int x, int y, double value)
         {
@@ -53,21 +53,48 @@ namespace JMath
 
         #endregion
 
+        #region ACCESS
+
+        public void ForEach(Action<int, int, double> callback)
+        {
+            int rows = Rows();
+            int cols = Cols();
+            for (int i = 0; i < rows; i++)
+                for (int j = 0;j < cols;j++)
+                    callback(i, j, data[i, j]);
+        }
+
+        public void ForEachRow(int column, Action<int, int, double> callback)
+        {
+            int rows = Rows();
+            for (int i = 0; i < rows; i++)
+                callback(i, column, data[i, column]);
+        }
+
+        public void ForEachColumn(int row, Action<int, int, double> callback)
+        {
+            int cols = Cols();
+            for (int i = 0; i < cols; i++)
+                callback(row, i, data[row, i]);
+        }
+
+        #endregion
+
         #region BASIC FUNCTIONS
 
-        public int SizeX()
+        public int Rows()
         {
             return data.GetLength(0);
         }
 
-        public int SizeY()
+        public int Cols()
         {
             return data.GetLength(1);
         }
 
         public int Count()
         {
-            return SizeX() * SizeY();
+            return Rows() * Cols();
         }
 
         public double Min()
@@ -92,14 +119,14 @@ namespace JMath
 
         public double Det()
         {
-            if (SizeX() != SizeY())
+            if (Rows() != Cols())
                 throw new NonSquareMatrixException("Can't get determinant for non square matrix.");
 
-            if (SizeX() == 1)
+            if (Rows() == 1)
                 return data[0, 0];
-            else if (SizeX() == 2)
+            else if (Rows() == 2)
                 return data[0, 0] * data[1, 1] - data[1, 0] * data[0, 1];
-            else if (SizeX() == 3)
+            else if (Rows() == 3)
                 return data[0, 0] * data[1, 1] * data[2, 2] +
                     data[1, 0] * data[2, 1] * data[0, 2] +
                     data[2, 0] * data[0, 1] * data[1, 2] -
@@ -113,25 +140,25 @@ namespace JMath
         public JMatrix Inv()
         {
             double det = Det();
-            if (Math.Abs(det) < 0.0001)
+            if (Math.Abs(det) < 0.0001d)
                 throw new MatrixInversionException("Determinant to low to calculate inversion.");
 
-            JMatrix result = new JMatrix(SizeX(), SizeY());
-            if (SizeX() == 1)
+            JMatrix result = new JMatrix(Rows(), Cols());
+            if (Rows() == 1)
             {
-                result[0, 0] = 1 / data[0, 0];
+                result[0, 0] = 1d / data[0, 0];
                 return result;
             }
-            else if (SizeX() == 2)
+            else if (Rows() == 2)
             {
                 result[0, 0] = data[1, 1];
                 result[0, 1] = -data[0, 1];
                 result[1, 0] = -data[1, 0];
                 result[1, 1] = data[0, 0];
-                result = 1 / det * result;
+                result = 1d / det * result;
                 return result;
             }
-            else if (SizeX() == 3)
+            else if (Rows() == 3)
             {
                 result[0, 0] = data[1,1] * data[2,2] - data[1,2] * data[2,1];
                 result[0, 1] = data[0, 2] * data[2, 1] - data[0, 1] * data[2, 2];
@@ -142,7 +169,7 @@ namespace JMath
                 result[2, 0] = data[1, 0] * data[2, 1] - data[1, 1] * data[2, 0];
                 result[2, 1] = data[0, 1] * data[2, 0] - data[0, 0] * data[2, 1];
                 result[2, 2] = data[0, 0] * data[1, 1] - data[0, 1] * data[1, 0];
-                result = 1 / det * result;
+                result = 1d / det * result;
                 return result;
             }
             else
@@ -151,20 +178,22 @@ namespace JMath
 
         public JMatrix Neg()
         {
+            int rows = Rows();
+            int cols = Cols();
             JMatrix result = new JMatrix(data);
-            for (int i = 0; i < SizeX(); i++)
-                for (int j = 0; j < SizeY(); j++)
+            for (int i = 0; i < rows; i++)
+                for (int j = 0; j < cols; j++)
                     result[i, j] = -result[i, j];
             return result;
         }
 
         public JMatrix T()
         {
-            int x = SizeX();
-            int y = SizeY();
-            JMatrix result = new JMatrix(y, x);
-            for (int i = 0; i < y; i++)
-                for (int j = 0; j < x; j++)
+            int rows = Rows();
+            int cols = Cols();
+            JMatrix result = new JMatrix(cols, rows);
+            for (int i = 0; i < cols; i++)
+                for (int j = 0; j < rows; j++)
                     result[i, j] = data[j, i];
             return result;
         }
@@ -176,20 +205,79 @@ namespace JMath
 
         public override string ToString()
         {
-            int x = SizeX();
-            int y = SizeY();
-            string result = "JMatrix, size: " + x + "x" + y + Environment.NewLine;
-            for (int i = 0;i < x;i++)
+            int rows = Rows();
+            int cols = Cols();
+            string result = "JMatrix, size: " + rows + "x" + cols + Environment.NewLine;
+            for (int i = 0;i < rows;i++)
             {
                 result += "[";
-                for (int j = 0;j < y;j++)
+                for (int j = 0;j < cols;j++)
                 {
                     result += data[i,j].ToString(CultureInfo.InvariantCulture);
-                    if (j != y - 1)
+                    if (j != cols - 1)
                         result += ", ";
                 }
                 result += "]" + Environment.NewLine;
             }
+            return result;
+        }
+
+        #endregion
+
+        #region MATH FUNCTIONS
+
+        public JMatrix Abs()
+        {
+            int rows = Rows();
+            int cols = Cols();
+            JMatrix result = new JMatrix(rows, cols);
+            for (int i = 0; i < rows; i++)
+                for (int j = 0;j < cols; j++)
+                result[i, j] = Math.Abs(data[i, j]);
+            return result;
+        }
+
+        public JMatrix Exp()
+        {
+            int rows = Rows();
+            int cols = Cols();
+            JMatrix result = new JMatrix(rows, cols);
+            for (int i = 0; i < rows; i++)
+                for (int j = 0; j < cols; j++)
+                    result[i, j] = Math.Exp(data[i, j]);
+            return result;
+        }
+
+        public JMatrix Log()
+        {
+            int rows = Rows();
+            int cols = Cols();
+            JMatrix result = new JMatrix(rows, cols);
+            for (int i = 0; i < rows; i++)
+                for (int j = 0; j < cols; j++)
+                    result[i, j] = Math.Log(data[i, j]);
+            return result;
+        }
+
+        public JMatrix Log10()
+        {
+            int rows = Rows();
+            int cols = Cols();
+            JMatrix result = new JMatrix(rows, cols);
+            for (int i = 0; i < rows; i++)
+                for (int j = 0; j < cols; j++)
+                    result[i, j] = Math.Log10(data[i, j]);
+            return result;
+        }
+
+        public JMatrix Pow(double power)
+        {
+            int rows = Rows();
+            int cols = Cols();
+            JMatrix result = new JMatrix(rows, cols);
+            for (int i = 0; i < rows; i++)
+                for (int j = 0; j < cols; j++)
+                    result[i, j] = Math.Pow(data[i, j], power);
             return result;
         }
 
@@ -205,10 +293,10 @@ namespace JMath
 
         public static JMatrix operator +(JMatrix m1, JMatrix m2)
         {
-            int m1x = m1.SizeX();
-            int m1y = m1.SizeY();
-            int m2x = m2.SizeX();
-            int m2y = m2.SizeY();
+            int m1x = m1.Rows();
+            int m1y = m1.Cols();
+            int m2x = m2.Rows();
+            int m2y = m2.Cols();
 
             if (m1x != m2x || m1y != m2y)
                 throw new InvalidMatrixSizeException("Invalid matrix size. Matrix should have the same rows and columns count.");
@@ -216,15 +304,15 @@ namespace JMath
             JMatrix result = new JMatrix(m1x, m1y);
             for (int i = 0; i < m1x; i++)
                 for (int j = 0; j < m1y; j++)
-                    result[i,j] = m1[i, j] + m2[i, j];
+                    result[i, j] = m1[i, j] + m2[i, j];
             return result;
         }
 
         public static JMatrix operator +(double d, JMatrix m)
         {
             JMatrix result = new JMatrix(m);
-            for (int i = 0; i < result.SizeX(); i++)
-                for (int j = 0; j < result.SizeY(); j++)
+            for (int i = 0; i < result.Rows(); i++)
+                for (int j = 0; j < result.Cols(); j++)
                     result[i, j] += d;
             return result;
         }
@@ -251,13 +339,13 @@ namespace JMath
 
         public static JMatrix operator *(JMatrix m1, JMatrix m2)
         {
-            int m1x = m1.SizeX();
-            int m1y = m1.SizeY();
-            int m2x = m2.SizeX();
-            int m2y = m2.SizeY();
+            int m1x = m1.Rows();
+            int m1y = m1.Cols();
+            int m2x = m2.Rows();
+            int m2y = m2.Cols();
 
             if (m1y != m2x)
-                throw new InvalidMatrixSizeException("Invalid matrix size. Left side matrix should have the sam columns as right side matrix has.");
+                throw new InvalidMatrixSizeException("Invalid matrix size. Left side matrix should have the same columns as right side matrix has rows.");
 
             JMatrix result = new JMatrix(m1x, m2y);
             for (int i = 0; i < m1x; i++)
@@ -273,14 +361,14 @@ namespace JMath
 
         public static JVector operator *(JMatrix m, JVector v)
         {
-            // kazdy wektor domyslnie traktowany jest jako kolumnowy
-            if (m.SizeY() != v.Count())
+            // each vector is treated as column in default
+            if (m.Cols() != v.Count())
                 throw new InvalidMatrixSizeException("Invalid matrix size. Matrix should have columns as many as vector's count");
 
-            int c = m.SizeX();
-            JVector result = new JVector(c, 0);
+            int c = m.Rows();
+            JVector result = new JVector(c, 0d);
             for (int i = 0; i < c; i++)
-                for (int j = 0; j < m.SizeY(); j++)
+                for (int j = 0; j < m.Cols(); j++)
                     result[i] += v[j] * m[i, j];
             return result;
         }
@@ -288,8 +376,8 @@ namespace JMath
         public static JMatrix operator *(double d, JMatrix m)
         {
             JMatrix result = new JMatrix(m);
-            int x = m.SizeX();
-            int y = m.SizeY();
+            int x = m.Rows();
+            int y = m.Cols();
             for (int i = 0; i < x; i++)
                 for (int j = 0; j < y; j++)
                     result[i, j] *= d;

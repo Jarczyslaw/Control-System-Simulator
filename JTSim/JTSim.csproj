@@ -53,7 +53,6 @@
     <Compile Include="Simulator\Systems\Continuous\TransferFunction.cs" />
     <Compile Include="Simulator\Utilities\FileWriter.cs" />
     <Compile Include="Simulator\Generators\ISignalGenerator.cs" />
-    <Compile Include="Simulator\Utilities\JQueue.cs" />
     <Compile Include="Simulator\Regulators\P.cs" />
     <Compile Include="Simulator\Solvers\SolverAdamsBashforth.cs" />
     <Compile Include="Simulator\Solvers\SolverDormandPrince.cs" />
@@ -94,6 +93,10 @@
     <ProjectReference Include="..\JMath\JMath.csproj">
       <Project>{7206c2b1-e7f1-42ad-a346-1d9fb933e5c2}</Project>
       <Name>JMath</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{B2691622-3ED6-4B3A-BA35-4F6567CA09F8}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
