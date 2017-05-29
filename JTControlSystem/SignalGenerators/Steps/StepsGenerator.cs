@@ -24,10 +24,10 @@ namespace JTControlSystem.SignalGenerators
 
         public StepsGenerator(double[] stepTimes, double[] stepValues)
         {
-            SetParams(stepTimes, stepValues);
+            SetParameters(stepTimes, stepValues);
         }
 
-        public void SetParams(double[] stepTimes, double[] stepValues)
+        public void SetParameters(double[] stepTimes, double[] stepValues)
         {
             if (stepValues.Length != stepValues.Length)
                 throw new Exception("Invalid steps parameters. Step times has different length than step values");

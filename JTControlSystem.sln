@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTMath.Tests", "JTMath.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTControlSystem.Tests", "JTControlSystem.Tests\JTControlSystem.Tests.csproj", "{BAF51BB6-49F1-4E5D-A162-A5777CAC1D77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST", "TEST\TEST.csproj", "{87597F6B-0544-4FFB-876E-B214708991C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,14 @@ Global
 		{BAF51BB6-49F1-4E5D-A162-A5777CAC1D77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BAF51BB6-49F1-4E5D-A162-A5777CAC1D77}.Release|x86.ActiveCfg = Release|Any CPU
 		{BAF51BB6-49F1-4E5D-A162-A5777CAC1D77}.Release|x86.Build.0 = Release|Any CPU
+		{87597F6B-0544-4FFB-876E-B214708991C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87597F6B-0544-4FFB-876E-B214708991C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87597F6B-0544-4FFB-876E-B214708991C5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{87597F6B-0544-4FFB-876E-B214708991C5}.Debug|x86.Build.0 = Debug|Any CPU
+		{87597F6B-0544-4FFB-876E-B214708991C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87597F6B-0544-4FFB-876E-B214708991C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87597F6B-0544-4FFB-876E-B214708991C5}.Release|x86.ActiveCfg = Release|Any CPU
+		{87597F6B-0544-4FFB-876E-B214708991C5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

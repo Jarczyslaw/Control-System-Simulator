@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem.SignalGenerators
 {
-    public enum WaveType
+    public enum SignalType
     {
+        Steps,
         Sine,
         Square,
         Triangle,

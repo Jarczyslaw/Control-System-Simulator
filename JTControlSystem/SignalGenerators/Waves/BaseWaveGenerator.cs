@@ -16,10 +16,10 @@ namespace JTControlSystem.SignalGenerators
 
         public BaseWaveGenerator(double frequency, double amplitude, double valueOffset)
         {
-            SetBaseParams(frequency, amplitude, valueOffset);
+            SetParameters(frequency, amplitude, valueOffset);
         }
 
-        public void SetBaseParams(double frequency, double amplitude, double valueOffset)
+        public void SetParameters(double frequency, double amplitude, double valueOffset)
         {
             this.frequency = frequency;
             this.amplitude = amplitude;

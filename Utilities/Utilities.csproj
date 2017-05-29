@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ExecTime.cs" />
     <Compile Include="JQueue.cs" />
+    <Compile Include="Mathd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
