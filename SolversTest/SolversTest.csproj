@@ -54,13 +54,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JMath\JMath.csproj">
+    <ProjectReference Include="..\JTMath\JTMath.csproj">
       <Project>{7206c2b1-e7f1-42ad-a346-1d9fb933e5c2}</Project>
-      <Name>JMath</Name>
+      <Name>JTMath</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JTSim\JTSim.csproj">
+    <ProjectReference Include="..\JTControlSystem\JTControlSystem.csproj">
       <Project>{687fc768-ad47-4a82-aea7-b1006c01576f}</Project>
-      <Name>JTSim</Name>
+      <Name>JTControlSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

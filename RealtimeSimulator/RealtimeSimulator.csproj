@@ -108,9 +108,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JTSim\JTSim.csproj">
+    <ProjectReference Include="..\JTControlSystem\JTControlSystem.csproj">
       <Project>{687fc768-ad47-4a82-aea7-b1006c01576f}</Project>
-      <Name>JTSim</Name>
+      <Name>JTControlSystem</Name>
     </ProjectReference>
     <ProjectReference Include="..\MicroLibrary\MicroLibrary.csproj">
       <Project>{c0a0b500-a54c-4b93-9701-5433cf50beeb}</Project>

@@ -114,8 +114,8 @@ namespace RealtimeSimulator
 
         private void UpdateStepsData()
         {
-            stepsCurrentTimesTextBox.Text = ArrayToString(controller.steps.stepTimes);
-            stepsCurrentValuesTextBox.Text = ArrayToString(controller.steps.stepValues);
+            stepsCurrentTimesTextBox.Text = ArrayToString(controller.steps.StepTimes);
+            stepsCurrentValuesTextBox.Text = ArrayToString(controller.steps.StepValues);
         }
 
         private string ArrayToString(double[] array)

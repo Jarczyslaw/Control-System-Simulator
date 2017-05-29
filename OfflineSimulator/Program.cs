@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Threading;
-using JTSim;
+using JTControlSystem;
 
 namespace OfflineSimulator
 {

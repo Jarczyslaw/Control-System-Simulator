@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using JTSim;
+using JTControlSystem;
 using System.Threading;
 
 namespace RealtimeSimulator

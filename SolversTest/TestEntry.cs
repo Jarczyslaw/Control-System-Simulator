@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JTSim;
+using JTControlSystem;
 using System.Diagnostics;
-using JMath;
+using JTMath;
 
 namespace SolversTest
 {
@@ -14,7 +14,7 @@ namespace SolversTest
         public double[] data;
 
         private TestModel model;
-        private JVector state;
+        private Vector state;
 
         private ISolver solver;
 

@@ -1,6 +1,6 @@
 ﻿using System;
-using JTSim;
-using JMath;
+using JTControlSystem;
+using JTMath;
 
 namespace SolversTest
 {
@@ -14,7 +14,7 @@ namespace SolversTest
                 );*/
             TestModel model = new TestModel(
                             (double t) => (Math.Exp(0.5 * t * t + 1)),
-                            (double t, JVector y) => (t * y)
+                            (double t, Vector y) => (t * y)
                             );
             /*TestModel model = new TestModel(
                             (double t) => (2 + 2 * t + t * t - Math.Exp(t)),

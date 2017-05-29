@@ -3,30 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JTSim;
-using JMath;
+using JTControlSystem;
+using JTMath;
 
 namespace SolversTest
 {
     public class TestModel : ContinousModel
     {
         Func<double, double> function;
-        Func<double, JVector, JVector> differential;
+        Func<double, Vector, Vector> differential;
 
-        public TestModel(Func<double, double> function, Func<double, JVector, JVector> differential)
+        public TestModel(Func<double, double> function, Func<double, Vector, Vector> differential)
         {
             this.function = function;
             this.differential = differential;
-            initState = new JVector(1, ExactSolution(0.0));
+            initState = new Vector(1, ExactSolution(0.0));
         }
 
-        public override JVector DifferentialEquations(JVector state, double input, double t)
+        public override Vector DifferentialEquations(Vector state, double input, double t)
         {
-            JVector diff = differential(t, state);
+            Vector diff = differential(t, state);
             return diff;
         }
 
-        public override double OutputEquation(JVector state, double input) { return 0.0; }
+        public override double OutputEquation(Vector state, double input) { return 0.0; }
 
         public double ExactSolution(double t)
         {
