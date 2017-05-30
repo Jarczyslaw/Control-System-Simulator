@@ -42,6 +42,16 @@ namespace JTMath
 
         #endregion
 
+        public static Vector Zeros(int size)
+        {
+            return new Vector(size);
+        }
+
+        public static Vector Ones(int size)
+        {
+            return new Vector(size, 1d);
+        }
+
         #region ACCESS
 
         public void ForEach(Action<int, double> callback)

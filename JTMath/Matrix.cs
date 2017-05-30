@@ -53,6 +53,16 @@ namespace JTMath
 
         #endregion
 
+        public static Matrix Zeros(int rows, int cols)
+        {
+            return new Matrix(rows, cols);
+        }
+
+        public static Matrix Ones(int rows, int cols)
+        {
+            return new Matrix(rows, cols, 1d);
+        }
+
         #region ACCESS
 
         public void ForEach(Action<int, int, double> callback)

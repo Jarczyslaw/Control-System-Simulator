@@ -11,7 +11,7 @@ namespace JTControlSystem
         public double time;
         public ControlSystemMode mode;
         public double input;
-        public double controlValue;
-        public double output;
+        public double controllerOutput;
+        public double systemOutput;
     }
 }
