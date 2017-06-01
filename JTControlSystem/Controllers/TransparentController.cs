@@ -2,7 +2,7 @@
 {
     public class TransparentController : IController
     {
-        public double GetControllerOutput(double setPoint, double processValue, double dt)
+        public double NextIteration(double setPoint, double processValue, double dt)
         {
             return setPoint;
         }

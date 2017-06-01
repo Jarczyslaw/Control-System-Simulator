@@ -11,7 +11,7 @@
             Kp = gain;
         }
 
-        public double GetControllerOutput(double setPoint, double processValue, double dt)
+        public double NextIteration(double setPoint, double processValue, double dt)
         {
             return Kp * (setPoint - processValue);
         }

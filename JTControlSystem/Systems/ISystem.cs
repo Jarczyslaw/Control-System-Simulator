@@ -8,7 +8,7 @@ namespace JTControlSystem.Systems
 {
     public interface ISystem
     {
-        double GetOutput(double input, double time, double dt);
+        double NextIteration(double input, double time, double dt);
         double Initialize(double dt);
     }
 }

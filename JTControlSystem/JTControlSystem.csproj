@@ -51,6 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\IController.cs" />
+    <Compile Include="Controllers\P.cs" />
+    <Compile Include="Controllers\PID.cs" />
+    <Compile Include="Controllers\Relay.cs" />
+    <Compile Include="Controllers\TransparentController.cs" />
     <Compile Include="ControlSystem.cs" />
     <Compile Include="ControlSystemData.cs" />
     <Compile Include="ControlSystemMode.cs" />
@@ -68,6 +73,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignalGenerators\Waves\WavesParametersValidator.cs" />
     <Compile Include="SignalGenerators\SignalType.cs" />
+    <Compile Include="Solvers\DifferentialEquations.cs" />
+    <Compile Include="Solvers\ISolver.cs" />
+    <Compile Include="Solvers\SolverEuler.cs" />
+    <Compile Include="Systems\Continous\ContinousSystem.cs" />
+    <Compile Include="Systems\Continous\Models\ContinousFirstOrder.cs" />
+    <Compile Include="Systems\Continous\Models\IContinousModel.cs" />
+    <Compile Include="Systems\Continous\Models\TransparentContinousModel.cs" />
+    <Compile Include="Systems\Discrete\DiscreteSystem.cs" />
+    <Compile Include="Systems\Discrete\Models\DiscreteFirstOrder.cs" />
+    <Compile Include="Systems\Discrete\Models\IDiscreteModel.cs" />
+    <Compile Include="Systems\Discrete\Models\TransparentDiscreteModel.cs" />
+    <Compile Include="Systems\ISystem.cs" />
+    <Compile Include="Systems\TransparentSystem.cs" />
+    <Compile Include="Systems\TransportDelay.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

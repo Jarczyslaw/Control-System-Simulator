@@ -21,7 +21,7 @@ namespace JTControlSystem.Systems
             this.delay = delay;
         }
 
-        public double GetOutput(double input, double time, double dt)
+        public double NextIteration(double input, double time, double dt)
         {
             inputs.Push(input);
             double newOutput = model.DifferenceEquation(states, inputs, time, dt);

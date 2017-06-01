@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem
 {
-    public class ControlSystemData
+    public class CloseLoopDataSample
     {
         public double time;
-        public ControlSystemMode mode;
+        public bool feedbackEnabled;
         public double input;
+        public double error;
         public double controllerOutput;
         public double systemOutput;
     }

@@ -38,7 +38,7 @@
             this.Td = Td;
         }
 
-        public double GetControllerOutput(double setPoint, double processValue, double dt)
+        public double NextIteration(double setPoint, double processValue, double dt)
         {
             iteration++;
             double error = setPoint - processValue;

@@ -8,7 +8,7 @@ namespace JTControlSystem.Systems
 {
     public class TransparentSystem : ISystem
     {
-        public double GetOutput(double input, double time, double dt)
+        public double NextIteration(double input, double time, double dt)
         {
             return input;
         }

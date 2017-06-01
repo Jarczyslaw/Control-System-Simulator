@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem
 {
-    public enum ControlSystemMode
+    public static class Consts
     {
-        OpenLoop,
-        ClosedLoop
+        public static readonly double defaultTimeStep = 0.01d;
     }
 }
