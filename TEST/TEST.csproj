@@ -54,6 +54,10 @@
       <Project>{687FC768-AD47-4A82-AEA7-B1006C01576F}</Project>
       <Name>JTControlSystem</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JTMath\JTMath.csproj">
+      <Project>{7206C2B1-E7F1-42AD-A346-1D9FB933E5C2}</Project>
+      <Name>JTMath</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

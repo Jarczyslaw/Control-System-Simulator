@@ -19,17 +19,23 @@ namespace JTControlSystem
 
         private double previousSystemOutput;
 
-        public CloseLoop() : this(new TransparentSystem(), new TransparentController(), Consts.defaultTimeStep) { }
+        public CloseLoop() : 
+            this(new TransparentSystem(), new TransparentController(), Consts.defaultTimeStep) { }
 
-        public CloseLoop(ISystem system) : this(system, new TransparentController(), Consts.defaultTimeStep) { }
+        public CloseLoop(ISystem system) : 
+            this(system, new TransparentController(), Consts.defaultTimeStep) { }
 
-        public CloseLoop(ISystem system, double dt) : this(system, new TransparentController(), dt) { }
+        public CloseLoop(ISystem system, double dt) : 
+            this(system, new TransparentController(), dt) { }
 
-        public CloseLoop(IController controller) : this(new TransparentSystem(), controller, Consts.defaultTimeStep) { }
+        public CloseLoop(IController controller) : 
+            this(new TransparentSystem(), controller, Consts.defaultTimeStep) { }
 
-        public CloseLoop(IController controller, double dt) : this(new TransparentSystem(), controller, dt) { }
+        public CloseLoop(IController controller, double dt) : 
+            this(new TransparentSystem(), controller, dt) { }
 
-        public CloseLoop(ISystem system, IController controller) : this(system, controller, Consts.defaultTimeStep) { }
+        public CloseLoop(ISystem system, IController controller) : 
+            this(system, controller, Consts.defaultTimeStep) { }
 
         public CloseLoop(ISystem system, IController controller, double dt)
         {
@@ -58,8 +64,8 @@ namespace JTControlSystem
             {
                 time = CurrentTime,
                 feedbackEnabled = feedbackEnabled,
-                input = setValue,
-                error = setValue - previousSystemOutput,
+                setValue = setValue,
+                error = setValue - systemOutput,
                 controllerOutput = controllerOutput,
                 systemOutput = systemOutput
             };

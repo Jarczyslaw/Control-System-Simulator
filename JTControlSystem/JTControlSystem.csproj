@@ -51,14 +51,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consts.cs" />
+    <Compile Include="ControlSystem.cs" />
+    <Compile Include="ControlSystemDataSample.cs" />
+    <Compile Include="ControlSystemMode.cs" />
+    <Compile Include="FileWriter.cs" />
+    <Compile Include="Loops\BaseLoop.cs" />
+    <Compile Include="Loops\CloseLoop.cs" />
+    <Compile Include="Loops\CloseLoopDataSample.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\P.cs" />
     <Compile Include="Controllers\PID.cs" />
     <Compile Include="Controllers\Relay.cs" />
     <Compile Include="Controllers\TransparentController.cs" />
-    <Compile Include="ControlSystem.cs" />
-    <Compile Include="ControlSystemData.cs" />
-    <Compile Include="ControlSystemMode.cs" />
+    <Compile Include="Loops\OpenLoop.cs" />
+    <Compile Include="Loops\OpenLoopDataSample.cs" />
     <Compile Include="SignalGenerators\SignalSampler.cs" />
     <Compile Include="SignalGenerators\Waves\BaseWaveGenerator.cs" />
     <Compile Include="SignalGenerators\SignalGeneratorSample.cs" />

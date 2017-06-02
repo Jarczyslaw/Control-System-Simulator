@@ -10,7 +10,7 @@ namespace JTControlSystem
     {
         public double time;
         public bool feedbackEnabled;
-        public double input;
+        public double setValue;
         public double error;
         public double controllerOutput;
         public double systemOutput;

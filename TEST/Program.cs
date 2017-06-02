@@ -1,6 +1,12 @@
-﻿using JTControlSystem.SignalGenerators;
+﻿using JTControlSystem;
+using JTControlSystem.SignalGenerators;
+using JTControlSystem.Solvers;
+using JTControlSystem.Systems;
+using JTMath;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +17,16 @@ namespace TEST
     {
         static void Main(string[] args)
         {
-            var generator = new WavesGenerator();
-            generator.GetSample(SignalType.Square, 0d);
-            generator.GetSamples(SignalType.Steps, 5d, 10d, 1d);
+            //ContinousFirstOrder model = new ContinousFirstOrder(2d, 3d);
+            //ContinousSystem system = new ContinousSystem(model, new SolverEuler(), Vector.Ones(1));
 
-            generator.SetSinePhase(1d);
-            generator.SetWavesParameters(1d, 1d, 1d);
+
+            OpenLoop loop = new OpenLoop(system, 0.1d);
+
+            for (int i = 0; i < 101; i++)
+                loop.NextIteration(2d);
+
+            FileWriter.ToFile(loop.Data, @"C://data.txt");
 
             Console.ReadKey();
         }
