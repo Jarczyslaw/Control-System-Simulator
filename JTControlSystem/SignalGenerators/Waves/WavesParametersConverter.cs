@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem.SignalGenerators
 {
-    public class WavesParametersValidator
+    public class WavesParametersConverter
     {
         public void Convert(string frequency, string amplitude, string offset,
             out double frequencyValue, out double amplitudeValue, out double offsetValue)

@@ -1,4 +1,5 @@
-﻿using JTControlSystem.Systems;
+﻿using JTControlSystem.SignalGenerators;
+using JTControlSystem.Systems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,9 @@ namespace JTControlSystem
     public class OpenLoop : BaseLoop
     {
         public List<OpenLoopDataSample> Data { get; private set; }
-        private ISystem system;
+        private OpenLoopScheme scheme;
+
+        #region CONSTRUCTORS
 
         public OpenLoop() : this(new TransparentSystem(), Consts.defaultTimeStep) { }
 
@@ -18,33 +21,32 @@ namespace JTControlSystem
 
         public OpenLoop(ISystem system, double dt)
         {
-            this.system = system;
-            this.dt = dt;
+            this.Dt = dt;
+            scheme = new OpenLoopScheme(system);
             Data = new List<OpenLoopDataSample>();
+            Initialize();
         }
 
-        public OpenLoopDataSample NextIteration(double input)
+        #endregion
+
+        public override void NextIteration(double input)
         {
             iteration++;
-            double systemOutput;
-            if (iteration == 0)
-                systemOutput = system.Initialize(dt);
-            else
-                systemOutput = system.NextIteration(input, CurrentTime - dt, dt);
-            OpenLoopDataSample dataSample = new OpenLoopDataSample()
-            {
-                time = CurrentTime,
-                input = input,
-                output = systemOutput
-            };
+            var dataSample = scheme.NextIteration(Dt, CurrentTime, input);
             Data.Add(dataSample);
-            return dataSample;
+        }
+
+        public OpenLoopDataSample GetLastDataSample()
+        {
+            return Data.Last();
         }
 
         public override void Initialize()
         {
             base.Initialize();
             Data.Clear();
+            var initialData = scheme.Initialize(Dt, CurrentTime);
+            Data.Add(initialData);
         }
     }
 }

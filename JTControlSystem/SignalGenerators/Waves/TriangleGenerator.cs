@@ -13,7 +13,7 @@ namespace JTControlSystem.SignalGenerators
             var newSample = new SignalGeneratorSample()
             {
                 time = t,
-                sampleValue = Triangle(t)
+                value = Triangle(t)
             };
             return newSample;
         }

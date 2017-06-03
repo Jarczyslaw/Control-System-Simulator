@@ -20,6 +20,11 @@ namespace JTControlSystem
             WriteToFile(data.Cast<object>().ToList(), filePath, append);
         }
 
+        public static void ToFile(List<ControlSystemDataSample> data, string filePath, bool append = false)
+        {
+            WriteToFile(data.Cast<object>().ToList(), filePath, append);
+        }
+
         private static void WriteToFile(List<object> data, string filePath, bool append = false)
         {
             var lines = SamplesToLines(data);

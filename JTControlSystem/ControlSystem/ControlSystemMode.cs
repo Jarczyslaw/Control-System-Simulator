@@ -8,7 +8,7 @@ namespace JTControlSystem
 {
     public enum ControlSystemMode
     {
-        OpenLoop,
-        CloseLoop
+        OpenLoop = 0,
+        CloseLoop = 1
     }
 }

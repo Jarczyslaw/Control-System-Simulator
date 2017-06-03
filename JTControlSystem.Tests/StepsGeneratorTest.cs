@@ -17,7 +17,7 @@ namespace JTControlSystem.Tests
             var stepsGenerator = new StepsGenerator();
 
             var time = 0d;
-            var desiredSample = new SignalGeneratorSample() { time = time, sampleValue = 1d };
+            var desiredSample = new SignalGeneratorSample() { time = time, value = 1d };
 
             var actualSample = stepsGenerator.GetSample(time);
             Assert.AreEqual(desiredSample, actualSample);

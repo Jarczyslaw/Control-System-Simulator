@@ -51,21 +51,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Consts.cs" />
-    <Compile Include="ControlSystem.cs" />
-    <Compile Include="ControlSystemDataSample.cs" />
-    <Compile Include="ControlSystemMode.cs" />
-    <Compile Include="FileWriter.cs" />
+    <Compile Include="Simulator.cs" />
+    <Compile Include="Utilities\Consts.cs" />
+    <Compile Include="ControlSystem\ControlSystem.cs" />
+    <Compile Include="ControlSystem\ControlSystemDataSample.cs" />
+    <Compile Include="ControlSystem\ControlSystemMode.cs" />
+    <Compile Include="Utilities\FileWriter.cs" />
     <Compile Include="Loops\BaseLoop.cs" />
-    <Compile Include="Loops\CloseLoop.cs" />
-    <Compile Include="Loops\CloseLoopDataSample.cs" />
+    <Compile Include="Loops\Close\CloseLoop.cs" />
+    <Compile Include="Loops\Close\CloseLoopDataSample.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\P.cs" />
     <Compile Include="Controllers\PID.cs" />
     <Compile Include="Controllers\Relay.cs" />
     <Compile Include="Controllers\TransparentController.cs" />
-    <Compile Include="Loops\OpenLoop.cs" />
-    <Compile Include="Loops\OpenLoopDataSample.cs" />
+    <Compile Include="Loops\Close\CloseLoopScheme.cs" />
+    <Compile Include="Loops\Open\OpenLoop.cs" />
+    <Compile Include="Loops\Open\OpenLoopDataSample.cs" />
+    <Compile Include="Loops\Open\OpenLoopScheme.cs" />
     <Compile Include="SignalGenerators\SignalSampler.cs" />
     <Compile Include="SignalGenerators\Waves\BaseWaveGenerator.cs" />
     <Compile Include="SignalGenerators\SignalGeneratorSample.cs" />
@@ -78,7 +81,7 @@
     <Compile Include="SignalGenerators\Waves\TriangleGenerator.cs" />
     <Compile Include="SignalGenerators\WavesGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SignalGenerators\Waves\WavesParametersValidator.cs" />
+    <Compile Include="SignalGenerators\Waves\WavesParametersConverter.cs" />
     <Compile Include="SignalGenerators\SignalType.cs" />
     <Compile Include="Solvers\DifferentialEquations.cs" />
     <Compile Include="Solvers\ISolver.cs" />

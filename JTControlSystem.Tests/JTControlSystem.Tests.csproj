@@ -44,15 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoopsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ReferenceDataLoader.cs" />
     <Compile Include="StepsGeneratorTest.cs" />
     <Compile Include="StepsParametersConverterTest.cs" />
-    <Compile Include="WavesParametersValidatorTest.cs" />
+    <Compile Include="Utilities\SamplesComparator.cs" />
+    <Compile Include="WavesParametersConverterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JTControlSystem\JTControlSystem.csproj">
       <Project>{687fc768-ad47-4a82-aea7-b1006c01576f}</Project>
       <Name>JTControlSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JTMath\JTMath.csproj">
+      <Project>{7206C2B1-E7F1-42AD-A346-1D9FB933E5C2}</Project>
+      <Name>JTMath</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +67,15 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LoopReferenceData\Control\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LoopReferenceData\Close\desc.txt" />
+    <Content Include="LoopReferenceData\Close\reference_data.txt" />
+    <Content Include="LoopReferenceData\Open\desc.txt" />
+    <Content Include="LoopReferenceData\Open\reference_data.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

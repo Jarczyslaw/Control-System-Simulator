@@ -16,7 +16,7 @@ namespace JTControlSystem.SignalGenerators
             var newSample = new SignalGeneratorSample()
             {
                 time = t,
-                sampleValue = Square(t)
+                value = Square(t)
             };
             return newSample;
         }

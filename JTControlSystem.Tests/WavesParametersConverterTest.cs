@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 namespace JTControlSystem.Tests
 {
     [TestFixture]
-    public class WavesParametersValidatorTest
+    public class WavesParametersConverterTest
     {
         [Test]
         public void ValidationTest()
         {
-            var validator = new WavesParametersValidator();
+            var validator = new WavesParametersConverter();
 
             Assert.False(validator.Validate("1", "a", "2"));
             Assert.False(validator.Validate("1", "-1", "2"));
@@ -25,7 +25,7 @@ namespace JTControlSystem.Tests
         [Test]
         public void ConvertTest()
         {
-            var validator = new WavesParametersValidator();
+            var validator = new WavesParametersConverter();
 
             double frequency, amplitude, offset;
             validator.Convert("1", "2", "3", out frequency, out amplitude, out offset);

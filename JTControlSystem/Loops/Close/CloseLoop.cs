@@ -1,4 +1,5 @@
 ﻿using JTControlSystem.Controllers;
+using JTControlSystem.SignalGenerators;
 using JTControlSystem.Systems;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,10 @@ namespace JTControlSystem
     {
         public List<CloseLoopDataSample> Data { get; private set; }
 
-        private IController controller;
-        private ISystem system;
-
+        private CloseLoopScheme scheme;
         public bool feedbackEnabled = true;
 
-        private double previousSystemOutput;
+        #region CONSTRUCTORS
 
         public CloseLoop() : 
             this(new TransparentSystem(), new TransparentController(), Consts.defaultTimeStep) { }
@@ -39,38 +38,26 @@ namespace JTControlSystem
 
         public CloseLoop(ISystem system, IController controller, double dt)
         {
-            this.system = system;
-            this.controller = controller;
-            this.dt = dt;
+            this.Dt = dt;
+            scheme = new CloseLoopScheme(system, controller);
             Data = new List<CloseLoopDataSample>();
+            Initialize();
         }
 
-        public CloseLoopDataSample NextIteration(double setValue)
+        #endregion
+
+        public override void NextIteration(double setValue)
         {
             iteration++;
-            double controllerOutput, systemOutput;
-            if (iteration == 0)
-            {
-                controllerOutput = 0d;
-                systemOutput = system.Initialize(dt);
-            }
-            else
-            {
-                controllerOutput = controller.NextIteration(setValue, previousSystemOutput, dt);
-                systemOutput = system.NextIteration(controllerOutput, CurrentTime - dt, dt);
-            }
-            previousSystemOutput = systemOutput;
-            CloseLoopDataSample dataSample = new CloseLoopDataSample()
-            {
-                time = CurrentTime,
-                feedbackEnabled = feedbackEnabled,
-                setValue = setValue,
-                error = setValue - systemOutput,
-                controllerOutput = controllerOutput,
-                systemOutput = systemOutput
-            };
+            double previousSystemOutput = Data.Last().systemOutput;
+            var dataSample = scheme.NextIteration(Dt, CurrentTime, setValue,
+                previousSystemOutput, feedbackEnabled);
             Data.Add(dataSample);
-            return dataSample;
+        }
+
+        public CloseLoopDataSample GetLastDataSample()
+        {
+            return Data.Last();
         }
 
         public bool ToggleFeedback()
@@ -83,6 +70,8 @@ namespace JTControlSystem
         {
             base.Initialize();
             Data.Clear();
+            var initialData = scheme.Initialize(Dt, CurrentTime, feedbackEnabled);
+            Data.Add(initialData);
         }
     }
 }

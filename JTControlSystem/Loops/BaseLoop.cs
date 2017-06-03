@@ -8,20 +8,20 @@ namespace JTControlSystem
 {
     public abstract class BaseLoop
     {
-        protected double dt;
+        public double Dt { get; protected set; } = -1d;
         protected int iteration = -1;
-
-        public virtual void Initialize()
-        {
-            iteration = -1;
-        }
 
         public double CurrentTime
         {
-            get
-            {
-                return iteration * dt;
-            }
+            get { return iteration * Dt; }
         }
+
+        public virtual void Initialize()
+        {
+            iteration = 0;
+        }
+
+        public abstract void NextIteration(double input);
+
     }
 }

@@ -9,12 +9,12 @@ namespace JTControlSystem.SignalGenerators
     public class SignalGeneratorSample
     {
         public double time;
-        public double sampleValue;
+        public double value;
 
         public override bool Equals(object obj)
         {
             var otherSample = (SignalGeneratorSample)obj;
-            return time == otherSample.time && sampleValue == otherSample.sampleValue;
+            return time == otherSample.time && value == otherSample.value;
         }
 
         public override int GetHashCode()

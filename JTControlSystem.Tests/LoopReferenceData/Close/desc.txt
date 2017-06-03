@@ -1,0 +1,7 @@
+﻿tSim = 10;
+switch_time = 20;
+input = 1;
+P = 0.1; % reg
+k = 4;
+T = 3;
+initial_state = -1;
