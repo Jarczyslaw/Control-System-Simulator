@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities;
 
 namespace JTControlSystem.SignalGenerators
 {
@@ -10,9 +11,21 @@ namespace JTControlSystem.SignalGenerators
     {
         public double phase = 0d;
 
-        public SignalGeneratorSample GetSample(double t)
+        public SineGenerator() { }
+
+        public SineGenerator(double frequency, double amplitude, double valueOffset) : 
+            this(frequency, amplitude, valueOffset, 0d)
+        { }
+
+        public SineGenerator(double frequency, double amplitude, double valueOffset, double phase)
         {
-            var newSample = new SignalGeneratorSample()
+            this.phase = phase;
+            SetParameters(frequency, amplitude, valueOffset);
+        }
+
+        public SignalSample GetSample(double t)
+        {
+            var newSample = new SignalSample()
             {
                 time = t,
                 value = Sine(t)
@@ -22,7 +35,7 @@ namespace JTControlSystem.SignalGenerators
 
         private double Sine(double t)
         {
-            return amplitude * Math.Sin(2d * Math.PI * frequency * t + phase) + valueOffset;
+            return amplitude * Math.Sin(2d * Math.PI * frequency * t + Mathd.DegToRad(phase)) + valueOffset;
         }
     }
 }

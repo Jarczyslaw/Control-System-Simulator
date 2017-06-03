@@ -37,7 +37,7 @@ namespace JTControlSystem.SignalGenerators
             Array.Sort(stepTimes, stepValues);
         }
 
-        public SignalGeneratorSample GetSample(double t)
+        public SignalSample GetSample(double t)
         {
             double sample = 0d;
             if (t >= StepTimes.Last())
@@ -48,7 +48,7 @@ namespace JTControlSystem.SignalGenerators
                 if (t >= StepTimes[i] && t < StepTimes[i + 1])
                     sample = StepValues[i];
             }
-            return new SignalGeneratorSample() { time = t, value = sample };
+            return new SignalSample() { time = t, value = sample };
         }
     }
 }

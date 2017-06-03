@@ -21,5 +21,15 @@ namespace Utilities
         {
             return Clamp(value, 0d, 1d);
         }
+
+        public static double DegToRad(double degres)
+        {
+            return degres * Math.PI / 180d;
+        }
+
+        public static double RadToDeg(double radians)
+        {
+            return radians * 180d / Math.PI;
+        }
     }
 }

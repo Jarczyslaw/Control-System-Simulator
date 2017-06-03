@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem.SignalGenerators
 {
-    public class SignalGeneratorSample
+    public class SignalSample
     {
         public double time;
         public double value;
 
         public override bool Equals(object obj)
         {
-            var otherSample = (SignalGeneratorSample)obj;
+            var otherSample = (SignalSample)obj;
             return time == otherSample.time && value == otherSample.value;
         }
 

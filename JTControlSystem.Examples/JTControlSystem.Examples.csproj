@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +47,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Models\BaseModelExample.cs" />
+    <Compile Include="Models\ContinousModels\ContinousFirstOrderExample.cs" />
+    <Compile Include="IExample.cs" />
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignalGenerators\BaseGeneratorExample.cs" />
+    <Compile Include="SignalGenerators\SawGeneratorExample.cs" />
+    <Compile Include="SignalGenerators\SineGeneratorExample.cs" />
+    <Compile Include="SignalGenerators\SquareGeneratorExample.cs" />
+    <Compile Include="SignalGenerators\StepsGeneratorExample.cs" />
+    <Compile Include="SignalGenerators\TriangleGeneratorExample.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +88,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JTControlSystem\JTControlSystem.csproj">
+      <Project>{687FC768-AD47-4A82-AEA7-B1006C01576F}</Project>
+      <Name>JTControlSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JTMath\JTMath.csproj">
+      <Project>{7206C2B1-E7F1-42AD-A346-1D9FB933E5C2}</Project>
+      <Name>JTMath</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

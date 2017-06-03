@@ -11,9 +11,21 @@ namespace JTControlSystem.SignalGenerators
     {
         public double Fill { get; private set; } = 0.5d;
 
-        public SignalGeneratorSample GetSample(double t)
+        public SquareGenerator() { }
+
+        public SquareGenerator(double frequency, double amplitude, double valueOffset) :
+            this(frequency, amplitude, valueOffset, 0d)
+        { }
+
+        public SquareGenerator(double frequency, double amplitude, double valueOffset, double fill)
         {
-            var newSample = new SignalGeneratorSample()
+            SetParameters(frequency, amplitude, valueOffset);
+            SetFill(fill);
+        }
+
+        public SignalSample GetSample(double t)
+        {
+            var newSample = new SignalSample()
             {
                 time = t,
                 value = Square(t)

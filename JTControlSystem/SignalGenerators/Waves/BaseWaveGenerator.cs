@@ -6,18 +6,11 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem.SignalGenerators
 {
-    public class BaseWaveGenerator
+    public abstract class BaseWaveGenerator
     {
-        public double frequency;
-        public double amplitude;
-        public double valueOffset;
-
-        public BaseWaveGenerator() : this(1d, 1d, 0d) { }
-
-        public BaseWaveGenerator(double frequency, double amplitude, double valueOffset)
-        {
-            SetParameters(frequency, amplitude, valueOffset);
-        }
+        public double frequency = 1d;
+        public double amplitude = 1d;
+        public double valueOffset = 0d;
 
         public void SetParameters(double frequency, double amplitude, double valueOffset)
         {

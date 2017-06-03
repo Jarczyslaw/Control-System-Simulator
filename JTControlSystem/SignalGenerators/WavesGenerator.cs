@@ -23,19 +23,19 @@ namespace JTControlSystem.SignalGenerators
             generators.Add(SignalType.Triangle, new TriangleGenerator());
         }
 
-        public SignalGeneratorSample GetSample(SignalType signalType, double time)
+        public SignalSample GetSample(SignalType signalType, double time)
         {
             return generators[signalType].GetSample(time);
         }
 
-        public List<SignalGeneratorSample> GetSamples(SignalType signalType, double timeHorizon, double dt)
+        public List<SignalSample> GetSamples(SignalType signalType, double timeHorizon, double dt)
         {
             var sampler = new SignalSampler(generators[signalType]);
             return sampler.GetSamples(timeHorizon, dt);
 
         }
 
-        public List<SignalGeneratorSample> GetSamples(SignalType signalType, double startTime, double timeHorizon, double dt)
+        public List<SignalSample> GetSamples(SignalType signalType, double startTime, double timeHorizon, double dt)
         {
             var sampler = new SignalSampler(generators[signalType]);
             return sampler.GetSamples(startTime, timeHorizon, dt);

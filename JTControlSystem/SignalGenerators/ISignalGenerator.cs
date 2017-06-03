@@ -8,6 +8,6 @@ namespace JTControlSystem.SignalGenerators
 {
     public interface ISignalGenerator
     {
-        SignalGeneratorSample GetSample(double t);
+        SignalSample GetSample(double t);
     }
 }

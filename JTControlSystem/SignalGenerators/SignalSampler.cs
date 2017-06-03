@@ -15,21 +15,21 @@ namespace JTControlSystem.SignalGenerators
             this.generator = generator;
         }
 
-        public SignalGeneratorSample GetSample(double time)
+        public SignalSample GetSample(double time)
         {
             return generator.GetSample(time);
         }
 
-        public List<SignalGeneratorSample> GetSamples(double timeHorizon, double dt)
+        public List<SignalSample> GetSamples(double timeHorizon, double dt)
         {
             return GetSamples(0d, timeHorizon, dt);
         }
 
-        public List<SignalGeneratorSample> GetSamples(double startTime, double timeHorizon, double dt)
+        public List<SignalSample> GetSamples(double startTime, double timeHorizon, double dt)
         {
-            List<SignalGeneratorSample> samples = new List<SignalGeneratorSample>();
+            List<SignalSample> samples = new List<SignalSample>();
             double endTime = startTime + timeHorizon;
-            for (double t = startTime; t <= endTime; t += dt)
+            for (double t = startTime; t <= endTime + dt; t += dt)
             {
                 var newSample = generator.GetSample(t);
                 samples.Add(newSample);

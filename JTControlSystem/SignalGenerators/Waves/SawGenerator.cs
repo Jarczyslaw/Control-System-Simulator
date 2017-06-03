@@ -8,9 +8,16 @@ namespace JTControlSystem.SignalGenerators
 {
     public class SawGenerator : BaseWaveGenerator, ISignalGenerator
     {
-        public SignalGeneratorSample GetSample(double t)
+        public SawGenerator() { }
+
+        public SawGenerator(double frequency, double amplitude, double valueOffset)
         {
-            var newSample = new SignalGeneratorSample()
+            SetParameters(frequency, amplitude, valueOffset);
+        }
+
+        public SignalSample GetSample(double t)
+        {
+            var newSample = new SignalSample()
             {
                 time = t,
                 value = Saw(t)
