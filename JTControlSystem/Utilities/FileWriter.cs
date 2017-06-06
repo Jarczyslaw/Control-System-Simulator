@@ -10,6 +10,11 @@ namespace JTControlSystem
 {
     public static class FileWriter
     {
+        public static void ToFile(List<BareSystemDataSample> data, string filePath, bool append = false)
+        {
+            WriteToFile(data.Cast<object>().ToList(), filePath, append);
+        }
+
         public static void ToFile(List<OpenLoopDataSample> data, string filePath, bool append = false)
         {
             WriteToFile(data.Cast<object>().ToList(), filePath, append);

@@ -47,24 +47,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Loops\OpenLoop\OpenLoop.cs" />
+    <Compile Include="Loops\OpenLoop\OpenLoopDataSample.cs" />
+    <Compile Include="Schemes\OpenLoopScheme.cs" />
     <Compile Include="Simulator.cs" />
     <Compile Include="Utilities\Consts.cs" />
-    <Compile Include="ControlSystem\ControlSystem.cs" />
-    <Compile Include="ControlSystem\ControlSystemDataSample.cs" />
-    <Compile Include="ControlSystem\ControlSystemMode.cs" />
+    <Compile Include="Loops\ControlSystem\ControlSystem.cs" />
+    <Compile Include="Loops\ControlSystem\ControlSystemDataSample.cs" />
+    <Compile Include="Loops\ControlSystem\ControlSystemMode.cs" />
     <Compile Include="Utilities\FileWriter.cs" />
     <Compile Include="Loops\BaseLoop.cs" />
-    <Compile Include="Loops\Close\CloseLoop.cs" />
-    <Compile Include="Loops\Close\CloseLoopDataSample.cs" />
+    <Compile Include="Loops\CloseLoop\CloseLoop.cs" />
+    <Compile Include="Loops\CloseLoop\CloseLoopDataSample.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\P.cs" />
     <Compile Include="Controllers\PID.cs" />
     <Compile Include="Controllers\Relay.cs" />
     <Compile Include="Controllers\TransparentController.cs" />
-    <Compile Include="Loops\Close\CloseLoopScheme.cs" />
-    <Compile Include="Loops\Open\OpenLoop.cs" />
-    <Compile Include="Loops\Open\OpenLoopDataSample.cs" />
-    <Compile Include="Loops\Open\OpenLoopScheme.cs" />
+    <Compile Include="Schemes\CloseLoopScheme.cs" />
+    <Compile Include="Loops\BareSystem\BareSystem.cs" />
+    <Compile Include="Loops\BareSystem\BareSystemDataSample.cs" />
+    <Compile Include="Schemes\BareSystemScheme.cs" />
     <Compile Include="SignalGenerators\SignalSampler.cs" />
     <Compile Include="SignalGenerators\Waves\BaseWaveGenerator.cs" />
     <Compile Include="SignalGenerators\SignalGeneratorSample.cs" />
@@ -111,6 +114,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem.Tests
 {
-    public class SamplesComparator
+    public class OutputSamplesComparator
     {
         private static double tolerance = 0.00001d;
 
-        public static bool Compare(double[] reference, List<OpenLoopDataSample> data)
+        public static bool Compare(double[] reference, List<BareSystemDataSample> data)
         {
             return Compare(reference, data.Select(d => d.output).ToArray());
+        }
+
+        public static bool Compare(double[] reference, List<OpenLoopDataSample> data)
+        {
+            return Compare(reference, data.Select(d => d.systemOutput).ToArray());
         }
 
         public static bool Compare(double[] reference, List<CloseLoopDataSample> data)

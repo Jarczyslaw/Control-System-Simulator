@@ -11,9 +11,9 @@
             Kp = gain;
         }
 
-        public double NextIteration(double setPoint, double processValue, double dt)
+        public double NextIteration(double input, double processValue, double dt)
         {
-            return Kp * (setPoint - processValue);
+            return Kp * input;
         }
 
         public void Initialize(double dt) { }

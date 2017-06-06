@@ -25,31 +25,29 @@ namespace JTControlSystem
         }
 
         public CloseLoopDataSample NextIteration(double dt, double currentTime,
-            double setValue, double previousSystemOutput, bool feedbackEnabled)
+            double setValue, double previousSystemOutput)
         {
-            double controllerOutput = controller.NextIteration(setValue, previousSystemOutput, dt);
+            double error = setValue - previousSystemOutput;
+            double controllerOutput = controller.NextIteration(error, previousSystemOutput, dt);
             double systemOutput = system.NextIteration(controllerOutput, currentTime - dt, dt);
             CloseLoopDataSample dataSample = new CloseLoopDataSample()
             {
                 time = currentTime,
-                feedbackEnabled = feedbackEnabled,
                 setValue = setValue,
-                error = setValue - systemOutput,
+                error = error,
                 controllerOutput = controllerOutput,
                 systemOutput = systemOutput
             };
             return dataSample;
         }
 
-        public CloseLoopDataSample Initialize(double dt, double currentTime,
-            bool feedbackEnabled)
+        public CloseLoopDataSample Initialize(double dt, double currentTime)
         {
             controller.Initialize(dt);
             double systemOutput = system.Initialize(dt);
             CloseLoopDataSample dataSample = new CloseLoopDataSample()
             {
                 time = currentTime,
-                feedbackEnabled = feedbackEnabled,
                 setValue = 0d,
                 error = 0d,
                 controllerOutput = 0d,

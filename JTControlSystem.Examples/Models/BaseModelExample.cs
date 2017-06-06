@@ -8,7 +8,7 @@ namespace JTControlSystem.Examples
 {
     public abstract class BaseModelExample : IExample
     {
-        private List<OpenLoopDataSample> data;
+        private List<BareSystemDataSample> data;
 
         public double[] GetTime()
         {
@@ -25,6 +25,6 @@ namespace JTControlSystem.Examples
             data = GetSystemData();
         }
 
-        public abstract List<OpenLoopDataSample> GetSystemData();
+        public abstract List<BareSystemDataSample> GetSystemData();
     }
 }

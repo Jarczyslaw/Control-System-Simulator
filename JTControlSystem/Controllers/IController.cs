@@ -8,7 +8,7 @@ namespace JTControlSystem.Controllers
 {
     public interface IController
     {
-        double NextIteration(double setPoint, double processValue, double dt);
+        double NextIteration(double input, double processValue, double dt);
         void Initialize(double dt);
     }
 }

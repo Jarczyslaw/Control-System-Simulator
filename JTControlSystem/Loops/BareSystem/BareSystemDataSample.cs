@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem
 {
-    public class OpenLoopDataSample
+    public class BareSystemDataSample
     {
         public double time;
         public double input;
         public double output;
 
-        public OpenLoopDataSample(double time, double input, double output)
+        public BareSystemDataSample(double time, double input, double output)
         {
             this.time = time;
             this.input = input;

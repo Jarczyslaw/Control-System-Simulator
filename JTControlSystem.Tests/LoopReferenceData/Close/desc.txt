@@ -1,7 +1,8 @@
-﻿tSim = 10;
-switch_time = 20;
-input = 1;
-P = 0.1; % reg
-k = 4;
-T = 3;
-initial_state = -1;
+﻿% simulink parameters
+tSim = 2;
+switch_time = 30; % time when control loop is opening (control system)
+input = 1; 
+P = 2; % reg (open, close, control)
+k = 4; % systems gain
+T = 3; % systems time constant
+initial_state = -1; 

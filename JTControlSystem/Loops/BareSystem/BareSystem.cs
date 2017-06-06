@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem
 {
-    public class OpenLoop : BaseLoop
+    public class BareSystem : BaseLoop
     {
-        public List<OpenLoopDataSample> Data { get; private set; }
-        private OpenLoopScheme scheme;
+        public List<BareSystemDataSample> Data { get; private set; }
+        private BareSystemScheme scheme;
 
         #region CONSTRUCTORS
 
-        public OpenLoop() : this(new TransparentSystem(), Consts.defaultTimeStep) { }
+        public BareSystem() : this(new TransparentSystem(), Consts.defaultTimeStep) { }
 
-        public OpenLoop(ISystem system) : this(system, Consts.defaultTimeStep) { }
+        public BareSystem(ISystem system) : this(system, Consts.defaultTimeStep) { }
 
-        public OpenLoop(ISystem system, double dt)
+        public BareSystem(ISystem system, double dt)
         {
             this.Dt = dt;
-            scheme = new OpenLoopScheme(system);
-            Data = new List<OpenLoopDataSample>();
+            scheme = new BareSystemScheme(system);
+            Data = new List<BareSystemDataSample>();
             Initialize();
         }
 
@@ -36,7 +36,7 @@ namespace JTControlSystem
             Data.Add(dataSample);
         }
 
-        public OpenLoopDataSample GetLastDataSample()
+        public BareSystemDataSample GetLastDataSample()
         {
             return Data.Last();
         }

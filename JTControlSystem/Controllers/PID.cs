@@ -38,31 +38,30 @@
             this.Td = Td;
         }
 
-        public double NextIteration(double setPoint, double processValue, double dt)
+        public double NextIteration(double input, double processValue, double dt)
         {
             iteration++;
-            double error = setPoint - processValue;
-            double P = Kp * error;
-            errorSum += error;
+            double P = Kp * input;
+            errorSum += input;
             double I = Kp * dt / Ti * errorSum;
             double D = 0d;
             if (iteration != 0)
-                D = 1d / dt * Kp * Td * (error - lastError);
+                D = 1d / dt * Kp * Td * (input - lastError);
             double output = P + I + D;
             if (antiwindup)
             {
                 if (output > maxOutput)
                 {
                     output = maxOutput;
-                    errorSum -= error;
+                    errorSum -= input;
                 }
                 else if (output < minOutput)
                 {
                     output = minOutput;
-                    errorSum -= error;
+                    errorSum -= input;
                 }
             }
-            lastError = error;
+            lastError = input;
             
             return output;
         }

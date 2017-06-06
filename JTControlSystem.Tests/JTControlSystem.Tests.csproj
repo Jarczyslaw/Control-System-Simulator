@@ -46,10 +46,11 @@
   <ItemGroup>
     <Compile Include="LoopsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransparentComponentsTest.cs" />
     <Compile Include="Utilities\ReferenceDataLoader.cs" />
     <Compile Include="StepsGeneratorTest.cs" />
     <Compile Include="StepsParametersConverterTest.cs" />
-    <Compile Include="Utilities\SamplesComparator.cs" />
+    <Compile Include="Utilities\OutputSamplesComparator.cs" />
     <Compile Include="WavesParametersConverterTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,12 +69,14 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LoopReferenceData\Control\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="LoopReferenceData\Close\desc.txt" />
     <Content Include="LoopReferenceData\Close\reference_data.txt" />
+    <Content Include="LoopReferenceData\Bare\desc.txt" />
+    <Content Include="LoopReferenceData\Bare\reference_data.txt" />
+    <Content Include="LoopReferenceData\Control\desc.txt" />
+    <Content Include="LoopReferenceData\Control\reference_data.txt" />
     <Content Include="LoopReferenceData\Open\desc.txt" />
     <Content Include="LoopReferenceData\Open\reference_data.txt" />
   </ItemGroup>

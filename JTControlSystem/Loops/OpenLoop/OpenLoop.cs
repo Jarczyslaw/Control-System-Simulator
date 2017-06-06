@@ -9,38 +9,37 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem
 {
-    public class CloseLoop : BaseLoop
+    public class OpenLoop : BaseLoop
     {
-        public List<CloseLoopDataSample> Data { get; private set; }
+        public List<OpenLoopDataSample> Data { get; private set; }
 
-        private CloseLoopScheme scheme;
-        public bool feedbackEnabled = true;
+        private OpenLoopScheme scheme;
 
         #region CONSTRUCTORS
 
-        public CloseLoop() : 
+        public OpenLoop() : 
             this(new TransparentSystem(), new TransparentController(), Consts.defaultTimeStep) { }
 
-        public CloseLoop(ISystem system) : 
+        public OpenLoop(ISystem system) : 
             this(system, new TransparentController(), Consts.defaultTimeStep) { }
 
-        public CloseLoop(ISystem system, double dt) : 
+        public OpenLoop(ISystem system, double dt) : 
             this(system, new TransparentController(), dt) { }
 
-        public CloseLoop(IController controller) : 
+        public OpenLoop(IController controller) : 
             this(new TransparentSystem(), controller, Consts.defaultTimeStep) { }
 
-        public CloseLoop(IController controller, double dt) : 
+        public OpenLoop(IController controller, double dt) : 
             this(new TransparentSystem(), controller, dt) { }
 
-        public CloseLoop(ISystem system, IController controller) : 
+        public OpenLoop(ISystem system, IController controller) : 
             this(system, controller, Consts.defaultTimeStep) { }
 
-        public CloseLoop(ISystem system, IController controller, double dt)
+        public OpenLoop(ISystem system, IController controller, double dt)
         {
             this.Dt = dt;
-            scheme = new CloseLoopScheme(system, controller);
-            Data = new List<CloseLoopDataSample>();
+            scheme = new OpenLoopScheme(system, controller);
+            Data = new List<OpenLoopDataSample>();
             Initialize();
         }
 
@@ -49,28 +48,20 @@ namespace JTControlSystem
         public override void NextIteration(double setValue)
         {
             iteration++;
-            double previousSystemOutput = Data.Last().systemOutput;
-            var dataSample = scheme.NextIteration(Dt, CurrentTime, setValue,
-                previousSystemOutput, feedbackEnabled);
+            var dataSample = scheme.NextIteration(Dt, CurrentTime, setValue);
             Data.Add(dataSample);
         }
 
-        public CloseLoopDataSample GetLastDataSample()
+        public OpenLoopDataSample GetLastDataSample()
         {
             return Data.Last();
-        }
-
-        public bool ToggleFeedback()
-        {
-            feedbackEnabled = !feedbackEnabled;
-            return feedbackEnabled;
         }
 
         public override void Initialize()
         {
             base.Initialize();
             Data.Clear();
-            var initialData = scheme.Initialize(Dt, CurrentTime, feedbackEnabled);
+            var initialData = scheme.Initialize(Dt, CurrentTime);
             Data.Add(initialData);
         }
     }

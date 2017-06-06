@@ -48,7 +48,7 @@ namespace JTControlSystem.Examples
 
         private void InitComboBoxes()
         {
-            foreach(Control control in Controls)
+            foreach(Control control in gbExamples.Controls)
             {
                 if (control is ComboBox)
                 {

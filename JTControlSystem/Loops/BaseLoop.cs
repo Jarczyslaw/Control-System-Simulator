@@ -22,6 +22,5 @@ namespace JTControlSystem
         }
 
         public abstract void NextIteration(double input);
-
     }
 }

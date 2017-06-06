@@ -23,10 +23,11 @@ namespace JTControlSystem
         public static void SignalSimulation(BaseLoop loop, double time, ISignalGenerator signalGenerator)
         {
             loop.Initialize();
-            double finishTime = time - loop.Dt;
-            for (double t = 0d; t <= finishTime; t += loop.Dt)
+            int iterations = (int)Math.Ceiling(time / loop.Dt);
+            for (int i = 0;i < iterations;i++)
             {
-                var signalSample = signalGenerator.GetSample(t);
+                double currentTime = i * loop.Dt;
+                var signalSample = signalGenerator.GetSample(currentTime);
                 loop.NextIteration(signalSample.value);
             }
         }

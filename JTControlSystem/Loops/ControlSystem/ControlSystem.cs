@@ -13,10 +13,8 @@ namespace JTControlSystem
     {
         public List<ControlSystemDataSample> Data;
 
-        private OpenLoopScheme openScheme;
+        private BareSystemScheme openScheme;
         private CloseLoopScheme closeScheme;
-
-        private readonly bool feedbackEnabled = true;
 
         public ControlSystemMode mode = ControlSystemMode.CloseLoop;
 
@@ -43,7 +41,7 @@ namespace JTControlSystem
         public ControlSystem(ISystem system, IController controller, double dt)
         {
             this.Dt = dt;
-            openScheme = new OpenLoopScheme(system);
+            openScheme = new BareSystemScheme(system);
             closeScheme = new CloseLoopScheme(system, controller);
             Data = new List<ControlSystemDataSample>();
             Initialize();
@@ -64,7 +62,7 @@ namespace JTControlSystem
             {
                 double previousSystemOutput = Data.Last().systemOutput;
                 var closeData = closeScheme.NextIteration(Dt, CurrentTime,
-                    input, previousSystemOutput, feedbackEnabled);
+                    input, previousSystemOutput);
                 dataSample = ControlSystemDataSample.FromCloseSample(closeData);
             }
             Data.Add(dataSample);
@@ -82,7 +80,7 @@ namespace JTControlSystem
             }
             else
             {
-                dataSample = ControlSystemDataSample.FromCloseSample(closeScheme.Initialize(Dt, CurrentTime, feedbackEnabled));
+                dataSample = ControlSystemDataSample.FromCloseSample(closeScheme.Initialize(Dt, CurrentTime));
                 Data.Add(dataSample);
             }
         }

@@ -37,9 +37,9 @@
             this.outputOff = outputOff;
         }
 
-        public double NextIteration(double setPoint, double processValue, double dt)
+        public double NextIteration(double input, double processValue, double dt)
         {
-            double error = setPoint - processValue;
+            double error = input;
 
             if (error < errorOff)
                 state = 1;

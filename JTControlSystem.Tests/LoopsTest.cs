@@ -4,10 +4,6 @@ using JTControlSystem.Systems;
 using JTMath;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JTControlSystem.Tests
 {
@@ -15,17 +11,32 @@ namespace JTControlSystem.Tests
     public class LoopsTest
     {
         [Test]
+        public void BareSystemTest()
+        {
+            var reference = ReferenceDataLoader.LoadFromProject(@"/LoopReferenceData/Bare/reference_data.txt");
+
+            var model = new ContinousFirstOrder(4d, 3d);
+            ContinousSystem system = new ContinousSystem(model, new SolverEuler(), new Vector(1, -1d));
+
+            BareSystem loop = new BareSystem(system, 0.1d);
+            Simulator.Step(loop, 10d);
+
+            Assert.True(OutputSamplesComparator.Compare(reference, loop.Data));
+        }
+
+        [Test]
         public void OpelLoopTest()
         {
             var reference = ReferenceDataLoader.LoadFromProject(@"/LoopReferenceData/Open/reference_data.txt");
 
             var model = new ContinousFirstOrder(4d, 3d);
-            ContinousSystem system = new ContinousSystem(model, new SolverEuler(), Vector.Ones(1));
+            ContinousSystem system = new ContinousSystem(model, new SolverEuler(), new Vector(1, -1d));
+            var controller = new P(2d);
 
-            OpenLoop loop = new OpenLoop(system, 0.1d);
+            OpenLoop loop = new OpenLoop(system, controller, 0.1d);
             Simulator.Step(loop, 10d);
 
-            Assert.True(SamplesComparator.Compare(reference, loop.Data));
+            Assert.True(OutputSamplesComparator.Compare(reference, loop.Data));
         }
 
         [Test]
@@ -35,12 +46,12 @@ namespace JTControlSystem.Tests
 
             var model = new ContinousFirstOrder(4d, 3d);
             ContinousSystem system = new ContinousSystem(model, new SolverEuler(), new Vector(1, -1d));
-            var controller = new P(0.1d);
+            var controller = new P(2d);
 
             CloseLoop loop = new CloseLoop(system, controller, 0.1d);
-            Simulator.Step(loop, 10d);
+            Simulator.Step(loop, 2d);
 
-            Assert.True(SamplesComparator.Compare(reference, loop.Data));
+            Assert.True(OutputSamplesComparator.Compare(reference, loop.Data));
         }
 
         [Test]
@@ -50,21 +61,21 @@ namespace JTControlSystem.Tests
 
             var model = new ContinousFirstOrder(4d, 3d);
             ContinousSystem system = new ContinousSystem(model, new SolverEuler(), new Vector(1, -1d));
-            var controller = new P(1d);
+            var controller = new P(2d);
 
             ControlSystem loop = new ControlSystem(system, controller, 0.1d);
 
             loop.Initialize();
-            double finishTime = 10d - loop.Dt;
-            for (double t = 0d; t <= finishTime; t += loop.Dt)
+            int iterations = (int)Math.Ceiling(4d / loop.Dt);
+            for (int i = 0; i < iterations; i++)
             {
-                // switch to open loop in 5th second
-                if (t > 5d - loop.Dt)
+                double currentTime = i * loop.Dt;
+                if (currentTime >= 2d)
                     loop.mode = ControlSystemMode.OpenLoop;
                 loop.NextIteration(1d);
             }
 
-            Assert.True(SamplesComparator.Compare(reference, loop.Data));
+            Assert.True(OutputSamplesComparator.Compare(reference, loop.Data));
         }
     }
 }
