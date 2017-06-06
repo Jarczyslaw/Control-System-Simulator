@@ -10,13 +10,22 @@ namespace JTControlSystem.Tests
     [TestFixture]
     public class LoopsTest
     {
+        private IContinousModel model;
+        private ISystem system;
+        private IController controller;
+
+        [SetUp]
+        public void Init()
+        {
+            model = new ContinousFirstOrder(4d, 3d);
+            system = new ContinousSystem(model, new SolverEuler(), new Vector(1, -1d));
+            controller = new P(2d);
+        }
+
         [Test]
         public void BareSystemTest()
         {
             var reference = ReferenceDataLoader.LoadFromProject(@"/LoopReferenceData/Bare/reference_data.txt");
-
-            var model = new ContinousFirstOrder(4d, 3d);
-            ContinousSystem system = new ContinousSystem(model, new SolverEuler(), new Vector(1, -1d));
 
             BareSystem loop = new BareSystem(system, 0.1d);
             Simulator.Step(loop, 10d);
@@ -29,10 +38,6 @@ namespace JTControlSystem.Tests
         {
             var reference = ReferenceDataLoader.LoadFromProject(@"/LoopReferenceData/Open/reference_data.txt");
 
-            var model = new ContinousFirstOrder(4d, 3d);
-            ContinousSystem system = new ContinousSystem(model, new SolverEuler(), new Vector(1, -1d));
-            var controller = new P(2d);
-
             OpenLoop loop = new OpenLoop(system, controller, 0.1d);
             Simulator.Step(loop, 10d);
 
@@ -44,10 +49,6 @@ namespace JTControlSystem.Tests
         {
             var reference = ReferenceDataLoader.LoadFromProject(@"/LoopReferenceData/Close/reference_data.txt");
 
-            var model = new ContinousFirstOrder(4d, 3d);
-            ContinousSystem system = new ContinousSystem(model, new SolverEuler(), new Vector(1, -1d));
-            var controller = new P(2d);
-
             CloseLoop loop = new CloseLoop(system, controller, 0.1d);
             Simulator.Step(loop, 2d);
 
@@ -58,10 +59,6 @@ namespace JTControlSystem.Tests
         public void ControlSystemTest()
         {
             var reference = ReferenceDataLoader.LoadFromProject(@"/LoopReferenceData/Control/reference_data.txt");
-
-            var model = new ContinousFirstOrder(4d, 3d);
-            ContinousSystem system = new ContinousSystem(model, new SolverEuler(), new Vector(1, -1d));
-            var controller = new P(2d);
 
             ControlSystem loop = new ControlSystem(system, controller, 0.1d);
 

@@ -11,11 +11,11 @@ namespace JTControlSystem.Tests
     [TestFixture]
     public class WavesParametersConverterTest
     {
+        WavesParametersConverter validator = new WavesParametersConverter();
+
         [Test]
         public void ValidationTest()
         {
-            var validator = new WavesParametersConverter();
-
             Assert.False(validator.Validate("1", "a", "2"));
             Assert.False(validator.Validate("1", "-1", "2"));
             Assert.False(validator.Validate("", "-1", ""));
@@ -25,8 +25,6 @@ namespace JTControlSystem.Tests
         [Test]
         public void ConvertTest()
         {
-            var validator = new WavesParametersConverter();
-
             double frequency, amplitude, offset;
             validator.Convert("1", "2", "3", out frequency, out amplitude, out offset);
 

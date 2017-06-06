@@ -11,11 +11,11 @@ namespace JTControlSystem.Tests
     [TestFixture]
     public class StepsParametersConverterTest
     {
+        StepsParametersConverter converter = new StepsParametersConverter();
+
         [Test]
         public void ValidationTest()
         {
-            var converter = new StepsParametersConverter();
-
             Assert.False(converter.Validate("", ""));
             Assert.True(converter.Validate("1", "1"));
             Assert.False(converter.Validate("1, 2", "3"));
@@ -28,8 +28,6 @@ namespace JTControlSystem.Tests
         [Test]
         public void ConvertTest()
         {
-            var converter = new StepsParametersConverter();
-
             double[] times = null;
             double[] values = null;
 
