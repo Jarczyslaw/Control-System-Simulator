@@ -44,10 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSample.cs" />
+    <Compile Include="ExactSolution.cs" />
+    <Compile Include="Launcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestEntry.cs" />
-    <Compile Include="Tester.cs" />
     <Compile Include="TestModel.cs" />
   </ItemGroup>
   <ItemGroup>

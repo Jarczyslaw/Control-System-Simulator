@@ -15,8 +15,6 @@ namespace JTControlSystem.Systems
         private Vector initialState;
         private Vector state;
 
-        public ContinousSystem() : this(new TransparentContinousModel(), new SolverEuler(), Vector.Zeros(1), 0d) { }
-
         public ContinousSystem(IContinousModel model, ISolver solver, Vector initialState) : this(model, solver, initialState, 0d) { }
 
         public ContinousSystem(IContinousModel model, ISolver solver, Vector initialState, double delay)

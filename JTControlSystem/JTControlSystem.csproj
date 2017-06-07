@@ -88,11 +88,9 @@
     <Compile Include="Systems\Continous\ContinousSystem.cs" />
     <Compile Include="Systems\Continous\Models\ContinousFirstOrder.cs" />
     <Compile Include="Systems\Continous\Models\IContinousModel.cs" />
-    <Compile Include="Systems\Continous\Models\TransparentContinousModel.cs" />
     <Compile Include="Systems\Discrete\DiscreteSystem.cs" />
     <Compile Include="Systems\Discrete\Models\DiscreteFirstOrder.cs" />
     <Compile Include="Systems\Discrete\Models\IDiscreteModel.cs" />
-    <Compile Include="Systems\Discrete\Models\TransparentDiscreteModel.cs" />
     <Compile Include="Systems\ISystem.cs" />
     <Compile Include="Systems\TransparentSystem.cs" />
     <Compile Include="Systems\TransportDelay.cs" />

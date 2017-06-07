@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSample.cs" />
+    <Compile Include="Loops\BareSystem.cs" />
+    <Compile Include="Loops\BaseLoopExample.cs" />
+    <Compile Include="Loops\CloseLoopExample.cs" />
+    <Compile Include="Loops\ControlSystemExample.cs" />
+    <Compile Include="Loops\OpenLoopExample.cs" />
     <Compile Include="Models\BaseModelExample.cs" />
     <Compile Include="Models\ContinousModels\ContinousFirstOrderExample.cs" />
     <Compile Include="IExample.cs" />

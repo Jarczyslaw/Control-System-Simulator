@@ -39,11 +39,9 @@
 
         public double NextIteration(double input, double processValue, double dt)
         {
-            double error = input;
-
-            if (error < errorOff)
+            if (input < errorOff)
                 state = 1;
-            else if (error > errorOn)
+            else if (input > errorOn)
                 state = 3;
             else
             {

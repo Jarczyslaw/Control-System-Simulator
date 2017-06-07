@@ -1,36 +1,48 @@
-﻿using System;
+﻿using JTControlSystem.Solvers;
+using JTMath;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JTControlSystem;
-using JTMath;
 
 namespace SolversTest
 {
-    public class TestModel : ContinousModel
+    public class TestModel
     {
-        Func<double, double> function;
-        Func<double, Vector, Vector> differential;
+        private ISolver solver;
+        private DifferentialEquations differentialEquations;
 
-        public TestModel(Func<double, double> function, Func<double, Vector, Vector> differential)
+        private Vector state;
+        private List<DataSample> data;
+
+        public TestModel(ISolver solver, DifferentialEquations differentialEquations)
         {
-            this.function = function;
-            this.differential = differential;
-            initState = new Vector(1, ExactSolution(0.0));
+            this.solver = solver;
+            this.differentialEquations = differentialEquations;
+            data = new List<DataSample>();
         }
 
-        public override Vector DifferentialEquations(Vector state, double input, double t)
+        public void NextIteration(double time, double dt)
         {
-            Vector diff = differential(t, state);
-            return diff;
+            state = solver.Solve(differentialEquations, state, 0d, time - dt, dt);
+            data.Add(new DataSample()
+            {
+                time = time,
+                value = state[0]
+            });
         }
 
-        public override double OutputEquation(Vector state, double input) { return 0.0; }
-
-        public double ExactSolution(double t)
+        public void Initialize(double initialValue, double dt)
         {
-            return function(t);
+            solver.Initialize(dt);
+            state = new Vector(1, initialValue);
+            data.Clear();
+            data.Add(new DataSample()
+            {
+                time = 0d,
+                value = state[0]
+            });
         }
     }
 }

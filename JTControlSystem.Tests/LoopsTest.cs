@@ -62,15 +62,14 @@ namespace JTControlSystem.Tests
 
             ControlSystem loop = new ControlSystem(system, controller, 0.1d);
 
-            loop.Initialize();
-            int iterations = (int)Math.Ceiling(4d / loop.Dt);
-            for (int i = 0; i < iterations; i++)
-            {
-                double currentTime = i * loop.Dt;
-                if (currentTime >= 2d)
-                    loop.mode = ControlSystemMode.OpenLoop;
-                loop.NextIteration(1d);
-            }
+            bool modeSwitched = false;
+            Simulator.Step(loop, 4d, (iteration, time) => {
+                if (!modeSwitched && iteration >= 20)
+                {
+                    loop.mode= ControlSystemMode.OpenLoop;
+                    modeSwitched = true;
+                }
+            });
 
             Assert.True(OutputSamplesComparator.Compare(reference, loop.Data));
         }

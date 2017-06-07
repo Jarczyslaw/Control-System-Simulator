@@ -36,6 +36,13 @@ namespace JTControlSystem.Examples
             Dictionary<string, IExample> continousModels = new Dictionary<string, IExample>();
             continousModels.Add("FirstOrder", new ContinousFirstOrderExample());
             cbContinousModels.DataSource = new BindingSource(continousModels, null);
+
+            Dictionary<string, IExample> loops = new Dictionary<string, IExample>();
+            loops.Add("BareSystem", new BareSystemExample());
+            loops.Add("OpenLoop", new OpenLoopExample());
+            loops.Add("CloseLoop", new CloseLoopExample());
+            loops.Add("ControlSystem", new ControlSystemExample());
+            cbLoops.DataSource = new BindingSource(loops, null);
         }
 
         private void InitSerie()
@@ -67,10 +74,14 @@ namespace JTControlSystem.Examples
             var combobox = (sender as ComboBox);
             var selectedExample = combobox.SelectedValue as IExample;
             selectedExample.Run();
-            LoadData(selectedExample.GetTime(), selectedExample.GetValues());
+
+            var time = selectedExample.GetTime();
+            var values = selectedExample.GetValues();
+            LoadToChart(time, values);
+            LoadToGrid(time, values);
         }
 
-        private void LoadData(double[] time, double[] values)
+        private void LoadToChart(double[] time, double[] values)
         {
             serie.Points.Clear();
             for (int i = 0; i < time.Length; i++)
@@ -78,6 +89,20 @@ namespace JTControlSystem.Examples
                 var point = new DataPoint(time[i], values[i]);
                 serie.Points.Add(point);
             }
+        }
+
+        private void LoadToGrid(double[] time, double[] values)
+        {
+            var samples = new List<DataSample>();
+            for (int i = 0;i < time.Length;i++)
+            {
+                samples.Add(new DataSample()
+                {
+                    time = time[i],
+                    value = values[i]
+                });
+            }
+            dgvData.DataSource = samples;
         }
     }
 }
