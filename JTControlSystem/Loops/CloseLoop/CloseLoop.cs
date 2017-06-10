@@ -45,12 +45,11 @@ namespace JTControlSystem
 
         #endregion
 
-        public override void NextIteration(double setValue)
+        public override void NextIteration(double input)
         {
             iteration++;
             double previousSystemOutput = Data.Last().systemOutput;
-            var dataSample = scheme.NextIteration(Dt, CurrentTime,
-                setValue, previousSystemOutput);
+            var dataSample = scheme.NextIteration(input, previousSystemOutput, CurrentTime, Dt);
             Data.Add(dataSample);
         }
 
@@ -63,7 +62,7 @@ namespace JTControlSystem
         {
             base.Initialize();
             Data.Clear();
-            var initialData = scheme.Initialize(Dt, CurrentTime);
+            var initialData = scheme.Initialize(CurrentTime, Dt);
             Data.Add(initialData);
         }
     }

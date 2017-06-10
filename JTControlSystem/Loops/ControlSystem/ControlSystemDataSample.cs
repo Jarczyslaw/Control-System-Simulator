@@ -47,7 +47,7 @@ namespace JTControlSystem
             var data = new ControlSystemDataSample();
             data.time = closeLoopSample.time;
             data.mode = ControlSystemMode.CloseLoop;
-            data.input = closeLoopSample.setValue;
+            data.input = closeLoopSample.input;
             data.error = closeLoopSample.error;
             data.controllerOutput = closeLoopSample.controllerOutput;
             data.systemOutput = closeLoopSample.systemOutput;

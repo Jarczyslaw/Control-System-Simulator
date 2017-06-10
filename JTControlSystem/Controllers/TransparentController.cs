@@ -2,7 +2,7 @@
 {
     public class TransparentController : IController
     {
-        public double NextIteration(double input, double processValue, double dt)
+        public double NextIteration(double input, double systemOutput, double dt)
         {
             return input;
         }

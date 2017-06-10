@@ -11,23 +11,23 @@
         public double outputOn = 1d;
         public double outputOff = -1d;
 
-        public double errorOn = 1d;
-        public double errorOff = -1d;
+        public double inputOn = 1d;
+        public double inputOff = -1d;
 
         private int state = 1;
 
-        public Relay(double errorOn, double outputOn, double errorOff, double outputOff)
+        public Relay(double inputOn, double outputOn, double inputOff, double outputOff)
         {
-            SetErrorThresholds(errorOn, errorOff);
+            SetErrorThresholds(inputOn, inputOff);
             SetOutputs(outputOn, outputOff);
         }
 
-        public void SetErrorThresholds(double errorOn, double errorOff)
+        public void SetErrorThresholds(double inputOn, double inputOff)
         {
-            if (errorOn > errorOff)
+            if (inputOn > inputOff)
             {
-                this.errorOn = errorOn;
-                this.errorOff = errorOff;
+                this.inputOn = inputOn;
+                this.inputOff = inputOff;
             }
         }
 
@@ -37,11 +37,11 @@
             this.outputOff = outputOff;
         }
 
-        public double NextIteration(double input, double processValue, double dt)
+        public double NextIteration(double input, double systemOutput, double dt)
         {
-            if (input < errorOff)
+            if (input < inputOff)
                 state = 1;
-            else if (input > errorOn)
+            else if (input > inputOn)
                 state = 3;
             else
             {

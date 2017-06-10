@@ -19,14 +19,13 @@ namespace JTControlSystem
             this.system = system;
         }
 
-        public BareSystemDataSample NextIteration(double dt, double currentTime,
-            double input)
+        public BareSystemDataSample NextIteration(double input, double currentTime, double dt)
         {
             double systemOutput = system.NextIteration(input, currentTime - dt, dt);
             return new BareSystemDataSample(currentTime, input, systemOutput); ;
         }
 
-        public BareSystemDataSample Initialize(double dt, double currentTime)
+        public BareSystemDataSample Initialize(double currentTime, double dt)
         {
             double initialOutput = system.Initialize(dt);
             return new BareSystemDataSample(currentTime, 0d, initialOutput); ;

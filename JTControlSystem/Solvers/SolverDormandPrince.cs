@@ -6,15 +6,15 @@ namespace JTControlSystem.Solvers
 {
     public class SolverDormandPrince : ISolver
     {
-        double[] c = new double[] { 1d / 5d, 3d / 10d, 4d / 5d, 8d / 9d, 1d, 1d };
-        double[] b1 = new double[] { 35d / 384d, 0d, 500d / 1113d, 125d / 192d, -2187d / 6784d, 11d / 84d, 0d };
-        double[] b2 = new double[] { 5179d / 57600d, 0d, 7571d / 16695d, 393d / 640d, -92097d / 339200d, 187d / 2100d, 1d / 40d };
-        double[] a2 = new double[] { 1d / 5d };
-        double[] a3 = new double[] { 3d / 40d, 9d / 40d };
-        double[] a4 = new double[] { 44d / 45d, -56d / 15d, 32d / 9d };
-        double[] a5 = new double[] { 19372d / 6561d, -25360d / 2187d, 64448d / 6561d, -212d / 729d };
-        double[] a6 = new double[] { 9017d / 3168d, -355d / 33d, 46732d / 5247d, 49d / 176d, -5103d / 18656d };
-        double[] a7 = new double[] { 35d / 384d, 0d, 500d / 1113d, 125d / 192d, -2187d / 6784d, 11d / 84d };
+        private double[] c = new double[] { 1d / 5d, 3d / 10d, 4d / 5d, 8d / 9d, 1d, 1d };
+        private double[] b1 = new double[] { 35d / 384d, 0d, 500d / 1113d, 125d / 192d, -2187d / 6784d, 11d / 84d, 0d };
+        private double[] b2 = new double[] { 5179d / 57600d, 0d, 7571d / 16695d, 393d / 640d, -92097d / 339200d, 187d / 2100d, 1d / 40d };
+        private double[] a2 = new double[] { 1d / 5d };
+        private double[] a3 = new double[] { 3d / 40d, 9d / 40d };
+        private double[] a4 = new double[] { 44d / 45d, -56d / 15d, 32d / 9d };
+        private double[] a5 = new double[] { 19372d / 6561d, -25360d / 2187d, 64448d / 6561d, -212d / 729d };
+        private double[] a6 = new double[] { 9017d / 3168d, -355d / 33d, 46732d / 5247d, 49d / 176d, -5103d / 18656d };
+        private double[] a7 = new double[] { 35d / 384d, 0d, 500d / 1113d, 125d / 192d, -2187d / 6784d, 11d / 84d };
 
         public Vector Solve(DifferentialEquations differentialEquasions, Vector state, double input, double time, double dt)
         {

@@ -23,28 +23,28 @@ namespace JTControlSystem
             this.controller = controller;
         }
 
-        public OpenLoopDataSample NextIteration(double dt, double currentTime, double setValue)
+        public OpenLoopDataSample NextIteration(double input, double currentTime, double dt)
         {
-            double controllerOutput = controller.NextIteration(setValue, 0d, dt);
+            double controllerOutput = controller.NextIteration(input, 0d, dt);
             double systemOutput = system.NextIteration(controllerOutput, currentTime - dt, dt);
             OpenLoopDataSample dataSample = new OpenLoopDataSample()
             {
                 time = currentTime,
-                setValue = setValue,
+                input = input,
                 controllerOutput = controllerOutput,
                 systemOutput = systemOutput
             };
             return dataSample;
         }
 
-        public OpenLoopDataSample Initialize(double dt, double currentTime)
+        public OpenLoopDataSample Initialize(double currentTime, double dt)
         {
             controller.Initialize(dt);
             double systemOutput = system.Initialize(dt);
             OpenLoopDataSample dataSample = new OpenLoopDataSample()
             {
                 time = currentTime,
-                setValue = 0d,
+                input = 0d,
                 controllerOutput = 0d,
                 systemOutput = systemOutput
             };

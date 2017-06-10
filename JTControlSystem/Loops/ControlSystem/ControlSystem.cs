@@ -55,14 +55,13 @@ namespace JTControlSystem
             ControlSystemDataSample dataSample;
             if (mode == ControlSystemMode.OpenLoop)
             {
-                var openData = openScheme.NextIteration(Dt, CurrentTime, input);
+                var openData = openScheme.NextIteration(input, CurrentTime, Dt);
                 dataSample = ControlSystemDataSample.FromOpenSample(openData);
             }
             else
             {
                 double previousSystemOutput = Data.Last().systemOutput;
-                var closeData = closeScheme.NextIteration(Dt, CurrentTime,
-                    input, previousSystemOutput);
+                var closeData = closeScheme.NextIteration(input, previousSystemOutput, CurrentTime, Dt);
                 dataSample = ControlSystemDataSample.FromCloseSample(closeData);
             }
             Data.Add(dataSample);
@@ -75,12 +74,12 @@ namespace JTControlSystem
             ControlSystemDataSample dataSample;
             if (mode == ControlSystemMode.OpenLoop)
             {
-                dataSample = ControlSystemDataSample.FromOpenSample(openScheme.Initialize(Dt, CurrentTime));
+                dataSample = ControlSystemDataSample.FromOpenSample(openScheme.Initialize(CurrentTime, Dt));
                 Data.Add(dataSample);
             }
             else
             {
-                dataSample = ControlSystemDataSample.FromCloseSample(closeScheme.Initialize(Dt, CurrentTime));
+                dataSample = ControlSystemDataSample.FromCloseSample(closeScheme.Initialize(CurrentTime, Dt));
                 Data.Add(dataSample);
             }
         }

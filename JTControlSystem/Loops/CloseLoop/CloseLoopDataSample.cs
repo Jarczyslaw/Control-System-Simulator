@@ -10,7 +10,7 @@ namespace JTControlSystem
     public class CloseLoopDataSample
     {
         public double time;
-        public double setValue;
+        public double input;
         public double error;
         public double controllerOutput;
         public double systemOutput;
@@ -18,7 +18,7 @@ namespace JTControlSystem
         public override string ToString()
         {
             return string.Format(CultureInfo.InvariantCulture, "{0:0.000000},{1:0.000000},{2:0.000000},{3:0.000000},{4:0.000000}",
-                    time, setValue, error, controllerOutput, systemOutput);
+                    time, input, error, controllerOutput, systemOutput);
         }
     }
 }

@@ -10,8 +10,8 @@
         public double minOutput = double.NegativeInfinity;
         public double maxOutput = double.PositiveInfinity;
 
-        private double errorSum = 0d;
-        private double lastError = 0d;
+        private double inputSum = 0d;
+        private double lastInput = 0d;
 
         private int iteration = -1;
 
@@ -38,30 +38,30 @@
             this.Td = Td;
         }
 
-        public double NextIteration(double input, double processValue, double dt)
+        public double NextIteration(double input, double systemOutput, double dt)
         {
             iteration++;
             double P = Kp * input;
-            errorSum += input;
-            double I = Kp * dt / Ti * errorSum;
+            inputSum += input;
+            double I = Kp * dt / Ti * inputSum;
             double D = 0d;
             if (iteration != 0)
-                D = 1d / dt * Kp * Td * (input - lastError);
+                D = 1d / dt * Kp * Td * (input - lastInput);
             double output = P + I + D;
             if (antiwindup)
             {
                 if (output > maxOutput)
                 {
                     output = maxOutput;
-                    errorSum -= input;
+                    inputSum -= input;
                 }
                 else if (output < minOutput)
                 {
                     output = minOutput;
-                    errorSum -= input;
+                    inputSum -= input;
                 }
             }
-            lastError = input;
+            lastInput = input;
             
             return output;
         }
@@ -69,7 +69,7 @@
         public void Initialize(double dt)
         {
             iteration = -1;
-            errorSum = 0d;
+            inputSum = 0d;
         }
     }
 }
