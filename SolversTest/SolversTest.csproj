@@ -49,7 +49,8 @@
     <Compile Include="Launcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestModel.cs" />
+    <Compile Include="SolverResults.cs" />
+    <Compile Include="SolverWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -62,6 +63,10 @@
     <ProjectReference Include="..\JTControlSystem\JTControlSystem.csproj">
       <Project>{687fc768-ad47-4a82-aea7-b1006c01576f}</Project>
       <Name>JTControlSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{B2691622-3ED6-4B3A-BA35-4F6567CA09F8}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

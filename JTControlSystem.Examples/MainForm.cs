@@ -43,6 +43,18 @@ namespace JTControlSystem.Examples
             loops.Add("CloseLoop", new CloseLoopExample());
             loops.Add("ControlSystem", new ControlSystemExample());
             cbLoops.DataSource = new BindingSource(loops, null);
+
+            Dictionary<string, IExample> solvers = new Dictionary<string, IExample>();
+            solvers.Add("Euler", new EulerExample());
+            solvers.Add("Euler trapezoidal", new EulerTrapezoidalExample());
+            solvers.Add("Heun", new HeunExample());
+            solvers.Add("Midpoint", new MidpointExample());
+            solvers.Add("Runge-Kutty 4th", new RK4Example());
+            solvers.Add("Runge-Kutty 4th Enh.", new RK4EnhancedExample());
+            solvers.Add("Dormand-Price", new DormandPrinceExample());
+            solvers.Add("Adams-Bashforth 5th", new AdamsBashforthExample());
+            solvers.Add("Adams-Moulton 5th", new AdamsMoultonExample());
+            cbSolvers.DataSource = new BindingSource(solvers, null);
         }
 
         private void InitSerie()
@@ -73,12 +85,15 @@ namespace JTControlSystem.Examples
         {
             var combobox = (sender as ComboBox);
             var selectedExample = combobox.SelectedValue as IExample;
-            selectedExample.Run();
+            if (selectedExample != null)
+            {
+                selectedExample.Run();
 
-            var time = selectedExample.GetTime();
-            var values = selectedExample.GetValues();
-            LoadToChart(time, values);
-            LoadToGrid(time, values);
+                var time = selectedExample.GetTime();
+                var values = selectedExample.GetValues();
+                LoadToChart(time, values);
+                LoadToGrid(time, values);
+            }
         }
 
         private void LoadToChart(double[] time, double[] values)

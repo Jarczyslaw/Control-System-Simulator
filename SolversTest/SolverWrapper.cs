@@ -8,25 +8,25 @@ using System.Threading.Tasks;
 
 namespace SolversTest
 {
-    public class TestModel
+    public class SolverWrapper
     {
-        private ISolver solver;
+        public ISolver Solver { get; private set; }
         private DifferentialEquations differentialEquations;
 
         private Vector state;
-        private List<DataSample> data;
+        public List<DataSample> Data { get; private set; }
 
-        public TestModel(ISolver solver, DifferentialEquations differentialEquations)
+        public SolverWrapper(ISolver solver, DifferentialEquations differentialEquations)
         {
-            this.solver = solver;
+            this.Solver = solver;
             this.differentialEquations = differentialEquations;
-            data = new List<DataSample>();
+            Data = new List<DataSample>();
         }
 
         public void NextIteration(double time, double dt)
         {
-            state = solver.Solve(differentialEquations, state, 0d, time - dt, dt);
-            data.Add(new DataSample()
+            state = Solver.Solve(differentialEquations, state, 0d, time - dt, dt);
+            Data.Add(new DataSample()
             {
                 time = time,
                 value = state[0]
@@ -35,10 +35,10 @@ namespace SolversTest
 
         public void Initialize(double initialValue, double dt)
         {
-            solver.Initialize(dt);
+            Solver.Initialize(dt);
             state = new Vector(1, initialValue);
-            data.Clear();
-            data.Add(new DataSample()
+            Data.Clear();
+            Data.Add(new DataSample()
             {
                 time = 0d,
                 value = state[0]

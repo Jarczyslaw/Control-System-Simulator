@@ -62,13 +62,9 @@ namespace JTControlSystem.Tests
 
             ControlSystem loop = new ControlSystem(system, controller, 0.1d);
 
-            bool modeSwitched = false;
             Simulator.Step(loop, 4d, (iteration, time) => {
-                if (!modeSwitched && iteration >= 20)
-                {
+                if (iteration == 20)
                     loop.mode= ControlSystemMode.OpenLoop;
-                    modeSwitched = true;
-                }
             });
 
             Assert.True(OutputSamplesComparator.Compare(reference, loop.Data));

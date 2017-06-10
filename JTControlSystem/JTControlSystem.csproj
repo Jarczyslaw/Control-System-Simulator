@@ -51,6 +51,16 @@
     <Compile Include="Loops\OpenLoop\OpenLoopDataSample.cs" />
     <Compile Include="Schemes\OpenLoopScheme.cs" />
     <Compile Include="Simulator.cs" />
+    <Compile Include="Solvers\SolverAdamsBashforth.cs" />
+    <Compile Include="Solvers\SolverAdamsMoulton.cs" />
+    <Compile Include="Solvers\SolverDormandPrince.cs" />
+    <Compile Include="Solvers\SolverEulerTrapezoidal.cs" />
+    <Compile Include="Solvers\SolverHeun.cs" />
+    <Compile Include="Solvers\SolverMidpoint.cs" />
+    <Compile Include="Solvers\SolverRK4.cs" />
+    <Compile Include="Solvers\SolverRK4Enhanced.cs" />
+    <Compile Include="Systems\Continous\Models\StateSpaceModel.cs" />
+    <Compile Include="Systems\Continous\Models\TransferFunction.cs" />
     <Compile Include="Utilities\Consts.cs" />
     <Compile Include="Loops\ControlSystem\ControlSystem.cs" />
     <Compile Include="Loops\ControlSystem\ControlSystemDataSample.cs" />
