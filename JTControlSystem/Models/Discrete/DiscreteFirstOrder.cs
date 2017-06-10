@@ -1,7 +1,7 @@
 ﻿using System;
 using JTMath;
 
-namespace JTControlSystem.Systems
+namespace JTControlSystem.Models
 {
     public class DiscreteFirstOrder : IDiscreteModel
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JTControlSystem.Systems
+namespace JTControlSystem.Models
 {
     // Converts tf function to controllable canonical state space representation
     // K(s) = (s + 3) / (s^3 + 2s + s + 1)

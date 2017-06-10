@@ -1,4 +1,5 @@
-﻿using JTMath;
+﻿using JTControlSystem.Models;
+using JTMath;
 using System;
 
 namespace JTControlSystem.Systems

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JTMath;
 
-namespace JTControlSystem.Systems
+namespace JTControlSystem.Models
 {
     public class ContinousFirstOrder : IContinousModel
     {

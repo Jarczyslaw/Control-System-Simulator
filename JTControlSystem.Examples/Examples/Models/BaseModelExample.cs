@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JTControlSystem.Systems;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,11 @@ namespace JTControlSystem.Examples
 
         public void Run()
         {
-            data = GetSystemData();
+            BareSystem loop = new BareSystem(GetSystem());
+            Simulator.Step(loop, 15d);
+            data = loop.Data;
         }
 
-        public abstract List<BareSystemDataSample> GetSystemData();
+        public abstract ISystem GetSystem();
     }
 }

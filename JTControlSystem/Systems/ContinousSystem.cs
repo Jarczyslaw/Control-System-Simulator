@@ -1,4 +1,5 @@
-﻿using JTControlSystem.Solvers;
+﻿using JTControlSystem.Models;
+using JTControlSystem.Solvers;
 using JTMath;
 using System;
 

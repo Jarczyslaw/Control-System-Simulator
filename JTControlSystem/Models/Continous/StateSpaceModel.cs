@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JTControlSystem.Systems
+namespace JTControlSystem.Models
 {
     // Model in state space
     // x' = Ax + Bu
@@ -13,6 +13,7 @@ namespace JTControlSystem.Systems
     // model SISO - one input one output
     // wektors' sizes:
     // x [N,1], A [N,N], B [N,1], C [1,N], D [1,1], y [1,1]
+    // remember that initial state for state space applies for x (internal state) not for output
     public class StateSpaceModel : IContinousModel
     {
         private Matrix A;
@@ -49,7 +50,7 @@ namespace JTControlSystem.Systems
             Matrix s = new Matrix(state);
 
             Matrix output = C * s + D * input;
-            return output[0,0];
+            return output[0, 0];
         }
     }
 }

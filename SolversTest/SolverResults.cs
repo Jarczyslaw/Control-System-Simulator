@@ -30,7 +30,7 @@ namespace SolversTest
 
         public override string ToString()
         {
-            return string.Format("{0}, execution time: {1:000}, mse: {2:E8}", solver.GetType().Name.PadLeft(25, ' '), executionTime, Mse);
+            return string.Format("{0}, execution time: {1:000}ms, mse: {2:E8}", solver.GetType().Name.PadLeft(25, ' '), executionTime, Mse);
         }
     }
 }

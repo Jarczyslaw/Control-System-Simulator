@@ -1,4 +1,5 @@
-﻿using JTControlSystem.Solvers;
+﻿using JTControlSystem.Models;
+using JTControlSystem.Solvers;
 using JTControlSystem.Systems;
 using JTMath;
 using System;
@@ -25,8 +26,8 @@ namespace JTControlSystem.Examples
 
         public void Run()
         {
-            TransferFunction model = new TransferFunction(new double[] { 2d, 1d }, new double[] { 2d, 0.5d, 1d });
-            var system = new ContinousSystem(model, GetSolver(), new Vector(2, 0d));
+            ContinousSecondOrder model = new ContinousSecondOrder(2d, 1d, 1d);
+            var system = new ContinousSystem(model, GetSolver(), new Vector(new double[] { -1d, -4d }));
 
             BareSystem loop = new BareSystem(system, 0.1d);
             Simulator.Step(loop, 20d);

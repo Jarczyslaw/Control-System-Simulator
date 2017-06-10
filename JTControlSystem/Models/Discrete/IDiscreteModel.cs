@@ -1,6 +1,6 @@
 ﻿using JTMath;
 
-namespace JTControlSystem.Systems
+namespace JTControlSystem.Models
 { 
     public interface IDiscreteModel
     {

@@ -35,6 +35,9 @@ namespace JTControlSystem.Examples
 
             Dictionary<string, IExample> continousModels = new Dictionary<string, IExample>();
             continousModels.Add("FirstOrder", new ContinousFirstOrderExample());
+            continousModels.Add("SecondOrder", new ContinousSecondOrderExample());
+            continousModels.Add("StateSpace", new StateSpaceExample());
+            continousModels.Add("TransferFunction", new TransferFunctionExample());
             cbContinousModels.DataSource = new BindingSource(continousModels, null);
 
             Dictionary<string, IExample> loops = new Dictionary<string, IExample>();

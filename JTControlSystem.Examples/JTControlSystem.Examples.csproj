@@ -55,6 +55,10 @@
     <Compile Include="Examples\Loops\OpenLoopExample.cs" />
     <Compile Include="Examples\Models\BaseModelExample.cs" />
     <Compile Include="Examples\Models\ContinousModels\ContinousFirstOrderExample.cs" />
+    <Compile Include="Examples\Models\ContinousModels\ContinousSecondOrderExample.cs" />
+    <Compile Include="Examples\Models\ContinousModels\StateSpaceExample.cs" />
+    <Compile Include="Examples\Models\ContinousModels\TransferFunctionExample.cs" />
+    <Compile Include="Examples\TransportDelay\WithDelayExample.cs" />
     <Compile Include="IExample.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
