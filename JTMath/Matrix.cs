@@ -39,14 +39,14 @@ namespace JTMath
         {
             if (column)
             {
-                data = new double[vector.Count(), 1];
-                for (int i = 0; i < vector.Count(); i++)
+                data = new double[vector.Rows, 1];
+                for (int i = 0; i < vector.Rows; i++)
                     data[i, 0] = vector[i];
             }
             else
             {
-                data = new double[1, vector.Count()];
-                for (int i = 0; i < vector.Count(); i++)
+                data = new double[1, vector.Rows];
+                for (int i = 0; i < vector.Rows; i++)
                     data[0, i] = vector[i];
             }
         }
@@ -67,8 +67,8 @@ namespace JTMath
 
         public void ForEach(Action<int, int, double> callback)
         {
-            int rows = Rows();
-            int cols = Cols();
+            int rows = Rows;
+            int cols = Cols;
             for (int i = 0; i < rows; i++)
                 for (int j = 0;j < cols;j++)
                     callback(i, j, data[i, j]);
@@ -76,35 +76,35 @@ namespace JTMath
 
         public void ForEachRow(int column, Action<int, int, double> callback)
         {
-            int rows = Rows();
+            int rows = Rows;
             for (int i = 0; i < rows; i++)
                 callback(i, column, data[i, column]);
         }
 
         public void ForEachColumn(int row, Action<int, int, double> callback)
         {
-            int cols = Cols();
+            int cols = Cols;
             for (int i = 0; i < cols; i++)
                 callback(row, i, data[row, i]);
         }
 
         #endregion
 
+        public int Rows
+        {
+            get { return data.GetLength(0); }
+        }
+
+        public int Cols
+        {
+            get { return data.GetLength(1); }
+        }
+
         #region BASIC FUNCTIONS
-
-        public int Rows()
-        {
-            return data.GetLength(0);
-        }
-
-        public int Cols()
-        {
-            return data.GetLength(1);
-        }
 
         public int Count()
         {
-            return Rows() * Cols();
+            return Rows * Cols;
         }
 
         public double Min()
@@ -129,14 +129,14 @@ namespace JTMath
 
         public double Det()
         {
-            if (Rows() != Cols())
+            if (Rows != Cols)
                 throw new NonSquareMatrixException("Can't get determinant for non square matrix.");
 
-            if (Rows() == 1)
+            if (Rows == 1)
                 return data[0, 0];
-            else if (Rows() == 2)
+            else if (Rows == 2)
                 return data[0, 0] * data[1, 1] - data[1, 0] * data[0, 1];
-            else if (Rows() == 3)
+            else if (Rows == 3)
                 return data[0, 0] * data[1, 1] * data[2, 2] +
                     data[1, 0] * data[2, 1] * data[0, 2] +
                     data[2, 0] * data[0, 1] * data[1, 2] -
@@ -153,13 +153,13 @@ namespace JTMath
             if (Math.Abs(det) < 0.0001d)
                 throw new MatrixInversionException("Determinant to low to calculate inversion.");
 
-            Matrix result = new Matrix(Rows(), Cols());
-            if (Rows() == 1)
+            Matrix result = new Matrix(Rows, Cols);
+            if (Rows == 1)
             {
                 result[0, 0] = 1d / data[0, 0];
                 return result;
             }
-            else if (Rows() == 2)
+            else if (Rows == 2)
             {
                 result[0, 0] = data[1, 1];
                 result[0, 1] = -data[0, 1];
@@ -168,7 +168,7 @@ namespace JTMath
                 result = 1d / det * result;
                 return result;
             }
-            else if (Rows() == 3)
+            else if (Rows == 3)
             {
                 result[0, 0] = data[1,1] * data[2,2] - data[1,2] * data[2,1];
                 result[0, 1] = data[0, 2] * data[2, 1] - data[0, 1] * data[2, 2];
@@ -188,8 +188,8 @@ namespace JTMath
 
         public Matrix Neg()
         {
-            int rows = Rows();
-            int cols = Cols();
+            int rows = Rows;
+            int cols = Cols;
             Matrix result = new Matrix(data);
             for (int i = 0; i < rows; i++)
                 for (int j = 0; j < cols; j++)
@@ -199,8 +199,8 @@ namespace JTMath
 
         public Matrix T()
         {
-            int rows = Rows();
-            int cols = Cols();
+            int rows = Rows;
+            int cols = Cols;
             Matrix result = new Matrix(cols, rows);
             for (int i = 0; i < cols; i++)
                 for (int j = 0; j < rows; j++)
@@ -215,8 +215,8 @@ namespace JTMath
 
         public override string ToString()
         {
-            int rows = Rows();
-            int cols = Cols();
+            int rows = Rows;
+            int cols = Cols;
             string result = "JMatrix, size: " + rows + "x" + cols + Environment.NewLine;
             for (int i = 0;i < rows;i++)
             {
@@ -238,8 +238,8 @@ namespace JTMath
 
         public Matrix Abs()
         {
-            int rows = Rows();
-            int cols = Cols();
+            int rows = Rows;
+            int cols = Cols;
             Matrix result = new Matrix(rows, cols);
             for (int i = 0; i < rows; i++)
                 for (int j = 0;j < cols; j++)
@@ -249,8 +249,8 @@ namespace JTMath
 
         public Matrix Exp()
         {
-            int rows = Rows();
-            int cols = Cols();
+            int rows = Rows;
+            int cols = Cols;
             Matrix result = new Matrix(rows, cols);
             for (int i = 0; i < rows; i++)
                 for (int j = 0; j < cols; j++)
@@ -260,8 +260,8 @@ namespace JTMath
 
         public Matrix Log()
         {
-            int rows = Rows();
-            int cols = Cols();
+            int rows = Rows;
+            int cols = Cols;
             Matrix result = new Matrix(rows, cols);
             for (int i = 0; i < rows; i++)
                 for (int j = 0; j < cols; j++)
@@ -271,8 +271,8 @@ namespace JTMath
 
         public Matrix Log10()
         {
-            int rows = Rows();
-            int cols = Cols();
+            int rows = Rows;
+            int cols = Cols;
             Matrix result = new Matrix(rows, cols);
             for (int i = 0; i < rows; i++)
                 for (int j = 0; j < cols; j++)
@@ -282,8 +282,8 @@ namespace JTMath
 
         public Matrix Pow(double power)
         {
-            int rows = Rows();
-            int cols = Cols();
+            int rows = Rows;
+            int cols = Cols;
             Matrix result = new Matrix(rows, cols);
             for (int i = 0; i < rows; i++)
                 for (int j = 0; j < cols; j++)
@@ -303,10 +303,10 @@ namespace JTMath
 
         public static Matrix operator +(Matrix m1, Matrix m2)
         {
-            int m1x = m1.Rows();
-            int m1y = m1.Cols();
-            int m2x = m2.Rows();
-            int m2y = m2.Cols();
+            int m1x = m1.Rows;
+            int m1y = m1.Cols;
+            int m2x = m2.Rows;
+            int m2y = m2.Cols;
 
             if (m1x != m2x || m1y != m2y)
                 throw new InvalidMatrixSizeException("Invalid matrix size. Matrix should have the same rows and columns count.");
@@ -321,8 +321,8 @@ namespace JTMath
         public static Matrix operator +(double d, Matrix m)
         {
             Matrix result = new Matrix(m);
-            for (int i = 0; i < result.Rows(); i++)
-                for (int j = 0; j < result.Cols(); j++)
+            for (int i = 0; i < result.Rows; i++)
+                for (int j = 0; j < result.Cols; j++)
                     result[i, j] += d;
             return result;
         }
@@ -349,10 +349,10 @@ namespace JTMath
 
         public static Matrix operator *(Matrix m1, Matrix m2)
         {
-            int m1x = m1.Rows();
-            int m1y = m1.Cols();
-            int m2x = m2.Rows();
-            int m2y = m2.Cols();
+            int m1x = m1.Rows;
+            int m1y = m1.Cols;
+            int m2x = m2.Rows;
+            int m2y = m2.Cols;
 
             if (m1y != m2x)
                 throw new InvalidMatrixSizeException("Invalid matrix size. Left side matrix should have the same columns as right side matrix has rows.");
@@ -372,13 +372,13 @@ namespace JTMath
         public static Vector operator *(Matrix m, Vector v)
         {
             // each vector is treated as column in default
-            if (m.Cols() != v.Count())
+            if (m.Cols != v.Rows)
                 throw new InvalidMatrixSizeException("Invalid matrix size. Matrix should have columns as many as vector's count");
 
-            int c = m.Rows();
+            int c = m.Rows;
             Vector result = new Vector(c, 0d);
             for (int i = 0; i < c; i++)
-                for (int j = 0; j < m.Cols(); j++)
+                for (int j = 0; j < m.Cols; j++)
                     result[i] += v[j] * m[i, j];
             return result;
         }
@@ -386,8 +386,8 @@ namespace JTMath
         public static Matrix operator *(double d, Matrix m)
         {
             Matrix result = new Matrix(m);
-            int x = m.Rows();
-            int y = m.Cols();
+            int x = m.Rows;
+            int y = m.Cols;
             for (int i = 0; i < x; i++)
                 for (int j = 0; j < y; j++)
                     result[i, j] *= d;

@@ -16,16 +16,16 @@ namespace JTControlSystem.Models
     // remember that initial state for state space applies for x (internal state) not for output
     public class StateSpaceModel : IContinousModel
     {
-        private Matrix A;
-        private Matrix B;
-        private Matrix C;
-        private double D;
+        public Matrix A { get; private set; }
+        public Vector B { get; private set; }
+        public Vector C { get; private set; }
+        public double D { get; private set; }
 
         public StateSpaceModel(Matrix A, Vector B, Vector C, double D)
         {
             this.A = A;
-            this.B = new Matrix(B);
-            this.C = new Matrix(C, false);
+            this.B = B;
+            this.C = C;
             this.D = D;
         }
 
@@ -33,23 +33,23 @@ namespace JTControlSystem.Models
         {
             get
             {
-                return A.Rows();
+                return A.Rows;
             }
         }
 
         public Vector DifferentialEquations(Vector state, double input, double time)
         {
             Matrix s = new Matrix(state);
-
-            Matrix diff = A * s + B * input;
+            Matrix b = new Matrix(B);
+            Matrix diff = A * s + b * input;
             return new Vector(diff);
         }
 
         public double OutputEquation(Vector state, double input)
         {
             Matrix s = new Matrix(state);
-
-            Matrix output = C * s + D * input;
+            Matrix c = new Matrix(C, false);
+            Matrix output = c * s + D * input;
             return output[0, 0];
         }
     }

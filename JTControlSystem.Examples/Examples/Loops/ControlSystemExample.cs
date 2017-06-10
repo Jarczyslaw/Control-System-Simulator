@@ -25,14 +25,10 @@ namespace JTControlSystem.Examples
             ControlSystem loop = new ControlSystem(system, controller, 0.01d);
             loop.mode = ControlSystemMode.OpenLoop;
 
-            bool modeSwitched = false;
-            Simulator.Step(loop, 4d, (iteration, time) =>
+            var toggler = new ControlSystemModeToggler(loop.mode, 3d, 6d);
+            Simulator.Step(loop, 10d, (iteration, time) =>
             {
-                if (!modeSwitched && time > 3d)
-                {
-                    loop.mode = ControlSystemMode.CloseLoop;
-                    modeSwitched = true;
-                }
+                loop.mode = toggler.GetMode(time);
             });
             data = loop.Data;
         }

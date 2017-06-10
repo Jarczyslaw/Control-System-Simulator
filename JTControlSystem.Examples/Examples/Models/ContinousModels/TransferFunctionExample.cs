@@ -15,7 +15,8 @@ namespace JTControlSystem.Examples
         public override ISystem GetSystem()
         {
             TransferFunction model = new TransferFunction(new double[] { 1d, 3d }, new double[] { 1d, 2d, 1d, 1d });
-            return new ContinousSystem(model, new SolverRK4(), new Vector(new double[] { -1d, 0d, 0d }));
+            var initialOutput = InitialStateConverter.ToOutput(model, -2d);
+            return new ContinousSystem(model, new SolverRK4(), initialOutput);
         }
     }
 }

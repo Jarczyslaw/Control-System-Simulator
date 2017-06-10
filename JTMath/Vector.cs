@@ -34,7 +34,7 @@ namespace JTMath
 
         public Vector(Matrix matrix)
         {
-            int len = matrix.Rows();
+            int len = matrix.Rows;
             data = new double[len];
             for (int i = 0; i < len; i++)
                 data[i] = matrix[i, 0];
@@ -50,6 +50,11 @@ namespace JTMath
         public static Vector Ones(int size)
         {
             return new Vector(size, 1d);
+        }
+
+        public int Rows
+        {
+            get { return data.Length; }
         }
 
         #region ACCESS
@@ -105,11 +110,6 @@ namespace JTMath
             for (int i = 0; i < data.Length; i++)
                 result[i] = -data[i];
             return result;
-        }
-
-        public int Count()
-        {
-            return data.Length;
         }
 
         public Vector Clone()
@@ -195,11 +195,11 @@ namespace JTMath
 
         public static Vector operator +(Vector vector1, Vector vector2)
         {
-            if (vector1.Count() != vector2.Count())
+            if (vector1.Rows != vector2.Rows)
                 throw new InvalidVectorsLengthException("Vectors have different length");
 
-            Vector result = new Vector(vector1.Count());
-            for (int i = 0; i < vector1.Count(); i++)
+            Vector result = new Vector(vector1.Rows);
+            for (int i = 0; i < vector1.Rows; i++)
                 result[i] = vector1[i] + vector2[i];
 
             return result;
@@ -207,8 +207,8 @@ namespace JTMath
 
         public static Vector operator +(double value, Vector vector)
         {
-            Vector result = new Vector(vector.Count());
-            for (int i = 0; i < result.Count(); i++)
+            Vector result = new Vector(vector.Rows);
+            for (int i = 0; i < result.Rows; i++)
                 result[i] = vector[i] + value;
             return result;
         }
@@ -235,11 +235,11 @@ namespace JTMath
 
         public static Vector operator *(Vector vector1, Vector vector2)
         {
-            if (vector1.Count() != vector2.Count())
+            if (vector1.Rows != vector2.Rows)
                 throw new InvalidVectorsLengthException("Vectors have different length");
 
-            Vector result = new Vector(vector1.Count());
-            for (int i = 0; i < vector1.Count(); i++)
+            Vector result = new Vector(vector1.Rows);
+            for (int i = 0; i < vector1.Rows; i++)
                 result[i] = vector1[i] * vector2[i];
 
             return result;
@@ -247,8 +247,8 @@ namespace JTMath
 
         public static Vector operator *(double value, Vector vector)
         {
-            Vector result = new Vector(vector.Count());
-            for (int i = 0; i < result.Count(); i++)
+            Vector result = new Vector(vector.Rows);
+            for (int i = 0; i < result.Rows; i++)
                 result[i] = vector[i] * value;
             return result;
         }

@@ -15,7 +15,7 @@ namespace JTControlSystem.Models
     // D = 0
     public class TransferFunction : IContinousModel
     {
-        private StateSpaceModel stateSpace;
+        public StateSpaceModel StateSpace { get; private set; }
 
         public TransferFunction(double[] num, double[] den)
         {
@@ -29,18 +29,18 @@ namespace JTControlSystem.Models
         {
             get
             {
-                return stateSpace.GetOrder;
+                return StateSpace.GetOrder;
             }
         }
 
         public Vector DifferentialEquations(Vector state, double input, double t)
         {
-            return stateSpace.DifferentialEquations(state, input, t);
+            return StateSpace.DifferentialEquations(state, input, t);
         }
 
         public double OutputEquation(Vector state, double input)
         {
-            return stateSpace.OutputEquation(state, input);
+            return StateSpace.OutputEquation(state, input);
         }
 
         private void ToStateSpace(double[] num, double[] den)
@@ -65,7 +65,7 @@ namespace JTControlSystem.Models
                 C[num.Length - 1 - i] = num[i];
             double D = 0d;
 
-            stateSpace = new StateSpaceModel(A, B, C, D);
+            StateSpace = new StateSpaceModel(A, B, C, D);
         }
     }
 }

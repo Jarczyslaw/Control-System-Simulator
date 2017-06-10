@@ -32,7 +32,7 @@ namespace JTControlSystem.Solvers
             else
             {
                 Vector prediction = starter.Solve(differentialEquasions, state, input, time, dt);
-                Vector sum = new Vector(state.Count(), 0d);
+                Vector sum = new Vector(state.Rows, 0d);
                 sum += coeffs[0] * differentialEquasions(prediction, input, time + dt);
                 for (int i = 0; i < order - 1; i++)
                     sum += coeffs[i + 1] * diffs[i];

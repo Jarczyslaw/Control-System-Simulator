@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Loops\ControlSystem\ControlSystemModeToggler.cs" />
     <Compile Include="Loops\OpenLoop\OpenLoop.cs" />
     <Compile Include="Loops\OpenLoop\OpenLoopDataSample.cs" />
+    <Compile Include="Models\Continous\InitialStateConverter.cs" />
     <Compile Include="Schemes\OpenLoopScheme.cs" />
     <Compile Include="Simulator.cs" />
     <Compile Include="Solvers\SolverAdamsBashforth.cs" />

@@ -35,7 +35,7 @@ namespace JTControlSystem.Systems
 
         public double Initialize(double dt)
         {
-            if (initialState.Count() != model.GetOrder)
+            if (initialState.Rows != model.GetOrder)
                 throw new Exception("Initialization error. Initial state has different length than model's order");
 
             solver.Initialize(dt);

@@ -32,7 +32,7 @@ namespace JTControlSystem.Systems
 
         public double Initialize(double dt)
         {
-            if (model.GetOrder != initialStates.Count())
+            if (model.GetOrder != initialStates.Rows)
                 throw new Exception("Initialization error. Initial states have different length than model order");
 
             inputs = Vector.Zeros(model.GetInputOrder);
