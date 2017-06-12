@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>jt_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,6 +61,8 @@
     <Compile Include="Examples\Models\ContinousModels\ContinousSecondOrderExample.cs" />
     <Compile Include="Examples\Models\ContinousModels\StateSpaceExample.cs" />
     <Compile Include="Examples\Models\ContinousModels\TransferFunctionExample.cs" />
+    <Compile Include="Examples\Models\Discrete\DiscreteFirstOrderExample.cs" />
+    <Compile Include="Examples\Models\Discrete\DiscreteSecondOrderExample.cs" />
     <Compile Include="Examples\TransportDelay\WithDelayExample.cs" />
     <Compile Include="IExample.cs" />
     <Compile Include="MainForm.cs">
@@ -119,7 +124,9 @@
       <Name>JTMath</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="jt_icon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

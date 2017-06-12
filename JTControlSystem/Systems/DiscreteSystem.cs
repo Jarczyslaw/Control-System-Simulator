@@ -15,6 +15,8 @@ namespace JTControlSystem.Systems
         private TransportDelay transportDelay;
         private double delay;
 
+        public DiscreteSystem(IDiscreteModel model, Vector initialStates) : this(model, initialStates, 0d) { }
+
         public DiscreteSystem(IDiscreteModel model, Vector initialStates, double delay)
         {
             this.model = model;
@@ -32,12 +34,12 @@ namespace JTControlSystem.Systems
 
         public double Initialize(double dt)
         {
-            if (model.GetOrder != initialStates.Rows)
+            if (model.GetOutputOrder != initialStates.Rows)
                 throw new Exception("Initialization error. Initial states have different length than model order");
 
             inputs = Vector.Zeros(model.GetInputOrder);
             states = initialStates.Clone();
-            double initialOutput = model.OutputEquation(inputs, states);
+            double initialOutput = model.OutputEquation(states, inputs);
             transportDelay = new TransportDelay(delay, initialOutput, dt);
             return initialOutput;
         }

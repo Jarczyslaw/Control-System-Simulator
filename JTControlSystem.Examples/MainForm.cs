@@ -40,6 +40,11 @@ namespace JTControlSystem.Examples
             continousModels.Add("TransferFunction", new TransferFunctionExample());
             cbContinousModels.DataSource = new BindingSource(continousModels, null);
 
+            Dictionary<string, IExample> discreteModels = new Dictionary<string, IExample>();
+            discreteModels.Add("FirstOrder", new DiscreteFirstOrderExample());
+            discreteModels.Add("SecondOrder", new DiscreteSecondOrderExample());
+            cbDiscreteModels.DataSource = new BindingSource(discreteModels, null);
+
             Dictionary<string, IExample> loops = new Dictionary<string, IExample>();
             loops.Add("BareSystem", new BareSystemExample());
             loops.Add("OpenLoop", new OpenLoopExample());
@@ -96,6 +101,7 @@ namespace JTControlSystem.Examples
                 var values = selectedExample.GetValues();
                 LoadToChart(time, values);
                 LoadToGrid(time, values);
+                gbResult.Text = "Results - " + selectedExample.GetType().Name;
             }
         }
 

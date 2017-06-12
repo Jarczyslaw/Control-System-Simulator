@@ -19,12 +19,5 @@ namespace JTControlSystem.Tests
             var values = Array.ConvertAll(lines, double.Parse);
             return values;
         }
-
-        public static double[] LoadFromProject(string filePath)
-        {
-            var dir = Path.Combine(Directory.GetCurrentDirectory(), "JTControlSystem.Tests");
-            var file = dir + filePath;
-            return Load(file);
-        }
     }
 }

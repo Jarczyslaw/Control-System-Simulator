@@ -7,6 +7,6 @@ namespace JTControlSystem.Models
         double DifferenceEquation(Vector states, Vector inputs, double time, double dt);
         double OutputEquation(Vector states, Vector inputs);
         int GetInputOrder { get; }
-        int GetOrder { get; }
+        int GetOutputOrder { get; }
     }
 }

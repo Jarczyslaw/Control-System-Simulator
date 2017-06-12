@@ -15,6 +15,8 @@ namespace JTControlSystem.Tests
         private ISystem system;
         private IController controller;
 
+        private string projectPath = @"Y:\JTControlSystem\JTControlSystem.Tests";
+
         [SetUp]
         public void Init()
         {
@@ -26,7 +28,7 @@ namespace JTControlSystem.Tests
         [Test]
         public void BareSystemTest()
         {
-            var reference = ReferenceDataLoader.LoadFromProject(@"/LoopReferenceData/Bare/reference_data.txt");
+            var reference = ReferenceDataLoader.Load(projectPath + @"/LoopReferenceData/Bare/reference_data.txt");
 
             BareSystem loop = new BareSystem(system, 0.1d);
             Simulator.Step(loop, 10d);
@@ -37,7 +39,7 @@ namespace JTControlSystem.Tests
         [Test]
         public void OpelLoopTest()
         {
-            var reference = ReferenceDataLoader.LoadFromProject(@"/LoopReferenceData/Open/reference_data.txt");
+            var reference = ReferenceDataLoader.Load(projectPath + @"/LoopReferenceData/Open/reference_data.txt");
 
             OpenLoop loop = new OpenLoop(system, controller, 0.1d);
             Simulator.Step(loop, 10d);
@@ -48,7 +50,7 @@ namespace JTControlSystem.Tests
         [Test]
         public void CloseLoopTest()
         {
-            var reference = ReferenceDataLoader.LoadFromProject(@"/LoopReferenceData/Close/reference_data.txt");
+            var reference = ReferenceDataLoader.Load(projectPath + @"/LoopReferenceData/Close/reference_data.txt");
 
             CloseLoop loop = new CloseLoop(system, controller, 0.1d);
             Simulator.Step(loop, 2d);
@@ -59,7 +61,7 @@ namespace JTControlSystem.Tests
         [Test]
         public void ControlSystemTest()
         {
-            var reference = ReferenceDataLoader.LoadFromProject(@"/LoopReferenceData/Control/reference_data.txt");
+            var reference = ReferenceDataLoader.Load(projectPath + @"/LoopReferenceData/Control/reference_data.txt");
 
             ControlSystem loop = new ControlSystem(system, controller, 0.1d);
 

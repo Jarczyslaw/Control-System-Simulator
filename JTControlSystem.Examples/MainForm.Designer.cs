@@ -31,6 +31,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cbSignals = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,15 +43,19 @@
             this.cbLoops = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbDiscreteModels = new System.Windows.Forms.ComboBox();
+            this.gbResult = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.TimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbTransportDelay = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbControllers = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.gbExamples.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbResult.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
@@ -111,12 +116,16 @@
             // 
             this.gbExamples.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbExamples.Controls.Add(this.cbControllers);
+            this.gbExamples.Controls.Add(this.label7);
+            this.gbExamples.Controls.Add(this.cbTransportDelay);
+            this.gbExamples.Controls.Add(this.label6);
             this.gbExamples.Controls.Add(this.cbSolvers);
             this.gbExamples.Controls.Add(this.label5);
             this.gbExamples.Controls.Add(this.cbLoops);
             this.gbExamples.Controls.Add(this.label4);
             this.gbExamples.Controls.Add(this.label3);
-            this.gbExamples.Controls.Add(this.comboBox1);
+            this.gbExamples.Controls.Add(this.cbDiscreteModels);
             this.gbExamples.Controls.Add(this.cbSignals);
             this.gbExamples.Controls.Add(this.cbContinousModels);
             this.gbExamples.Controls.Add(this.label1);
@@ -171,26 +180,26 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Discrete models:";
             // 
-            // comboBox1
+            // cbDiscreteModels
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 112);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 6;
+            this.cbDiscreteModels.FormattingEnabled = true;
+            this.cbDiscreteModels.Location = new System.Drawing.Point(6, 112);
+            this.cbDiscreteModels.Name = "cbDiscreteModels";
+            this.cbDiscreteModels.Size = new System.Drawing.Size(121, 21);
+            this.cbDiscreteModels.TabIndex = 6;
             // 
-            // groupBox1
+            // gbResult
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gbResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.chart1);
-            this.groupBox1.Location = new System.Drawing.Point(152, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(653, 438);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Result";
+            this.gbResult.Controls.Add(this.chart1);
+            this.gbResult.Location = new System.Drawing.Point(152, 12);
+            this.gbResult.Name = "gbResult";
+            this.gbResult.Size = new System.Drawing.Size(653, 438);
+            this.gbResult.TabIndex = 7;
+            this.gbResult.TabStop = false;
+            this.gbResult.Text = "Result";
             // 
             // groupBox2
             // 
@@ -247,6 +256,40 @@
             this.ValueColumn.Name = "ValueColumn";
             this.ValueColumn.ReadOnly = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 216);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Transport delay";
+            // 
+            // cbTransportDelay
+            // 
+            this.cbTransportDelay.FormattingEnabled = true;
+            this.cbTransportDelay.Location = new System.Drawing.Point(6, 232);
+            this.cbTransportDelay.Name = "cbTransportDelay";
+            this.cbTransportDelay.Size = new System.Drawing.Size(121, 21);
+            this.cbTransportDelay.TabIndex = 13;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 256);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Controllers";
+            // 
+            // cbControllers
+            // 
+            this.cbControllers.FormattingEnabled = true;
+            this.cbControllers.Location = new System.Drawing.Point(6, 272);
+            this.cbControllers.Name = "cbControllers";
+            this.cbControllers.Size = new System.Drawing.Size(121, 21);
+            this.cbControllers.TabIndex = 15;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,14 +297,15 @@
             this.ClientSize = new System.Drawing.Size(984, 462);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gbExamples);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbResult);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1000, 500);
             this.Name = "MainForm";
             this.Text = "JTControlSystem Examples";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.gbExamples.ResumeLayout(false);
             this.gbExamples.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.gbResult.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
@@ -276,17 +320,21 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbContinousModels;
         private System.Windows.Forms.GroupBox gbExamples;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbResult;
         private System.Windows.Forms.ComboBox cbLoops;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbDiscreteModels;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.DataGridViewTextBoxColumn TimeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValueColumn;
         private System.Windows.Forms.ComboBox cbSolvers;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbControllers;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbTransportDelay;
+        private System.Windows.Forms.Label label6;
     }
 }
 

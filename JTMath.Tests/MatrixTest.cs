@@ -32,8 +32,8 @@ namespace JTMath.Tests
         public void BasicFunctions()
         {
             var m = new Matrix(new double[,] { { 1d, 2d }, { 3d, 4d }, { 5d, 6d } });
-            Assert.AreEqual(3, m.Rows());
-            Assert.AreEqual(2, m.Cols());
+            Assert.AreEqual(3, m.Rows);
+            Assert.AreEqual(2, m.Cols);
 
             Assert.AreEqual(6d, m.Max());
             Assert.AreEqual(1d, m.Min());

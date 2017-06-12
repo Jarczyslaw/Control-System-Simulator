@@ -24,9 +24,6 @@ namespace JTControlSystem
 
         public static void SignalSimulation(BaseLoop loop, double time, ISignalGenerator signalGenerator, SimulatorCallback callback = null)
         {
-            loop.Initialize();
-            callback?.Invoke(0, 0d);
-
             int iterations = (int)Math.Floor(time / loop.Dt) + 1;
             for (int i = 1;i < iterations;i++)
             {

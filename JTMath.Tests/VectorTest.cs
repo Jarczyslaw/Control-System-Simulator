@@ -16,10 +16,10 @@ namespace JTMath.Tests
         {
             int len = 5;
             Vector v1 = new Vector(len);
-            Assert.AreEqual(len, v1.Count());
+            Assert.AreEqual(len, v1.Rows);
 
             Vector v2 = new Vector(new double[len]);
-            Assert.AreEqual(len, v2.Count());
+            Assert.AreEqual(len, v2.Rows);
 
             Vector v3 = new Vector(len, 1d);
             CollectionAssert.AreEqual(new double[] { 1d, 1d, 1d, 1d, 1d }, v3.data);

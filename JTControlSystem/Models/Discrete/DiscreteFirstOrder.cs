@@ -8,6 +8,14 @@ namespace JTControlSystem.Models
         private double k = 2d;
         private double T = 1d;
 
+        public DiscreteFirstOrder() { }
+
+        public DiscreteFirstOrder(double k, double T)
+        {
+            this.k = k;
+            this.T = T;
+        }
+
         public int GetInputOrder
         {
             get
@@ -16,7 +24,7 @@ namespace JTControlSystem.Models
             }
         }
 
-        public int GetOrder
+        public int GetOutputOrder
         {
             get
             {
