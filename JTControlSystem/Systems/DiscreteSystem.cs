@@ -8,7 +8,7 @@ namespace JTControlSystem.Systems
     {
         private IDiscreteModel model;
 
-        private Vector initialStates;
+        private Vector initialStates; // initial state for discrete system means previous output values, not derivatives!
         private Vector states;
         private Vector inputs;
 

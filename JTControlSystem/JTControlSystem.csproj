@@ -51,6 +51,8 @@
     <Compile Include="Loops\OpenLoop\OpenLoop.cs" />
     <Compile Include="Loops\OpenLoop\OpenLoopDataSample.cs" />
     <Compile Include="Models\Continous\InitialStateConverter.cs" />
+    <Compile Include="Models\Discrete\AlphaFilter.cs" />
+    <Compile Include="Models\Discrete\AutoRegressive.cs" />
     <Compile Include="Models\Discrete\DiscreteSecondOrder.cs" />
     <Compile Include="Schemes\OpenLoopScheme.cs" />
     <Compile Include="Simulator.cs" />

@@ -43,6 +43,7 @@ namespace JTControlSystem.Examples
             Dictionary<string, IExample> discreteModels = new Dictionary<string, IExample>();
             discreteModels.Add("FirstOrder", new DiscreteFirstOrderExample());
             discreteModels.Add("SecondOrder", new DiscreteSecondOrderExample());
+            discreteModels.Add("AlphaFilter", new AlphaFilterExample());
             cbDiscreteModels.DataSource = new BindingSource(discreteModels, null);
 
             Dictionary<string, IExample> loops = new Dictionary<string, IExample>();
@@ -51,6 +52,13 @@ namespace JTControlSystem.Examples
             loops.Add("CloseLoop", new CloseLoopExample());
             loops.Add("ControlSystem", new ControlSystemExample());
             cbLoops.DataSource = new BindingSource(loops, null);
+
+            Dictionary<string, IExample> controllers = new Dictionary<string, IExample>();
+            controllers.Add("P", new PExample());
+            controllers.Add("PID", new PIDExample());
+            controllers.Add("Relay", new RelayExample());
+            controllers.Add("RelayHysteresis", new RelayHysteresisExample());
+            cbControllers.DataSource = new BindingSource(controllers, null);
 
             Dictionary<string, IExample> solvers = new Dictionary<string, IExample>();
             solvers.Add("Euler", new EulerExample());
@@ -63,6 +71,11 @@ namespace JTControlSystem.Examples
             solvers.Add("Adams-Bashforth 5th", new AdamsBashforthExample());
             solvers.Add("Adams-Moulton 5th", new AdamsMoultonExample());
             cbSolvers.DataSource = new BindingSource(solvers, null);
+
+            Dictionary<string, IExample> transportDelay = new Dictionary<string, IExample>();
+            transportDelay.Add("WithoutDelay", new BaseTransportDelayExample(0d));
+            transportDelay.Add("WithDelay", new BaseTransportDelayExample(1d));
+            cbTransportDelay.DataSource = new BindingSource(transportDelay, null);
         }
 
         private void InitSerie()

@@ -18,17 +18,14 @@
 
         public Relay(double inputOn, double outputOn, double inputOff, double outputOff)
         {
-            SetErrorThresholds(inputOn, inputOff);
+            SetInputThresholds(inputOn, inputOff);
             SetOutputs(outputOn, outputOff);
         }
 
-        public void SetErrorThresholds(double inputOn, double inputOff)
+        public void SetInputThresholds(double inputOn, double inputOff)
         {
-            if (inputOn > inputOff)
-            {
-                this.inputOn = inputOn;
-                this.inputOff = inputOff;
-            }
+            this.inputOn = inputOn;
+            this.inputOff = inputOff;
         }
 
         public void SetOutputs(double outputOn, double outputOff)

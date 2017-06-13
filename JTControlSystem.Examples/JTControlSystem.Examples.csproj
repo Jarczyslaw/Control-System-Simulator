@@ -51,6 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataSample.cs" />
+    <Compile Include="Examples\Controllers\BaseControllerExample.cs" />
+    <Compile Include="Examples\Controllers\PExample.cs" />
+    <Compile Include="Examples\Controllers\PIDExample.cs" />
+    <Compile Include="Examples\Controllers\RelayExample.cs" />
+    <Compile Include="Examples\Controllers\RelayHysteresisExample.cs" />
     <Compile Include="Examples\Loops\BareSystem.cs" />
     <Compile Include="Examples\Loops\BaseLoopExample.cs" />
     <Compile Include="Examples\Loops\CloseLoopExample.cs" />
@@ -61,8 +66,10 @@
     <Compile Include="Examples\Models\ContinousModels\ContinousSecondOrderExample.cs" />
     <Compile Include="Examples\Models\ContinousModels\StateSpaceExample.cs" />
     <Compile Include="Examples\Models\ContinousModels\TransferFunctionExample.cs" />
+    <Compile Include="Examples\Models\Discrete\AlphaFilterExample.cs" />
     <Compile Include="Examples\Models\Discrete\DiscreteFirstOrderExample.cs" />
     <Compile Include="Examples\Models\Discrete\DiscreteSecondOrderExample.cs" />
+    <Compile Include="Examples\TransportDelay\BaseTransportDelayExample.cs" />
     <Compile Include="Examples\TransportDelay\WithDelayExample.cs" />
     <Compile Include="IExample.cs" />
     <Compile Include="MainForm.cs">
