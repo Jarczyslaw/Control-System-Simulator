@@ -8,31 +8,26 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem
 {
-    public class BareSystem : BaseLoop
+    public class BareSystem : ILoop
     {
         public List<BareSystemDataSample> Data { get; private set; }
         private BareSystemScheme scheme;
 
         #region CONSTRUCTORS
 
-        public BareSystem() : this(new TransparentSystem(), Consts.defaultTimeStep) { }
+        public BareSystem() : this(new TransparentSystem()) { }
 
-        public BareSystem(ISystem system) : this(system, Consts.defaultTimeStep) { }
-
-        public BareSystem(ISystem system, double dt)
+        public BareSystem(ISystem system)
         {
-            this.Dt = dt;
             scheme = new BareSystemScheme(system);
             Data = new List<BareSystemDataSample>();
-            Initialize();
         }
 
         #endregion
 
-        public override void NextIteration(double input)
+        public void NextIteration(double input, double time, double dt)
         {
-            iteration++;
-            var dataSample = scheme.NextIteration(input, CurrentTime, Dt);
+            var dataSample = scheme.NextIteration(input, time, dt);
             Data.Add(dataSample);
         }
 
@@ -41,11 +36,10 @@ namespace JTControlSystem
             return Data.Last();
         }
 
-        public override void Initialize()
+        public void Initialize(double dt)
         {
-            base.Initialize();
             Data.Clear();
-            var initialData = scheme.Initialize(CurrentTime, Dt);
+            var initialData = scheme.Initialize(0d, dt);
             Data.Add(initialData);
         }
     }

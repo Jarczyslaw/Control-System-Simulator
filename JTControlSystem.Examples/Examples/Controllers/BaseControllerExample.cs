@@ -30,8 +30,8 @@ namespace JTControlSystem.Examples
             ContinousSecondOrder model = new ContinousSecondOrder(2d, 1d, 3d);
             ContinousSystem system = new ContinousSystem(model, new SolverRK4(), Vector.Zeros(2));
 
-            CloseLoop loop = new CloseLoop(system, GetController(), 0.01d);
-            Simulator.Step(loop, 20d);
+            CloseLoop loop = new CloseLoop(system, GetController());
+            Simulator.Step(loop, 20d, 0.01d);
             data = loop.Data;
         }
 

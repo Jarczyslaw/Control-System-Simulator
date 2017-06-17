@@ -67,12 +67,11 @@
     <Compile Include="Models\Continous\ContinousSecondOrder.cs" />
     <Compile Include="Models\Continous\StateSpaceModel.cs" />
     <Compile Include="Models\Continous\TransferFunction.cs" />
-    <Compile Include="Utilities\Consts.cs" />
     <Compile Include="Loops\ControlSystem\ControlSystem.cs" />
     <Compile Include="Loops\ControlSystem\ControlSystemDataSample.cs" />
     <Compile Include="Loops\ControlSystem\ControlSystemMode.cs" />
     <Compile Include="Utilities\FileWriter.cs" />
-    <Compile Include="Loops\BaseLoop.cs" />
+    <Compile Include="Loops\ILoop.cs" />
     <Compile Include="Loops\CloseLoop\CloseLoop.cs" />
     <Compile Include="Loops\CloseLoop\CloseLoopDataSample.cs" />
     <Compile Include="Controllers\IController.cs" />

@@ -29,8 +29,8 @@ namespace JTControlSystem.Examples
             ContinousSecondOrder model = new ContinousSecondOrder(2d, 1d, 1d);
             var system = new ContinousSystem(model, GetSolver(), new Vector(new double[] { -1d, -4d }));
 
-            BareSystem loop = new BareSystem(system, 0.1d);
-            Simulator.Step(loop, 20d);
+            BareSystem loop = new BareSystem(system);
+            Simulator.Step(loop, 20d, 0.1d);
             data = loop.Data;
         }
 

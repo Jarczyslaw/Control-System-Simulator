@@ -22,8 +22,8 @@ namespace JTControlSystem.Examples
 
         public void Run()
         {
-            OpenLoop loop = new OpenLoop(system, controller, 0.1d);
-            Simulator.Step(loop, 10d);
+            OpenLoop loop = new OpenLoop(system, controller);
+            Simulator.Step(loop, 10d, 0.1d);
             data = loop.Data;
         }
     }

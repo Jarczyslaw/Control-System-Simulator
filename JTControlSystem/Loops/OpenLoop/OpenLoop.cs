@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem
 {
-    public class OpenLoop : BaseLoop
+    public class OpenLoop : ILoop
     {
         public List<OpenLoopDataSample> Data { get; private set; }
 
@@ -17,38 +17,23 @@ namespace JTControlSystem
 
         #region CONSTRUCTORS
 
-        public OpenLoop() : 
-            this(new TransparentSystem(), new TransparentController(), Consts.defaultTimeStep) { }
+        public OpenLoop() : this(new TransparentSystem(), new TransparentController()) { }
 
-        public OpenLoop(ISystem system) : 
-            this(system, new TransparentController(), Consts.defaultTimeStep) { }
+        public OpenLoop(ISystem system) : this(system, new TransparentController()) { }
 
-        public OpenLoop(ISystem system, double dt) : 
-            this(system, new TransparentController(), dt) { }
+        public OpenLoop(IController controller) : this(new TransparentSystem(), controller) { }
 
-        public OpenLoop(IController controller) : 
-            this(new TransparentSystem(), controller, Consts.defaultTimeStep) { }
-
-        public OpenLoop(IController controller, double dt) : 
-            this(new TransparentSystem(), controller, dt) { }
-
-        public OpenLoop(ISystem system, IController controller) : 
-            this(system, controller, Consts.defaultTimeStep) { }
-
-        public OpenLoop(ISystem system, IController controller, double dt)
+        public OpenLoop(ISystem system, IController controller)
         {
-            this.Dt = dt;
             scheme = new OpenLoopScheme(system, controller);
             Data = new List<OpenLoopDataSample>();
-            Initialize();
         }
 
         #endregion
 
-        public override void NextIteration(double input)
+        public void NextIteration(double input, double time, double dt)
         {
-            iteration++;
-            var dataSample = scheme.NextIteration(input, CurrentTime, Dt);
+            var dataSample = scheme.NextIteration(input, time, dt);
             Data.Add(dataSample);
         }
 
@@ -57,11 +42,10 @@ namespace JTControlSystem
             return Data.Last();
         }
 
-        public override void Initialize()
+        public void Initialize(double dt)
         {
-            base.Initialize();
             Data.Clear();
-            var initialData = scheme.Initialize(CurrentTime, Dt);
+            var initialData = scheme.Initialize(0d, dt);
             Data.Add(initialData);
         }
     }

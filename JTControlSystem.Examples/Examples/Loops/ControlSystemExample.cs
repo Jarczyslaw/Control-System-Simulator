@@ -22,11 +22,11 @@ namespace JTControlSystem.Examples
 
         public void Run()
         {
-            ControlSystem loop = new ControlSystem(system, controller, 0.01d);
+            ControlSystem loop = new ControlSystem(system, controller);
             loop.mode = ControlSystemMode.OpenLoop;
 
             var toggler = new ControlSystemModeToggler(loop.mode, 3d, 6d);
-            Simulator.Step(loop, 10d, (iteration, time) =>
+            Simulator.Step(loop, 10d, 0.01d, (iteration, time) =>
             {
                 loop.mode = toggler.GetMode(time);
             });

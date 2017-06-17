@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem
 {
-    public class ControlSystem : BaseLoop
+    public class ControlSystem : ILoop
     {
         public List<ControlSystemDataSample> Data;
 
@@ -20,66 +20,50 @@ namespace JTControlSystem
 
         #region CONSTRUCTORS
 
-        public ControlSystem() : 
-            this(new TransparentSystem(), new TransparentController(), Consts.defaultTimeStep) { }
+        public ControlSystem() : this(new TransparentSystem(), new TransparentController()) { }
 
-        public ControlSystem(ISystem system) : 
-            this(system, new TransparentController(), Consts.defaultTimeStep) { }
+        public ControlSystem(ISystem system) :  this(system, new TransparentController()) { }
 
-        public ControlSystem(ISystem system, double dt) : 
-            this(system, new TransparentController(), dt) { }
+        public ControlSystem(IController controller) : this(new TransparentSystem(), controller) { }
 
-        public ControlSystem(IController controller) : 
-            this(new TransparentSystem(), controller, Consts.defaultTimeStep) { }
-
-        public ControlSystem(IController controller, double dt) : 
-            this(new TransparentSystem(), controller, dt) { }
-
-        public ControlSystem(ISystem system, IController controller) : 
-            this(system, controller, Consts.defaultTimeStep) { }
-
-        public ControlSystem(ISystem system, IController controller, double dt)
+        public ControlSystem(ISystem system, IController controller)
         {
-            this.Dt = dt;
             openScheme = new BareSystemScheme(system);
             closeScheme = new CloseLoopScheme(system, controller);
             Data = new List<ControlSystemDataSample>();
-            Initialize();
         }
 
         #endregion
 
-        public override void NextIteration(double input)
+        public void NextIteration(double input, double time, double dt)
         {
-            iteration++;
             ControlSystemDataSample dataSample;
             if (mode == ControlSystemMode.OpenLoop)
             {
-                var openData = openScheme.NextIteration(input, CurrentTime, Dt);
+                var openData = openScheme.NextIteration(input, time, dt);
                 dataSample = ControlSystemDataSample.FromOpenSample(openData);
             }
             else
             {
                 double previousSystemOutput = Data.Last().systemOutput;
-                var closeData = closeScheme.NextIteration(input, previousSystemOutput, CurrentTime, Dt);
+                var closeData = closeScheme.NextIteration(input, previousSystemOutput, time, dt);
                 dataSample = ControlSystemDataSample.FromCloseSample(closeData);
             }
             Data.Add(dataSample);
         }
 
-        public override void Initialize()
+        public void Initialize(double dt)
         {
-            base.Initialize();
             Data.Clear();
             ControlSystemDataSample dataSample;
             if (mode == ControlSystemMode.OpenLoop)
             {
-                dataSample = ControlSystemDataSample.FromOpenSample(openScheme.Initialize(CurrentTime, Dt));
+                dataSample = ControlSystemDataSample.FromOpenSample(openScheme.Initialize(0d, dt));
                 Data.Add(dataSample);
             }
             else
             {
-                dataSample = ControlSystemDataSample.FromCloseSample(closeScheme.Initialize(CurrentTime, Dt));
+                dataSample = ControlSystemDataSample.FromCloseSample(closeScheme.Initialize(0d, dt));
                 Data.Add(dataSample);
             }
         }

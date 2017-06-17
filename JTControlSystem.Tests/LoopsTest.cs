@@ -30,8 +30,8 @@ namespace JTControlSystem.Tests
         {
             var reference = ReferenceDataLoader.Load(projectPath + @"/LoopReferenceData/Bare/reference_data.txt");
 
-            BareSystem loop = new BareSystem(system, 0.1d);
-            Simulator.Step(loop, 10d);
+            BareSystem loop = new BareSystem(system);
+            Simulator.Step(loop, 10d, 0.1d);
 
             Assert.True(OutputSamplesComparator.Compare(reference, loop.Data));
         }
@@ -41,8 +41,8 @@ namespace JTControlSystem.Tests
         {
             var reference = ReferenceDataLoader.Load(projectPath + @"/LoopReferenceData/Open/reference_data.txt");
 
-            OpenLoop loop = new OpenLoop(system, controller, 0.1d);
-            Simulator.Step(loop, 10d);
+            OpenLoop loop = new OpenLoop(system, controller);
+            Simulator.Step(loop, 10d, 0.1d);
 
             Assert.True(OutputSamplesComparator.Compare(reference, loop.Data));
         }
@@ -52,8 +52,8 @@ namespace JTControlSystem.Tests
         {
             var reference = ReferenceDataLoader.Load(projectPath + @"/LoopReferenceData/Close/reference_data.txt");
 
-            CloseLoop loop = new CloseLoop(system, controller, 0.1d);
-            Simulator.Step(loop, 2d);
+            CloseLoop loop = new CloseLoop(system, controller);
+            Simulator.Step(loop, 2d, 0.1d);
 
             Assert.True(OutputSamplesComparator.Compare(reference, loop.Data));
         }
@@ -63,9 +63,9 @@ namespace JTControlSystem.Tests
         {
             var reference = ReferenceDataLoader.Load(projectPath + @"/LoopReferenceData/Control/reference_data.txt");
 
-            ControlSystem loop = new ControlSystem(system, controller, 0.1d);
+            ControlSystem loop = new ControlSystem(system, controller);
 
-            Simulator.Step(loop, 4d, (iteration, time) => {
+            Simulator.Step(loop, 4d, 0.1d, (iteration, time) => {
                 if (iteration == 20)
                     loop.mode= ControlSystemMode.OpenLoop;
             });

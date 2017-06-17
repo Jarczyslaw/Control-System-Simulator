@@ -22,8 +22,8 @@ namespace JTControlSystem.Examples
 
         public void Run()
         {
-            CloseLoop loop = new CloseLoop(system, controller, 0.01d);
-            Simulator.Step(loop, 1d);
+            CloseLoop loop = new CloseLoop(system, controller);
+            Simulator.Step(loop, 1d, 0.01d);
             data = loop.Data;
         }
     }

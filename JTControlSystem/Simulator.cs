@@ -11,25 +11,28 @@ namespace JTControlSystem
 
     public class Simulator
     {
-        public static void Step(BaseLoop loop, double time, SimulatorCallback callback = null)
+        public static void Step(ILoop loop, double time, double dt, SimulatorCallback callback = null)
         {
-            Step(loop, time, 1d, callback);
+            Step(loop, time, dt, 1d, callback);
         }
 
-        public static void Step(BaseLoop loop, double time, double stepValue, SimulatorCallback callback = null)
+        public static void Step(ILoop loop, double time, double dt, double stepValue, SimulatorCallback callback = null)
         {
             ISignalGenerator steps = new StepsGenerator(stepValue, 0d);
-            SignalSimulation(loop, time, steps, callback);
+            SignalSimulation(loop, time, dt, steps, callback);
         }
 
-        public static void SignalSimulation(BaseLoop loop, double time, ISignalGenerator signalGenerator, SimulatorCallback callback = null)
+        public static void SignalSimulation(ILoop loop, double time, double dt, ISignalGenerator signalGenerator, SimulatorCallback callback = null)
         {
-            int iterations = (int)Math.Floor(time / loop.Dt) + 1;
+            loop.Initialize(dt);
+            callback?.Invoke(0, 0d);
+
+            int iterations = (int)Math.Floor(time / dt) + 1;
             for (int i = 1;i < iterations;i++)
             {
-                double currentTime = i * loop.Dt;
+                double currentTime = i * dt;
                 var signalSample = signalGenerator.GetSample(currentTime);
-                loop.NextIteration(signalSample.value);
+                loop.NextIteration(signalSample.value, currentTime, dt);
 
                 callback?.Invoke(i, currentTime);
             }

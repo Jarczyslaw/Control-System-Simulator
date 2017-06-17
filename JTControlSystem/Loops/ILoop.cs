@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem
 {
-    public static class Consts
+    public interface ILoop
     {
-        public static readonly double defaultTimeStep = 0.01d;
+        void NextIteration(double input, double time, double dt);
+        void Initialize(double dt);
     }
 }

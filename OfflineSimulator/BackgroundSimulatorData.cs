@@ -32,8 +32,6 @@ namespace OfflineSimulator
             TimeHorizon = timeHorizon;
             TimeStep = timeStep;
 
-            ControlSystem = new ControlSystem(SystemAndController.GetSystem(), SystemAndController.GetController(), timeStep);
-            ControlSystem.mode = initialMode;
         }
 
         public int Iterations()
