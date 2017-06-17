@@ -11,7 +11,14 @@ namespace JTControlSystem
         private ControlSystemMode mode;
         private List<double> toggles;
 
+        public ControlSystemModeToggler() { }
+
         public ControlSystemModeToggler(ControlSystemMode initialMode, params double[] times)
+        {
+            SetParameters(initialMode, times);
+        }
+
+        public void SetParameters(ControlSystemMode initialMode, params double[] times)
         {
             if (times.Length == 0 || times.Any(t => t < 0d))
                 throw new Exception("Times should be more than 0 and not empty");
