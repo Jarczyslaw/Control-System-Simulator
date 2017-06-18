@@ -27,7 +27,7 @@ namespace JTControlSystemExamples
         public void Run()
         {
             BareSystem loop = new BareSystem(system);
-            Simulator.Step(loop, 16d, 0.1d);
+            Simulate.Step(loop, 16d, 0.1d);
             data = loop.Data;
         }
     }

@@ -15,13 +15,14 @@ namespace OfflineSimulator
 {
     public partial class MainForm : Form
     {
-        private BackgroundSimulator simulator;
-        private BackgroundSimulatorData simulatorData;
+        private BackgroundSimulation backgroundSimulation;
+        private BackgroundSimulationInput backgroundSimulationInput;
+        private IterativeSimulator iterativeSimulator;
 
         private ControlChart chart;
         private int pointsPerSecond = 10;
 
-        private List<ControlSystemDataSample> result;
+        private List<ControlSystemDataSample> resultData;
 
         public MainForm()
         {
@@ -32,15 +33,16 @@ namespace OfflineSimulator
             UpdateSimulationState(false);
             InitComboboxes();
 
-            simulator = new BackgroundSimulator();
-            simulator.OnCancel += Simulator_OnCancel;
-            simulator.OnException += Simulator_OnException;
-            simulator.OnFinish += Simulator_OnFinish;
-            simulator.OnProgress += Simulator_OnProgress;
+            backgroundSimulation = new BackgroundSimulation();
+            backgroundSimulation.OnCancel += Simulator_OnCancel;
+            backgroundSimulation.OnException += Simulator_OnException;
+            backgroundSimulation.OnFinish += Simulator_OnFinish;
+            backgroundSimulation.OnProgress += Simulator_OnProgress;
+            backgroundSimulationInput = new BackgroundSimulationInput();
 
-            simulatorData = new BackgroundSimulatorData();
+            iterativeSimulator = new IterativeSimulator();
 
-            chart = new ControlChart(chart1, 10);
+            chart = new ControlChart(chart1, 0);
         }
 
         private void InitComboboxes()
@@ -56,22 +58,24 @@ namespace OfflineSimulator
 
         private void SetSimulatorData()
         {
-            pointsPerSecond = int.Parse(tbPointsPerSecond.Text);
-            simulatorData.initialMode = (ControlSystemMode)cbInitialMode.SelectedValue;
-            simulatorData.togglerEnabled = chbTogglerEnabled.Checked;
+            backgroundSimulationInput.timeHorizon = double.Parse(tbTimeHorizon.Text);
+            backgroundSimulationInput.timeStep = double.Parse(tbTimeStep.Text);
 
-            simulatorData.WavesGenerator.wave = (SignalType)cbInputType.SelectedValue;
+            pointsPerSecond = int.Parse(tbPointsPerSecond.Text);
+            iterativeSimulator.initialMode = (ControlSystemMode)cbInitialMode.SelectedValue;
+
+            iterativeSimulator.waveType = (SignalType)cbInputType.SelectedValue;
             StepsParametersConverter stepsConverter = new StepsParametersConverter();
             double[] stepTimes, stepValues;
             stepsConverter.Convert(tbStepTimes.Text, tbStepValues.Text, out stepTimes, out stepValues);
-            simulatorData.WavesGenerator.SetStepsParameters(stepTimes, stepValues);
+            iterativeSimulator.WavesGenerator.SetStepsParameters(stepTimes, stepValues);
 
             double frequency, amplitude, offset;
             WavesParametersConverter wavesConverter = new WavesParametersConverter();
             wavesConverter.Convert(tbFrequency.Text, tbAmplitude.Text, tbOffset.Text, out frequency, out amplitude, out offset);
-            simulatorData.WavesGenerator.SetWavesParameters(frequency, amplitude, offset);
+            iterativeSimulator.WavesGenerator.SetWavesParameters(frequency, amplitude, offset);
 
-            simulatorData.PrepareSimulation(double.Parse(tbTimeHorizon.Text), double.Parse(tbTimeHorizon.Text));
+            backgroundSimulationInput.iterativeSimulator = iterativeSimulator;
         }
 
         private void Simulator_OnProgress(int progressPercentage)
@@ -82,6 +86,10 @@ namespace OfflineSimulator
         private void Simulator_OnFinish(object result)
         {
             UpdateProgress(100);
+            var simulationData = result as List<ControlSystemDataSample>;
+            resultData = ExtractChartData(simulationData);
+            chart.SetPoints(resultData);
+            chart.FitXAxisToSeries();
             MessageBoxEx.Info("Simulation finished");
         }
 
@@ -127,14 +135,14 @@ namespace OfflineSimulator
             }
 
             double stepSize = 0d;
-            if (!double.TryParse(tbStepSize.Text, out stepSize) || stepSize <= 0d)
+            if (!double.TryParse(tbTimeStep.Text, out stepSize) || stepSize <= 0d)
             {
                 MessageBoxEx.Error("Invalid step size value");
                 return false;
             }
 
             int pointsPerSecond = 0;
-            if (!int.TryParse(tbPointsPerSecond.Text, out pointsPerSecond) || pointsPerSecond <= 0)
+            if (!int.TryParse(tbPointsPerSecond.Text, out pointsPerSecond) || pointsPerSecond < 1)
             {
                 MessageBoxEx.Error("Invalid points per second value");
                 return false;
@@ -156,12 +164,21 @@ namespace OfflineSimulator
 
             return true;
         }
+        
+        private List<ControlSystemDataSample> ExtractChartData(List<ControlSystemDataSample> simulationResult)
+        {
+            int skipSamples = (int)((1d / backgroundSimulationInput.timeStep) / pointsPerSecond);
+            if (skipSamples != 0)
+                return simulationResult.Where((s, i) => i % skipSamples == 0).ToList();
+            else
+                return simulationResult;
+        }
 
         private void StartClosingTask()
         {
             Task.Run(() =>
             {
-                while (simulator.IsRunning()) ;
+                while (backgroundSimulation.IsRunning()) ;
                 Invoke((MethodInvoker)delegate {
                     Close();
                 });
@@ -172,7 +189,7 @@ namespace OfflineSimulator
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            if (simulator.IsRunning())
+            if (backgroundSimulation.IsRunning())
             {
                 MessageBoxEx.Info("Simulation in progress");
                 return;
@@ -181,22 +198,23 @@ namespace OfflineSimulator
             if (!ParametersValidation())
                 return;
 
+            resultData = null;
             UpdateSimulationState(true);
 
             SetSimulatorData();
-            simulator.Start(simulatorData);
+            backgroundSimulation.Start(backgroundSimulationInput);
         }
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            if (!simulator.IsRunning())
+            if (!backgroundSimulation.IsRunning())
             {
                 MessageBoxEx.Info("Simulation is already stopped");
                 return;
             }
                 
             UpdateSimulationState(false);
-            simulator.Cancel();
+            backgroundSimulation.Cancel();
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -206,9 +224,9 @@ namespace OfflineSimulator
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (simulator.IsRunning())
+            if (backgroundSimulation.IsRunning())
             {
-                simulator.Cancel();
+                backgroundSimulation.Cancel();
                 Enabled = false;
                 FormClosing -= MainForm_FormClosing;
                 e.Cancel = true;
@@ -219,7 +237,7 @@ namespace OfflineSimulator
 
         private void btnSaveToFile_Click(object sender, EventArgs e)
         {
-            if (result != null && result.Count != 0)
+            if (resultData != null && resultData.Count != 0)
             {
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.FileName = "data";
@@ -229,7 +247,7 @@ namespace OfflineSimulator
 
                 DialogResult dr = sfd.ShowDialog();
                 if (dr == DialogResult.OK)
-                    FileWriter.ToFile(result, sfd.FileName);
+                    FileWriter.ToFile(resultData, sfd.FileName);
             }
             else
                 MessageBoxEx.Error("Data is empty. Run simulation before saving!");

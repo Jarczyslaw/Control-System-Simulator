@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem
 {
-    public delegate void SimulatorCallback(int iteration, double time);
+    public delegate void SimulateCallback(int iteration, double time);
 
-    public class Simulator
+    public class Simulate
     {
-        public static void Step(ILoop loop, double time, double dt, SimulatorCallback callback = null)
+        public static void Step(ILoop loop, double time, double dt, SimulateCallback callback = null)
         {
             Step(loop, time, dt, 1d, callback);
         }
 
-        public static void Step(ILoop loop, double time, double dt, double stepValue, SimulatorCallback callback = null)
+        public static void Step(ILoop loop, double time, double dt, double stepValue, SimulateCallback callback = null)
         {
             ISignalGenerator steps = new StepsGenerator(stepValue, 0d);
-            SignalSimulation(loop, time, dt, steps, callback);
+            Signal(loop, time, dt, steps, callback);
         }
 
-        public static void SignalSimulation(ILoop loop, double time, double dt, ISignalGenerator signalGenerator, SimulatorCallback callback = null)
+        public static void Signal(ILoop loop, double time, double dt, ISignalGenerator signalGenerator, SimulateCallback callback = null)
         {
             loop.Initialize(dt);
             callback?.Invoke(0, 0d);

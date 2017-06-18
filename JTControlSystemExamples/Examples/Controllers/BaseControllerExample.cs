@@ -32,7 +32,7 @@ namespace JTControlSystemExamples
             ContinousSystem system = new ContinousSystem(model, new SolverRK4(), Vector.Zeros(2));
 
             CloseLoop loop = new CloseLoop(system, GetController());
-            Simulator.Step(loop, 20d, 0.01d);
+            Simulate.Step(loop, 20d, 0.01d);
             data = loop.Data;
         }
 

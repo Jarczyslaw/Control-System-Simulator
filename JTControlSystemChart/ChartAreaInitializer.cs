@@ -54,6 +54,9 @@ namespace JTControlSystemChart
             var legend = new Legend(title + "Legend");
             chart.Legends.Add(legend);
             legend.DockedToChartArea = area.Name;
+            legend.Docking = Docking.Top;
+            legend.IsDockedInsideChartArea = false;
+            legend.BackColor = Color.Transparent;
             serie.Legend = legend.Name;
             return legend;
         }

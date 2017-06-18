@@ -31,7 +31,7 @@ namespace JTControlSystemExamples
             var system = new ContinousSystem(model, GetSolver(), new Vector(new double[] { -1d, -4d }));
 
             BareSystem loop = new BareSystem(system);
-            Simulator.Step(loop, 20d, 0.1d);
+            Simulate.Step(loop, 20d, 0.1d);
             data = loop.Data;
         }
 

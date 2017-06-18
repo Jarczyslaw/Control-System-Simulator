@@ -41,8 +41,8 @@
             this.statusProgressLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnSaveToFile = new System.Windows.Forms.Button();
             this.tbSimulationState = new System.Windows.Forms.TextBox();
-            this.lbStepSize = new System.Windows.Forms.Label();
-            this.tbStepSize = new System.Windows.Forms.TextBox();
+            this.lbTimeStep = new System.Windows.Forms.Label();
+            this.tbTimeStep = new System.Windows.Forms.TextBox();
             this.lbTimeHorizon = new System.Windows.Forms.Label();
             this.tbTimeHorizon = new System.Windows.Forms.TextBox();
             this.tbPointsPerSecond = new System.Windows.Forms.TextBox();
@@ -67,11 +67,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbSimulationState = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chbTogglerEnabled = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.chbTogglerEnabled = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -173,23 +173,23 @@
             this.tbSimulationState.Text = "STOPPED";
             this.tbSimulationState.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // lbStepSize
+            // lbTimeStep
             // 
-            this.lbStepSize.AutoSize = true;
-            this.lbStepSize.Location = new System.Drawing.Point(6, 22);
-            this.lbStepSize.Name = "lbStepSize";
-            this.lbStepSize.Size = new System.Drawing.Size(53, 13);
-            this.lbStepSize.TabIndex = 7;
-            this.lbStepSize.Text = "Step size:";
+            this.lbTimeStep.AutoSize = true;
+            this.lbTimeStep.Location = new System.Drawing.Point(6, 22);
+            this.lbTimeStep.Name = "lbTimeStep";
+            this.lbTimeStep.Size = new System.Drawing.Size(56, 13);
+            this.lbTimeStep.TabIndex = 7;
+            this.lbTimeStep.Text = "Time step:";
             // 
-            // tbStepSize
+            // tbTimeStep
             // 
-            this.tbStepSize.Location = new System.Drawing.Point(102, 19);
-            this.tbStepSize.Name = "tbStepSize";
-            this.tbStepSize.Size = new System.Drawing.Size(75, 20);
-            this.tbStepSize.TabIndex = 8;
-            this.tbStepSize.Text = "0.01";
-            this.tbStepSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbTimeStep.Location = new System.Drawing.Point(102, 19);
+            this.tbTimeStep.Name = "tbTimeStep";
+            this.tbTimeStep.Size = new System.Drawing.Size(75, 20);
+            this.tbTimeStep.TabIndex = 8;
+            this.tbTimeStep.Text = "0.01";
+            this.tbTimeStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbTimeHorizon
             // 
@@ -377,8 +377,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tbStepSize);
-            this.groupBox1.Controls.Add(this.lbStepSize);
+            this.groupBox1.Controls.Add(this.tbTimeStep);
+            this.groupBox1.Controls.Add(this.lbTimeStep);
             this.groupBox1.Controls.Add(this.lbTimeHorizon);
             this.groupBox1.Controls.Add(this.tbTimeHorizon);
             this.groupBox1.Controls.Add(this.tbPointsPerSecond);
@@ -426,6 +426,16 @@
             this.groupBox3.TabIndex = 31;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Control system mode";
+            // 
+            // chbTogglerEnabled
+            // 
+            this.chbTogglerEnabled.AutoSize = true;
+            this.chbTogglerEnabled.Location = new System.Drawing.Point(6, 46);
+            this.chbTogglerEnabled.Name = "chbTogglerEnabled";
+            this.chbTogglerEnabled.Size = new System.Drawing.Size(134, 17);
+            this.chbTogglerEnabled.TabIndex = 17;
+            this.chbTogglerEnabled.Text = "Mode toggling enabled";
+            this.chbTogglerEnabled.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -481,16 +491,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Results";
             // 
-            // chbTogglerEnabled
-            // 
-            this.chbTogglerEnabled.AutoSize = true;
-            this.chbTogglerEnabled.Location = new System.Drawing.Point(6, 46);
-            this.chbTogglerEnabled.Name = "chbTogglerEnabled";
-            this.chbTogglerEnabled.Size = new System.Drawing.Size(134, 17);
-            this.chbTogglerEnabled.TabIndex = 17;
-            this.chbTogglerEnabled.Text = "Mode toggling enabled";
-            this.chbTogglerEnabled.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -539,8 +539,8 @@
         private System.Windows.Forms.ToolStripStatusLabel statusProgressLabel;
         private System.Windows.Forms.Button btnSaveToFile;
         private System.Windows.Forms.TextBox tbSimulationState;
-        private System.Windows.Forms.Label lbStepSize;
-        private System.Windows.Forms.TextBox tbStepSize;
+        private System.Windows.Forms.Label lbTimeStep;
+        private System.Windows.Forms.TextBox tbTimeStep;
         private System.Windows.Forms.Label lbTimeHorizon;
         private System.Windows.Forms.TextBox tbTimeHorizon;
         private System.Windows.Forms.TextBox tbPointsPerSecond;

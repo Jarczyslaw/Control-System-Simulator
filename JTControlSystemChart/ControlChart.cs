@@ -42,7 +42,7 @@ namespace JTControlSystemChart
             double time = data.time;
             inputArea.AddPoint(new DataPoint(time, data.input));
             systemOutputArea.AddPoint(new DataPoint(time, data.systemOutput));
-            controllerOutputArea.AddPoint(new DataPoint(time, data.controllerOutput.Value));
+            controllerOutputArea.AddPoint(new DataPoint(time, data.controllerOutput));
         } 
 
         public void AddPoints(List<ControlSystemDataSample> data)
@@ -57,6 +57,13 @@ namespace JTControlSystemChart
             systemOutputArea.Clear();
             controllerOutputArea.Clear();
             AddPoints(data);
+        }
+
+        public void FitXAxisToSeries()
+        {
+            inputArea.FitXAxisToSeries();
+            systemOutputArea.FitXAxisToSeries();
+            controllerOutputArea.FitXAxisToSeries();
         }
     }
 }

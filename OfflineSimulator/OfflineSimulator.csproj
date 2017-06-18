@@ -47,8 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackgroundSimulator.cs" />
-    <Compile Include="BackgroundSimulatorData.cs" />
+    <Compile Include="BackgroundSimulationInput.cs" />
+    <Compile Include="BackgroundSimulation.cs" />
+    <Compile Include="IterativeSimulator.cs" />
     <Compile Include="SystemAndController.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

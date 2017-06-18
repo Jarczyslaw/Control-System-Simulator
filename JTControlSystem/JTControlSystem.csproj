@@ -55,7 +55,7 @@
     <Compile Include="Models\Discrete\AutoRegressive.cs" />
     <Compile Include="Models\Discrete\DiscreteSecondOrder.cs" />
     <Compile Include="Schemes\OpenLoopScheme.cs" />
-    <Compile Include="Simulator.cs" />
+    <Compile Include="Simulate.cs" />
     <Compile Include="Solvers\SolverAdamsBashforth.cs" />
     <Compile Include="Solvers\SolverAdamsMoulton.cs" />
     <Compile Include="Solvers\SolverDormandPrince.cs" />

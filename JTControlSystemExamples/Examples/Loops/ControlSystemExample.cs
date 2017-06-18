@@ -27,7 +27,7 @@ namespace JTControlSystemExamples
             loop.mode = ControlSystemMode.OpenLoop;
 
             var toggler = new ControlSystemModeToggler(loop.mode, 3d, 6d);
-            Simulator.Step(loop, 10d, 0.01d, (iteration, time) =>
+            Simulate.Step(loop, 10d, 0.01d, (iteration, time) =>
             {
                 loop.mode = toggler.GetMode(time);
             });

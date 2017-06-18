@@ -31,12 +31,18 @@ namespace JTControlSystemChart
             series.Points.Add(point);
             if (capacity > 0 && series.Points.Count > capacity)
                 series.Points.RemoveAt(0);
-            chartArea.RecalculateAxesScale();
         } 
 
         public void Clear()
         {
             series.Points.Clear();
+        }
+
+        public void FitXAxisToSeries()
+        {
+            chartArea.AxisX.Minimum = series.Points.Min(p => p.XValue);
+            chartArea.AxisX.Maximum = series.Points.Max(p => p.XValue);
+            chartArea.RecalculateAxesScale();
         }
     }
 }

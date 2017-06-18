@@ -15,7 +15,7 @@ namespace OfflineSimulator
     public delegate void ReportCancelled();
     public delegate void ReportException(Exception exception);
 
-    public class BackgroundSimulator
+    public class BackgroundSimulation
     {
         public event ReportProgress OnProgress;
         public event ReportFinish OnFinish;
@@ -26,7 +26,7 @@ namespace OfflineSimulator
 
         private object syncObject = new object();
 
-        public BackgroundSimulator()
+        public BackgroundSimulation()
         {
             worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
@@ -37,12 +37,10 @@ namespace OfflineSimulator
             worker.DoWork += Worker_DoWork;
         }
 
-        public void Start(BackgroundSimulatorData simulatorData)
+        public void Start(BackgroundSimulationInput iterativeSimulator)
         {
             if (!IsRunning())
-            {
-                worker.RunWorkerAsync(simulatorData);
-            }
+                worker.RunWorkerAsync(iterativeSimulator);
         }
 
         public void Cancel()
@@ -60,24 +58,36 @@ namespace OfflineSimulator
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             Debug.WriteLine("Worker started");
-            BackgroundSimulatorData simulatorData = (BackgroundSimulatorData)e.Argument;
-
-
-
-
             worker.ReportProgress(0);
-            for (int i = 1;i <= 100;i++)
+
+            BackgroundSimulationInput input = (BackgroundSimulationInput)e.Argument;
+            double timeHorizon = input.timeHorizon;
+            double timeStep = input.timeStep;
+            IterativeSimulator simulator = input.iterativeSimulator;
+
+            int iterations = simulator.PrepareSimulation(timeHorizon, timeStep);
+            int iterationsPerProgress = iterations / 100;
+            int iterationsCounter = 0;
+            int progress = 0;
+            for (int i = 1;i < iterations;i++)
             {
                 if (worker.CancellationPending)
                 {
                     e.Cancel = true;
                     break;
                 }
-                if (i > 50)
-                    throw new Exception("Test exception");
-                Thread.Sleep(100);
-                worker.ReportProgress(i);
+
+                simulator.NextIteration();
+
+                iterationsCounter++;
+                if (iterationsCounter >= iterationsPerProgress)
+                {
+                    progress++;
+                    worker.ReportProgress(progress);
+                    iterationsCounter = 0;
+                }
             }
+            e.Result = simulator.GetData();
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)

@@ -9,8 +9,6 @@ namespace JTControlSystem.SignalGenerators
 {
     public class WavesGenerator
     {
-        public SignalType wave = SignalType.Sine;
-
         private Dictionary<SignalType, ISignalGenerator> generators;
 
         public WavesGenerator()

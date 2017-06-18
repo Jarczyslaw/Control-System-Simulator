@@ -12,22 +12,14 @@ namespace JTControlSystem
         public double time;
         public ControlSystemMode mode;
         public double input;
-        public double? error;
-        public double? controllerOutput;
+        public double error;
+        public double controllerOutput;
         public double systemOutput;
 
         public override string ToString()
         {
-            double errorData = 0d;
-            if (error.HasValue)
-                errorData = error.Value;
-
-            double controllerOutputData = 0d;
-            if (controllerOutput.HasValue)
-                controllerOutputData = controllerOutput.Value;
-
             return string.Format(CultureInfo.InvariantCulture, "{0:0.000000},{1},{2:0.000000},{3:0.000000},{4:0.000000},{5:0.000000}",
-                    time, (int)mode, input, errorData, controllerOutputData, systemOutput);
+                    time, (int)mode, input, error, controllerOutput, systemOutput);
         }
 
         public static ControlSystemDataSample FromOpenSample(BareSystemDataSample openLoopSample)
@@ -36,8 +28,8 @@ namespace JTControlSystem
             data.time = openLoopSample.time;
             data.mode = ControlSystemMode.OpenLoop;
             data.input = openLoopSample.input;
-            data.error = null;
-            data.controllerOutput = null;
+            data.error = 0d;
+            data.controllerOutput = 0d;
             data.systemOutput = openLoopSample.output;
             return data;
         }

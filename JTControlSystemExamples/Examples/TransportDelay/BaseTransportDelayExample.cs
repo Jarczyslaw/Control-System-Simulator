@@ -38,7 +38,7 @@ namespace JTControlSystemExamples
             ContinousSystem system = new ContinousSystem(model, new SolverRK4(), Vector.Zeros(1), delay);
 
             BareSystem loop = new BareSystem(system);
-            Simulator.SignalSimulation(loop, 20d, 0.01d, new StepsGenerator(new double[] { 4d, 10d, 15d }, new double[] { 1d, 2d, 4d }));
+            Simulate.Signal(loop, 20d, 0.01d, new StepsGenerator(new double[] { 4d, 10d, 15d }, new double[] { 1d, 2d, 4d }));
             data = loop.Data;
         }
     }
