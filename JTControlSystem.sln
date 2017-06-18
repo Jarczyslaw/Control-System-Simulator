@@ -15,11 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroLibrary", "MicroLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{B2691622-3ED6-4B3A-BA35-4F6567CA09F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTMath.Tests", "JTMath.Tests\JTMath.Tests.csproj", "{898091CF-A91C-4DF0-8BFB-CB89D3342004}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTMathTests", "JTMathTests\JTMathTests.csproj", "{898091CF-A91C-4DF0-8BFB-CB89D3342004}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTControlSystem.Tests", "JTControlSystem.Tests\JTControlSystem.Tests.csproj", "{BAF51BB6-49F1-4E5D-A162-A5777CAC1D77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTControlSystemTests", "JTControlSystemTests\JTControlSystemTests.csproj", "{BAF51BB6-49F1-4E5D-A162-A5777CAC1D77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTControlSystem.Examples", "JTControlSystem.Examples\JTControlSystem.Examples.csproj", "{6A2CBFAB-02C7-40C9-83EE-78DA0CBC8DBA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTControlSystemExamples", "JTControlSystemExamples\JTControlSystemExamples.csproj", "{6A2CBFAB-02C7-40C9-83EE-78DA0CBC8DBA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{F9752ACF-A463-4B7F-A7F6-8877A3A199AB}"
 	ProjectSection(SolutionItems) = preProject
