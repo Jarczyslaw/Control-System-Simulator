@@ -15,13 +15,13 @@ namespace OfflineSimulator
     {
         public static ISystem GetSystem()
         {
-            var model = new ContinousSecondOrder(2d, 1d, 3d);
+            var model = new ContinousSecondOrder(3d, 1d, 2d);
             return new ContinousSystem(model, new SolverRK4(), Vector.Zeros(2));
         }
 
         public static IController GetController()
         {
-            return new P(3d);
+            return new PID(1.458d, 3.0466d, 0.2061d);
         }
     }
 }

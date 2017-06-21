@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Utilities;
 
 namespace OfflineSimulator
 {
@@ -24,6 +25,8 @@ namespace OfflineSimulator
 
         private BackgroundWorker worker;
 
+        private ProgressCounter progressCounter;
+
         private object syncObject = new object();
 
         public BackgroundSimulation()
@@ -35,6 +38,12 @@ namespace OfflineSimulator
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.DoWork += Worker_DoWork;
+
+            progressCounter = new ProgressCounter();
+            progressCounter.ProgressReport += (p) =>
+            {
+                worker.ReportProgress(p);
+            };
         }
 
         public void Start(BackgroundSimulationInput iterativeSimulator)
@@ -60,34 +69,43 @@ namespace OfflineSimulator
             Debug.WriteLine("Worker started");
             worker.ReportProgress(0);
 
+            // extract all data from worker input
             BackgroundSimulationInput input = (BackgroundSimulationInput)e.Argument;
             double timeHorizon = input.timeHorizon;
             double timeStep = input.timeStep;
             IterativeSimulator simulator = input.iterativeSimulator;
 
-            int iterations = simulator.PrepareSimulation(timeHorizon, timeStep);
-            int iterationsPerProgress = iterations / 100;
-            int iterationsCounter = 0;
-            int progress = 0;
-            for (int i = 1;i < iterations;i++)
+            int iterations = 0;
+            var executionTime = ExecTime.Run(() =>
             {
-                if (worker.CancellationPending)
-                {
-                    e.Cancel = true;
-                    break;
-                }
+                // first iteration - simulation initialization
+                iterations = simulator.PrepareSimulation(timeHorizon, timeStep);
+                progressCounter.Initialize(iterations);
+                progressCounter.NextIteration();
 
-                simulator.NextIteration();
-
-                iterationsCounter++;
-                if (iterationsCounter >= iterationsPerProgress)
+                // perform calculation
+                for (int i = 1; i < iterations; i++)
                 {
-                    progress++;
-                    worker.ReportProgress(progress);
-                    iterationsCounter = 0;
+                    if (worker.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+
+                    simulator.NextIteration();
+                    progressCounter.NextIteration();
                 }
-            }
-            e.Result = simulator.GetData();
+            });
+            
+            // return result
+            BackgroundSimulationOutput output = new BackgroundSimulationOutput()
+            {
+                totalIterations = iterations,
+                timeStep = timeStep,
+                executionTime = executionTime,
+                data = simulator.GetData()
+            };
+            e.Result = output;
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -103,7 +121,10 @@ namespace OfflineSimulator
             else if (e.Error != null)
                 OnException(e.Error);
             else
+            {
+                OnProgress(100);
                 OnFinish(e.Result);
+            }
             Debug.WriteLine("Worker completed");
         }
     }

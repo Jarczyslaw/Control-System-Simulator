@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utilities;
 
 namespace OfflineSimulator
 {
@@ -78,53 +79,6 @@ namespace OfflineSimulator
             backgroundSimulationInput.iterativeSimulator = iterativeSimulator;
         }
 
-        private void Simulator_OnProgress(int progressPercentage)
-        {
-            UpdateProgress(progressPercentage);
-        }
-
-        private void Simulator_OnFinish(object result)
-        {
-            UpdateProgress(100);
-            var simulationData = result as List<ControlSystemDataSample>;
-            resultData = ExtractChartData(simulationData);
-            chart.SetPoints(resultData);
-            chart.FitXAxisToSeries();
-            MessageBoxEx.Info("Simulation finished");
-        }
-
-        private void Simulator_OnException(Exception exception)
-        {
-            UpdateProgress(0);
-            MessageBoxEx.Error("An exception occured in worker: " + exception.Message);
-        }
-
-        private void Simulator_OnCancel()
-        {
-            UpdateProgress(0);
-            MessageBoxEx.Info("Simulation cancelled");
-        }
-
-        private void UpdateSimulationState(bool running)
-        {
-            if (running)
-            {
-                tbSimulationState.Text = "RUNNING";
-                tbSimulationState.BackColor = Color.GreenYellow;
-            }
-            else
-            {
-                tbSimulationState.Text = "STOPPED";
-                tbSimulationState.BackColor = Color.OrangeRed;
-            }
-        }
-
-        private void UpdateProgress(int progress)
-        {
-            statusProgressBar.Value = progress;
-            statusProgressLabel.Text = string.Format("{0}%", progress);
-        }
-
         private bool ParametersValidation()
         {
             double timeHorizon = 0d;
@@ -164,14 +118,15 @@ namespace OfflineSimulator
 
             return true;
         }
-        
-        private List<ControlSystemDataSample> ExtractChartData(List<ControlSystemDataSample> simulationResult)
+
+        private List<ControlSystemDataSample> ExtractChartData(BackgroundSimulationOutput output)
         {
-            int skipSamples = (int)((1d / backgroundSimulationInput.timeStep) / pointsPerSecond);
+            var data = output.data;
+            int skipSamples = (int)((1d / output.timeStep) / pointsPerSecond);
             if (skipSamples != 0)
-                return simulationResult.Where((s, i) => i % skipSamples == 0).ToList();
+                return data.Where((s, i) => i % skipSamples == 0).ToList();
             else
-                return simulationResult;
+                return data;
         }
 
         private void StartClosingTask()
@@ -179,11 +134,77 @@ namespace OfflineSimulator
             Task.Run(() =>
             {
                 while (backgroundSimulation.IsRunning()) ;
-                Invoke((MethodInvoker)delegate {
+                Invoke((MethodInvoker)delegate 
+                {
                     Close();
                 });
             });
         }
+
+        #region Simulator events
+
+        private void Simulator_OnProgress(int progressPercentage)
+        {
+            UpdateProgress(progressPercentage);
+        }
+
+        private void Simulator_OnFinish(object result)
+        {
+            UpdateSimulationState(false);
+
+            var output = result as BackgroundSimulationOutput;
+
+            var plottingTime = ExecTime.Run(() =>
+            {
+                resultData = ExtractChartData(output);
+                chart.SetPoints(resultData);
+                chart.FitXAxisToSeries();
+            });
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Simulation finished!");
+            sb.AppendLine(string.Format("Generated total {0} points", output.data.Count));
+            sb.AppendLine(string.Format("Plotted {0} points", resultData.Count));
+            sb.AppendLine(string.Format("Simulation time: {0} ms", output.executionTime));
+            sb.AppendLine(string.Format("Plotting time: {0} ms", plottingTime));
+            MessageBoxEx.Info(sb.ToString());
+        }
+
+        private void Simulator_OnException(Exception exception)
+        {
+            UpdateProgress(0);
+            UpdateSimulationState(false);
+            MessageBoxEx.Error("An exception occured in worker: " + exception.Message);
+        }
+
+        private void Simulator_OnCancel()
+        {
+            UpdateProgress(0);
+            UpdateSimulationState(false);
+            MessageBoxEx.Info("Simulation cancelled");
+        }
+
+        private void UpdateSimulationState(bool running)
+        {
+            if (running)
+            {
+                tbSimulationState.Text = "RUNNING";
+                tbSimulationState.BackColor = Color.GreenYellow;
+            }
+            else
+            {
+                tbSimulationState.Text = "STOPPED";
+                tbSimulationState.BackColor = Color.OrangeRed;
+            }
+        }
+
+        private void UpdateProgress(int progress)
+        {
+            statusProgressBar.Value = progress;
+            statusProgressLabel.Text = string.Format("{0}%", progress);
+        }
+
+        #endregion
 
         #region Events
 

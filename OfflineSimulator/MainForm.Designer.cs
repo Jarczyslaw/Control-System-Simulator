@@ -291,7 +291,7 @@
             this.tbStepValues.Name = "tbStepValues";
             this.tbStepValues.Size = new System.Drawing.Size(74, 20);
             this.tbStepValues.TabIndex = 19;
-            this.tbStepValues.Text = "1, 2";
+            this.tbStepValues.Text = "1, 2, 4";
             this.tbStepValues.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbStepValues
@@ -309,7 +309,7 @@
             this.tbStepTimes.Name = "tbStepTimes";
             this.tbStepTimes.Size = new System.Drawing.Size(74, 20);
             this.tbStepTimes.TabIndex = 21;
-            this.tbStepTimes.Text = "5, 10";
+            this.tbStepTimes.Text = "1, 7, 14";
             this.tbStepTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbStepTimes
