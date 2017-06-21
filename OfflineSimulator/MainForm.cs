@@ -17,7 +17,6 @@ namespace OfflineSimulator
     public partial class MainForm : Form
     {
         private BackgroundSimulation backgroundSimulation;
-        private BackgroundSimulationInput backgroundSimulationInput;
         private IterativeSimulator iterativeSimulator;
 
         private ControlChart chart;
@@ -39,7 +38,6 @@ namespace OfflineSimulator
             backgroundSimulation.OnException += Simulator_OnException;
             backgroundSimulation.OnFinish += Simulator_OnFinish;
             backgroundSimulation.OnProgress += Simulator_OnProgress;
-            backgroundSimulationInput = new BackgroundSimulationInput();
 
             iterativeSimulator = new IterativeSimulator();
 
@@ -49,21 +47,22 @@ namespace OfflineSimulator
         private void InitComboboxes()
         {
             var modes = Utils.EnumToDict<ControlSystemMode>();
-            cbInitialMode.DataSource = new BindingSource(modes, null);
-            cbInitialMode.SelectedValue = ControlSystemMode.CloseLoop;
+            cbMode.DataSource = new BindingSource(modes, null);
+            cbMode.SelectedValue = ControlSystemMode.CloseLoop;
 
             var waves = Utils.EnumToDict<SignalType>();
             cbInputType.DataSource = new BindingSource(waves, null);
             cbInputType.SelectedValue = SignalType.Steps;
         }
 
-        private void SetSimulatorData()
+        private BackgroundSimulationInput GetSimulationInput()
         {
-            backgroundSimulationInput.timeHorizon = double.Parse(tbTimeHorizon.Text);
-            backgroundSimulationInput.timeStep = double.Parse(tbTimeStep.Text);
+            var input = new BackgroundSimulationInput();
+            input.timeHorizon = double.Parse(tbTimeHorizon.Text);
+            input.timeStep = double.Parse(tbTimeStep.Text);
 
             pointsPerSecond = int.Parse(tbPointsPerSecond.Text);
-            iterativeSimulator.initialMode = (ControlSystemMode)cbInitialMode.SelectedValue;
+            iterativeSimulator.initialMode = (ControlSystemMode)cbMode.SelectedValue;
 
             iterativeSimulator.waveType = (SignalType)cbInputType.SelectedValue;
             StepsParametersConverter stepsConverter = new StepsParametersConverter();
@@ -76,7 +75,8 @@ namespace OfflineSimulator
             wavesConverter.Convert(tbFrequency.Text, tbAmplitude.Text, tbOffset.Text, out frequency, out amplitude, out offset);
             iterativeSimulator.WavesGenerator.SetWavesParameters(frequency, amplitude, offset);
 
-            backgroundSimulationInput.iterativeSimulator = iterativeSimulator;
+            input.iterativeSimulator = iterativeSimulator;
+            return input;
         }
 
         private bool ParametersValidation()
@@ -219,11 +219,11 @@ namespace OfflineSimulator
             if (!ParametersValidation())
                 return;
 
-            resultData = null;
             UpdateSimulationState(true);
 
-            SetSimulatorData();
-            backgroundSimulation.Start(backgroundSimulationInput);
+            resultData = null;
+            var input = GetSimulationInput();
+            backgroundSimulation.Start(input);
         }
 
         private void stopButton_Click(object sender, EventArgs e)

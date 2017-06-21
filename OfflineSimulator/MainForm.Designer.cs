@@ -47,10 +47,8 @@
             this.tbTimeHorizon = new System.Windows.Forms.TextBox();
             this.tbPointsPerSecond = new System.Windows.Forms.TextBox();
             this.lbPointPerSecond = new System.Windows.Forms.Label();
-            this.cbInitialMode = new System.Windows.Forms.ComboBox();
+            this.cbMode = new System.Windows.Forms.ComboBox();
             this.lbInitialMode = new System.Windows.Forms.Label();
-            this.tbToggleTimes = new System.Windows.Forms.TextBox();
-            this.lbToggleTimes = new System.Windows.Forms.Label();
             this.cbInputType = new System.Windows.Forms.ComboBox();
             this.lbInputType = new System.Windows.Forms.Label();
             this.tbStepValues = new System.Windows.Forms.TextBox();
@@ -67,7 +65,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbSimulationState = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.chbTogglerEnabled = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -206,7 +203,7 @@
             this.tbTimeHorizon.Name = "tbTimeHorizon";
             this.tbTimeHorizon.Size = new System.Drawing.Size(75, 20);
             this.tbTimeHorizon.TabIndex = 10;
-            this.tbTimeHorizon.Text = "20";
+            this.tbTimeHorizon.Text = "40";
             this.tbTimeHorizon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbPointsPerSecond
@@ -227,43 +224,25 @@
             this.lbPointPerSecond.TabIndex = 12;
             this.lbPointPerSecond.Text = "Points per second:";
             // 
-            // cbInitialMode
+            // cbMode
             // 
-            this.cbInitialMode.DisplayMember = "Key";
-            this.cbInitialMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbInitialMode.FormattingEnabled = true;
-            this.cbInitialMode.Location = new System.Drawing.Point(102, 19);
-            this.cbInitialMode.Name = "cbInitialMode";
-            this.cbInitialMode.Size = new System.Drawing.Size(75, 21);
-            this.cbInitialMode.TabIndex = 13;
-            this.cbInitialMode.ValueMember = "Value";
+            this.cbMode.DisplayMember = "Key";
+            this.cbMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMode.FormattingEnabled = true;
+            this.cbMode.Location = new System.Drawing.Point(102, 19);
+            this.cbMode.Name = "cbMode";
+            this.cbMode.Size = new System.Drawing.Size(75, 21);
+            this.cbMode.TabIndex = 13;
+            this.cbMode.ValueMember = "Value";
             // 
             // lbInitialMode
             // 
             this.lbInitialMode.AutoSize = true;
             this.lbInitialMode.Location = new System.Drawing.Point(6, 22);
             this.lbInitialMode.Name = "lbInitialMode";
-            this.lbInitialMode.Size = new System.Drawing.Size(63, 13);
+            this.lbInitialMode.Size = new System.Drawing.Size(37, 13);
             this.lbInitialMode.TabIndex = 14;
-            this.lbInitialMode.Text = "Initial mode:";
-            // 
-            // tbToggleTimes
-            // 
-            this.tbToggleTimes.Location = new System.Drawing.Point(101, 69);
-            this.tbToggleTimes.Name = "tbToggleTimes";
-            this.tbToggleTimes.Size = new System.Drawing.Size(75, 20);
-            this.tbToggleTimes.TabIndex = 15;
-            this.tbToggleTimes.Text = "10";
-            this.tbToggleTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lbToggleTimes
-            // 
-            this.lbToggleTimes.AutoSize = true;
-            this.lbToggleTimes.Location = new System.Drawing.Point(6, 72);
-            this.lbToggleTimes.Name = "lbToggleTimes";
-            this.lbToggleTimes.Size = new System.Drawing.Size(70, 13);
-            this.lbToggleTimes.TabIndex = 16;
-            this.lbToggleTimes.Text = "Toggle times:";
+            this.lbInitialMode.Text = "Mode:";
             // 
             // cbInputType
             // 
@@ -309,7 +288,7 @@
             this.tbStepTimes.Name = "tbStepTimes";
             this.tbStepTimes.Size = new System.Drawing.Size(74, 20);
             this.tbStepTimes.TabIndex = 21;
-            this.tbStepTimes.Text = "1, 7, 14";
+            this.tbStepTimes.Text = "1, 15, 30";
             this.tbStepTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbStepTimes
@@ -336,7 +315,7 @@
             this.tbFrequency.Name = "tbFrequency";
             this.tbFrequency.Size = new System.Drawing.Size(74, 20);
             this.tbFrequency.TabIndex = 24;
-            this.tbFrequency.Text = "0.2";
+            this.tbFrequency.Text = "0.1";
             this.tbFrequency.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbOffset
@@ -415,27 +394,14 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.chbTogglerEnabled);
-            this.groupBox3.Controls.Add(this.cbInitialMode);
+            this.groupBox3.Controls.Add(this.cbMode);
             this.groupBox3.Controls.Add(this.lbInitialMode);
-            this.groupBox3.Controls.Add(this.tbToggleTimes);
-            this.groupBox3.Controls.Add(this.lbToggleTimes);
             this.groupBox3.Location = new System.Drawing.Point(12, 254);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(183, 96);
+            this.groupBox3.Size = new System.Drawing.Size(183, 47);
             this.groupBox3.TabIndex = 31;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Control system mode";
-            // 
-            // chbTogglerEnabled
-            // 
-            this.chbTogglerEnabled.AutoSize = true;
-            this.chbTogglerEnabled.Location = new System.Drawing.Point(6, 46);
-            this.chbTogglerEnabled.Name = "chbTogglerEnabled";
-            this.chbTogglerEnabled.Size = new System.Drawing.Size(134, 17);
-            this.chbTogglerEnabled.TabIndex = 17;
-            this.chbTogglerEnabled.Text = "Mode toggling enabled";
-            this.chbTogglerEnabled.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -443,7 +409,7 @@
             this.groupBox6.Controls.Add(this.groupBox7);
             this.groupBox6.Controls.Add(this.cbInputType);
             this.groupBox6.Controls.Add(this.lbInputType);
-            this.groupBox6.Location = new System.Drawing.Point(12, 356);
+            this.groupBox6.Location = new System.Drawing.Point(12, 307);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(183, 249);
             this.groupBox6.TabIndex = 34;
@@ -545,10 +511,8 @@
         private System.Windows.Forms.TextBox tbTimeHorizon;
         private System.Windows.Forms.TextBox tbPointsPerSecond;
         private System.Windows.Forms.Label lbPointPerSecond;
-        private System.Windows.Forms.ComboBox cbInitialMode;
+        private System.Windows.Forms.ComboBox cbMode;
         private System.Windows.Forms.Label lbInitialMode;
-        private System.Windows.Forms.TextBox tbToggleTimes;
-        private System.Windows.Forms.Label lbToggleTimes;
         private System.Windows.Forms.ComboBox cbInputType;
         private System.Windows.Forms.Label lbInputType;
         private System.Windows.Forms.TextBox tbStepValues;
@@ -569,7 +533,6 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.CheckBox chbTogglerEnabled;
     }
 }
 

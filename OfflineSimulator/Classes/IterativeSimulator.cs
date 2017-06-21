@@ -19,8 +19,6 @@ namespace OfflineSimulator
         public WavesGenerator WavesGenerator { get; private set; }
         public SignalType waveType;
 
-        public ControlSystemModeToggler ModeToggler { get; private set; }
-
         public IterativeSimulator()
         {
             var system = SystemAndController.GetSystem();
@@ -28,7 +26,6 @@ namespace OfflineSimulator
 
             System = new ControlSystem(system, controller);
             WavesGenerator = new WavesGenerator();
-            ModeToggler = new ControlSystemModeToggler();
         }
 
         public int PrepareSimulation(double time, double dt)
