@@ -46,11 +46,11 @@ namespace OfflineSimulator
 
         private void InitComboboxes()
         {
-            var modes = Utils.EnumToDict<ControlSystemMode>();
+            var modes = EnumUtilities.EnumToDict<ControlSystemMode>();
             cbMode.DataSource = new BindingSource(modes, null);
             cbMode.SelectedValue = ControlSystemMode.CloseLoop;
 
-            var waves = Utils.EnumToDict<SignalType>();
+            var waves = EnumUtilities.EnumToDict<SignalType>();
             cbInputType.DataSource = new BindingSource(waves, null);
             cbInputType.SelectedValue = SignalType.Steps;
         }

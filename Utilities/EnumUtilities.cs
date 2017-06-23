@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OfflineSimulator
 {
-    public class Utils
+    public class EnumUtilities
     {
         public static Dictionary<string, T> EnumToDict<T>()
         {

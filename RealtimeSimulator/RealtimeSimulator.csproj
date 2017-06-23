@@ -56,6 +56,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageBoxEx.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -87,9 +88,21 @@
     <Content Include="jt_icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JTControlSystemChart\JTControlSystemChart.csproj">
+      <Project>{67240B99-9D8E-4ED3-B6DD-102D60722E28}</Project>
+      <Name>JTControlSystemChart</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JTControlSystem\JTControlSystem.csproj">
+      <Project>{687FC768-AD47-4A82-AEA7-B1006C01576F}</Project>
+      <Name>JTControlSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MicroLibrary\MicroLibrary.csproj">
       <Project>{C0A0B500-A54C-4B93-9701-5433CF50BEEB}</Project>
       <Name>MicroLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{B2691622-3ED6-4B3A-BA35-4F6567CA09F8}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

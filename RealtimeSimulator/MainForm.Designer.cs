@@ -39,6 +39,12 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbControllerOutput = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tbSystemOutput = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbInput = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.tbTime = new System.Windows.Forms.TextBox();
             this.lbTime = new System.Windows.Forms.Label();
             this.lbIteration = new System.Windows.Forms.Label();
@@ -60,19 +66,19 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnSetSteps = new System.Windows.Forms.Button();
-            this.tbValues = new System.Windows.Forms.TextBox();
-            this.tbTimes = new System.Windows.Forms.TextBox();
-            this.tbSetValues = new System.Windows.Forms.TextBox();
-            this.tbSetTimes = new System.Windows.Forms.TextBox();
+            this.tbStepValues = new System.Windows.Forms.TextBox();
+            this.tbStepTimes = new System.Windows.Forms.TextBox();
+            this.tbSetStepValues = new System.Windows.Forms.TextBox();
+            this.tbSetStepTimes = new System.Windows.Forms.TextBox();
             this.cbSignalType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.trbSetvalue = new System.Windows.Forms.TrackBar();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbSetpointValue = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.trbInput = new System.Windows.Forms.TrackBar();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbInputValue = new System.Windows.Forms.TextBox();
             this.rbWavesGenerator = new System.Windows.Forms.RadioButton();
             this.rbManual = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -110,7 +116,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(660, 630);
+            this.chart1.Size = new System.Drawing.Size(750, 628);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
@@ -164,23 +170,83 @@
             this.groupBox2.Controls.Add(this.chart1);
             this.groupBox2.Location = new System.Drawing.Point(237, 82);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(666, 649);
+            this.groupBox2.Size = new System.Drawing.Size(756, 647);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Charts";
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.tbControllerOutput);
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.tbSystemOutput);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.tbInput);
+            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.tbTime);
             this.groupBox3.Controls.Add(this.lbTime);
             this.groupBox3.Controls.Add(this.lbIteration);
             this.groupBox3.Controls.Add(this.tbIteration);
             this.groupBox3.Location = new System.Drawing.Point(237, 27);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(529, 49);
+            this.groupBox3.Size = new System.Drawing.Size(724, 49);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Data";
+            // 
+            // tbControllerOutput
+            // 
+            this.tbControllerOutput.Location = new System.Drawing.Point(639, 19);
+            this.tbControllerOutput.Name = "tbControllerOutput";
+            this.tbControllerOutput.ReadOnly = true;
+            this.tbControllerOutput.Size = new System.Drawing.Size(75, 20);
+            this.tbControllerOutput.TabIndex = 10;
+            this.tbControllerOutput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(546, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(87, 13);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "Controller output:";
+            // 
+            // tbSystemOutput
+            // 
+            this.tbSystemOutput.Location = new System.Drawing.Point(465, 19);
+            this.tbSystemOutput.Name = "tbSystemOutput";
+            this.tbSystemOutput.ReadOnly = true;
+            this.tbSystemOutput.Size = new System.Drawing.Size(75, 20);
+            this.tbSystemOutput.TabIndex = 8;
+            this.tbSystemOutput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(382, 22);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 13);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "System output:";
+            // 
+            // tbInput
+            // 
+            this.tbInput.Location = new System.Drawing.Point(301, 19);
+            this.tbInput.Name = "tbInput";
+            this.tbInput.ReadOnly = true;
+            this.tbInput.Size = new System.Drawing.Size(75, 20);
+            this.tbInput.TabIndex = 6;
+            this.tbInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(261, 22);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(34, 13);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Input:";
             // 
             // tbTime
             // 
@@ -356,10 +422,10 @@
             this.groupBox8.Controls.Add(this.label8);
             this.groupBox8.Controls.Add(this.label7);
             this.groupBox8.Controls.Add(this.btnSetSteps);
-            this.groupBox8.Controls.Add(this.tbValues);
-            this.groupBox8.Controls.Add(this.tbTimes);
-            this.groupBox8.Controls.Add(this.tbSetValues);
-            this.groupBox8.Controls.Add(this.tbSetTimes);
+            this.groupBox8.Controls.Add(this.tbStepValues);
+            this.groupBox8.Controls.Add(this.tbStepTimes);
+            this.groupBox8.Controls.Add(this.tbSetStepValues);
+            this.groupBox8.Controls.Add(this.tbSetStepTimes);
             this.groupBox8.Location = new System.Drawing.Point(6, 54);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(195, 101);
@@ -395,48 +461,50 @@
             this.btnSetSteps.UseVisualStyleBackColor = true;
             this.btnSetSteps.Click += new System.EventHandler(this.btnSetSteps_Click);
             // 
-            // tbValues
+            // tbStepValues
             // 
-            this.tbValues.Location = new System.Drawing.Point(68, 45);
-            this.tbValues.Name = "tbValues";
-            this.tbValues.Size = new System.Drawing.Size(55, 20);
-            this.tbValues.TabIndex = 4;
-            this.tbValues.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbStepValues.Location = new System.Drawing.Point(68, 45);
+            this.tbStepValues.Name = "tbStepValues";
+            this.tbStepValues.Size = new System.Drawing.Size(55, 20);
+            this.tbStepValues.TabIndex = 4;
+            this.tbStepValues.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // tbTimes
+            // tbStepTimes
             // 
-            this.tbTimes.Location = new System.Drawing.Point(68, 19);
-            this.tbTimes.Name = "tbTimes";
-            this.tbTimes.Size = new System.Drawing.Size(55, 20);
-            this.tbTimes.TabIndex = 3;
-            this.tbTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbStepTimes.Location = new System.Drawing.Point(68, 19);
+            this.tbStepTimes.Name = "tbStepTimes";
+            this.tbStepTimes.Size = new System.Drawing.Size(55, 20);
+            this.tbStepTimes.TabIndex = 3;
+            this.tbStepTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // tbSetValues
+            // tbSetStepValues
             // 
-            this.tbSetValues.Location = new System.Drawing.Point(129, 45);
-            this.tbSetValues.Name = "tbSetValues";
-            this.tbSetValues.ReadOnly = true;
-            this.tbSetValues.Size = new System.Drawing.Size(60, 20);
-            this.tbSetValues.TabIndex = 2;
-            this.tbSetValues.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbSetStepValues.Location = new System.Drawing.Point(129, 45);
+            this.tbSetStepValues.Name = "tbSetStepValues";
+            this.tbSetStepValues.ReadOnly = true;
+            this.tbSetStepValues.Size = new System.Drawing.Size(60, 20);
+            this.tbSetStepValues.TabIndex = 2;
+            this.tbSetStepValues.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // tbSetTimes
+            // tbSetStepTimes
             // 
-            this.tbSetTimes.Location = new System.Drawing.Point(129, 19);
-            this.tbSetTimes.Name = "tbSetTimes";
-            this.tbSetTimes.ReadOnly = true;
-            this.tbSetTimes.Size = new System.Drawing.Size(60, 20);
-            this.tbSetTimes.TabIndex = 1;
-            this.tbSetTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbSetStepTimes.Location = new System.Drawing.Point(129, 19);
+            this.tbSetStepTimes.Name = "tbSetStepTimes";
+            this.tbSetStepTimes.ReadOnly = true;
+            this.tbSetStepTimes.Size = new System.Drawing.Size(60, 20);
+            this.tbSetStepTimes.TabIndex = 1;
+            this.tbSetStepTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cbSignalType
             // 
+            this.cbSignalType.DisplayMember = "Key";
             this.cbSignalType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSignalType.FormattingEnabled = true;
             this.cbSignalType.Location = new System.Drawing.Point(76, 27);
             this.cbSignalType.Name = "cbSignalType";
             this.cbSignalType.Size = new System.Drawing.Size(125, 21);
             this.cbSignalType.TabIndex = 2;
+            this.cbSignalType.ValueMember = "Value";
             this.cbSignalType.SelectedIndexChanged += new System.EventHandler(this.cbSignalType_SelectedIndexChanged);
             // 
             // label3
@@ -451,11 +519,11 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.trbSetvalue);
-            this.groupBox6.Controls.Add(this.textBox2);
+            this.groupBox6.Controls.Add(this.tbSetpointValue);
             this.groupBox6.Controls.Add(this.label2);
             this.groupBox6.Controls.Add(this.label1);
             this.groupBox6.Controls.Add(this.trbInput);
-            this.groupBox6.Controls.Add(this.textBox1);
+            this.groupBox6.Controls.Add(this.tbInputValue);
             this.groupBox6.Location = new System.Drawing.Point(6, 42);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(207, 157);
@@ -472,14 +540,14 @@
             this.trbSetvalue.TabIndex = 9;
             this.trbSetvalue.Scroll += new System.EventHandler(this.trbSetvalue_Scroll);
             // 
-            // textBox2
+            // tbSetpointValue
             // 
-            this.textBox2.Location = new System.Drawing.Point(126, 86);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(75, 20);
-            this.textBox2.TabIndex = 8;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbSetpointValue.Location = new System.Drawing.Point(126, 86);
+            this.tbSetpointValue.Name = "tbSetpointValue";
+            this.tbSetpointValue.ReadOnly = true;
+            this.tbSetpointValue.Size = new System.Drawing.Size(75, 20);
+            this.tbSetpointValue.TabIndex = 8;
+            this.tbSetpointValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label2
             // 
@@ -508,14 +576,14 @@
             this.trbInput.TabIndex = 2;
             this.trbInput.Scroll += new System.EventHandler(this.trbInput_Scroll);
             // 
-            // textBox1
+            // tbInputValue
             // 
-            this.textBox1.Location = new System.Drawing.Point(126, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(75, 20);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbInputValue.Location = new System.Drawing.Point(126, 19);
+            this.tbInputValue.Name = "tbInputValue";
+            this.tbInputValue.ReadOnly = true;
+            this.tbInputValue.Size = new System.Drawing.Size(75, 20);
+            this.tbInputValue.TabIndex = 6;
+            this.tbInputValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // rbWavesGenerator
             // 
@@ -552,12 +620,14 @@
             // 
             // cbMode
             // 
+            this.cbMode.DisplayMember = "Key";
             this.cbMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMode.FormattingEnabled = true;
             this.cbMode.Location = new System.Drawing.Point(79, 19);
             this.cbMode.Name = "cbMode";
             this.cbMode.Size = new System.Drawing.Size(134, 21);
             this.cbMode.TabIndex = 1;
+            this.cbMode.ValueMember = "Value";
             this.cbMode.SelectedIndexChanged += new System.EventHandler(this.cbMode_SelectedIndexChanged);
             // 
             // lbMode
@@ -576,7 +646,7 @@
             this.miVisualization});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(915, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1005, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -598,7 +668,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(915, 743);
+            this.ClientSize = new System.Drawing.Size(1005, 741);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -655,9 +725,9 @@
         private System.Windows.Forms.ComboBox cbMode;
         private System.Windows.Forms.Label lbMode;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbInputValue;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbSetpointValue;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox9;
@@ -675,10 +745,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnSetSteps;
-        private System.Windows.Forms.TextBox tbValues;
-        private System.Windows.Forms.TextBox tbTimes;
-        private System.Windows.Forms.TextBox tbSetValues;
-        private System.Windows.Forms.TextBox tbSetTimes;
+        private System.Windows.Forms.TextBox tbStepValues;
+        private System.Windows.Forms.TextBox tbStepTimes;
+        private System.Windows.Forms.TextBox tbSetStepValues;
+        private System.Windows.Forms.TextBox tbSetStepTimes;
         private System.Windows.Forms.ComboBox cbSignalType;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TrackBar trbSetvalue;
@@ -686,6 +756,12 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem miSettings;
         private System.Windows.Forms.ToolStripMenuItem miVisualization;
+        private System.Windows.Forms.TextBox tbControllerOutput;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tbSystemOutput;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbInput;
+        private System.Windows.Forms.Label label9;
     }
 }
 
