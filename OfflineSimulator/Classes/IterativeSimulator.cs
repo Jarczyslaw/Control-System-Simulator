@@ -28,15 +28,13 @@ namespace OfflineSimulator
             WavesGenerator = new WavesGenerator();
         }
 
-        public int PrepareSimulation(double time, double dt)
+        public void PrepareSimulation(double dt)
         {
             System.Initialize(dt);
             System.mode = initialMode;
 
             this.dt = dt;
             Iteration = 0;
-
-            return (int)Math.Floor(time / dt) + 1;
         }
 
         public void NextIteration()

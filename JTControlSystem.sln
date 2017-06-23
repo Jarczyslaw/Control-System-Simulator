@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTControlSystem", "JTControlSystem\JTControlSystem.csproj", "{687FC768-AD47-4A82-AEA7-B1006C01576F}"
 EndProject
@@ -29,6 +29,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTControlSystemChart", "JTControlSystemChart\JTControlSystemChart.csproj", "{67240B99-9D8E-4ED3-B6DD-102D60722E28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfflineSimulator", "OfflineSimulator\OfflineSimulator.csproj", "{F2E251C6-B493-448C-947A-2FA2F2CBD0E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealtimeSimulator", "RealtimeSimulator\RealtimeSimulator.csproj", "{1200698A-175E-4DA6-8228-FCAC275C905B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -124,6 +126,14 @@ Global
 		{F2E251C6-B493-448C-947A-2FA2F2CBD0E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F2E251C6-B493-448C-947A-2FA2F2CBD0E2}.Release|x86.ActiveCfg = Release|Any CPU
 		{F2E251C6-B493-448C-947A-2FA2F2CBD0E2}.Release|x86.Build.0 = Release|Any CPU
+		{1200698A-175E-4DA6-8228-FCAC275C905B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1200698A-175E-4DA6-8228-FCAC275C905B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1200698A-175E-4DA6-8228-FCAC275C905B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1200698A-175E-4DA6-8228-FCAC275C905B}.Debug|x86.Build.0 = Debug|Any CPU
+		{1200698A-175E-4DA6-8228-FCAC275C905B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1200698A-175E-4DA6-8228-FCAC275C905B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1200698A-175E-4DA6-8228-FCAC275C905B}.Release|x86.ActiveCfg = Release|Any CPU
+		{1200698A-175E-4DA6-8228-FCAC275C905B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

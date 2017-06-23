@@ -75,11 +75,11 @@ namespace OfflineSimulator
             double timeStep = input.timeStep;
             IterativeSimulator simulator = input.iterativeSimulator;
 
-            int iterations = 0;
+            int iterations = (int)Math.Floor(timeHorizon / timeStep) + 1;
             var executionTime = ExecTime.Run(() =>
             {
                 // first iteration - simulation initialization
-                iterations = simulator.PrepareSimulation(timeHorizon, timeStep);
+                simulator.PrepareSimulation(timeStep);
                 progressCounter.Initialize(iterations);
                 progressCounter.NextIteration();
 
