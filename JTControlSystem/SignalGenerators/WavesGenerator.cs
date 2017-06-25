@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace JTControlSystem.SignalGenerators
 {
-    public class WavesGenerator
+    public class SignalsGenerator
     {
         private Dictionary<SignalType, ISignalGenerator> generators;
 
-        public WavesGenerator()
+        public SignalsGenerator()
         {
             generators = new Dictionary<SignalType, ISignalGenerator>();
             generators.Add(SignalType.Steps, new StepsGenerator());

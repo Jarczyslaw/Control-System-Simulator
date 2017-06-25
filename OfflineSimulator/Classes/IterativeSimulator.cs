@@ -16,7 +16,7 @@ namespace OfflineSimulator
         public ControlSystem System { get; private set; }
         public ControlSystemMode initialMode;
 
-        public WavesGenerator WavesGenerator { get; private set; }
+        public SignalsGenerator SignalGenerator { get; private set; }
         public SignalType waveType;
 
         public IterativeSimulator()
@@ -25,7 +25,7 @@ namespace OfflineSimulator
             var controller = SystemAndController.GetController();
 
             System = new ControlSystem(system, controller);
-            WavesGenerator = new WavesGenerator();
+            SignalGenerator = new SignalsGenerator();
         }
 
         public void PrepareSimulation(double dt)
@@ -40,7 +40,7 @@ namespace OfflineSimulator
         public void NextIteration()
         {
             Iteration++;
-            var inputSample = WavesGenerator.GetSample(waveType, CurrentTime);
+            var inputSample = SignalGenerator.GetSample(waveType, CurrentTime);
             System.NextIteration(inputSample.value, CurrentTime, dt);
         }
 

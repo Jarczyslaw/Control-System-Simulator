@@ -11,11 +11,11 @@ namespace JTControlSystemChart
 {
     public class ControlChart
     {
-        private Chart chart;
+        public ControlChartArea inputArea { get; private set; }
+        public ControlChartArea systemOutputArea { get; private set; }
+        public ControlChartArea controllerOutputArea { get; private set; }
 
-        private ControlChartArea inputArea;
-        private ControlChartArea systemOutputArea;
-        private ControlChartArea controllerOutputArea;
+        private Chart chart;
 
         public ControlChart(Chart chart) : this(chart, 0) { }
 
@@ -23,18 +23,20 @@ namespace JTControlSystemChart
         {
             this.chart = chart;
 
-            ClearChart();
+            chart.ChartAreas.Clear();
+            chart.Legends.Clear();
+            chart.Series.Clear();
 
             inputArea = new ControlChartArea(chart, "Input", Color.Red, capacity);
             systemOutputArea = new ControlChartArea(chart, "System output", Color.Green, capacity);
             controllerOutputArea = new ControlChartArea(chart, "Controller output", Color.Blue, capacity);
         }
 
-        private void ClearChart()
+        public void Clear()
         {
-            chart.ChartAreas.Clear();
-            chart.Legends.Clear();
-            chart.Series.Clear();
+            inputArea.Clear();
+            systemOutputArea.Clear();
+            controllerOutputArea.Clear();
         }
 
         public void AddPoint(ControlSystemDataSample data)
@@ -64,6 +66,20 @@ namespace JTControlSystemChart
             inputArea.FitXAxisToSeries();
             systemOutputArea.FitXAxisToSeries();
             controllerOutputArea.FitXAxisToSeries();
+        }
+
+        public void SetYAxis(double min, double max)
+        {
+            inputArea.SetYAxis(min, max);
+            systemOutputArea.SetYAxis(min, max);
+            controllerOutputArea.SetYAxis(min, max);
+        }
+
+        public void SetXAxisHorizon(double horizon)
+        {
+            inputArea.SetXAxisHorizon(horizon);
+            systemOutputArea.SetXAxisHorizon(horizon);
+            controllerOutputArea.SetXAxisHorizon(horizon);
         }
     }
 }

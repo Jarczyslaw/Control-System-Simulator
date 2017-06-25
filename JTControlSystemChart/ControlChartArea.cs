@@ -38,10 +38,28 @@ namespace JTControlSystemChart
             series.Points.Clear();
         }
 
+        public void SetYAxis(double min, double max)
+        {
+            chartArea.AxisY.Minimum = min;
+            chartArea.AxisY.Maximum = max;
+        }
+
         public void FitXAxisToSeries()
         {
             chartArea.AxisX.Minimum = series.Points.Min(p => p.XValue);
             chartArea.AxisX.Maximum = series.Points.Max(p => p.XValue);
+            chartArea.RecalculateAxesScale();
+        }
+
+        public void SetXAxisHorizon(double horizon)
+        {
+            double startTime = 0d;
+            if (series.Points.Count != 0)
+                startTime = series.Points[0].XValue;
+
+            double endTime = startTime + horizon;
+            chartArea.AxisX.Minimum = startTime;
+            chartArea.AxisX.Maximum = endTime;
             chartArea.RecalculateAxesScale();
         }
     }

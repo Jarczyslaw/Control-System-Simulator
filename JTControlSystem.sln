@@ -31,6 +31,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfflineSimulator", "OfflineSimulator\OfflineSimulator.csproj", "{F2E251C6-B493-448C-947A-2FA2F2CBD0E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealtimeSimulator", "RealtimeSimulator\RealtimeSimulator.csproj", "{1200698A-175E-4DA6-8228-FCAC275C905B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{67240B99-9D8E-4ED3-B6DD-102D60722E28} = {67240B99-9D8E-4ED3-B6DD-102D60722E28}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -83,7 +83,7 @@ namespace OfflineSimulator
                 progressCounter.Initialize(iterations);
                 progressCounter.NextIteration();
 
-                // perform calculation
+                // perform calculations
                 for (int i = 1; i < iterations; i++)
                 {
                     if (worker.CancellationPending)

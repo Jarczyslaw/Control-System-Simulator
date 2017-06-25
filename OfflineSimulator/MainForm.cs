@@ -68,12 +68,12 @@ namespace OfflineSimulator
             StepsParametersConverter stepsConverter = new StepsParametersConverter();
             double[] stepTimes, stepValues;
             stepsConverter.Convert(tbStepTimes.Text, tbStepValues.Text, out stepTimes, out stepValues);
-            iterativeSimulator.WavesGenerator.SetStepsParameters(stepTimes, stepValues);
+            iterativeSimulator.SignalGenerator.SetStepsParameters(stepTimes, stepValues);
 
             double frequency, amplitude, offset;
             WavesParametersConverter wavesConverter = new WavesParametersConverter();
             wavesConverter.Convert(tbFrequency.Text, tbAmplitude.Text, tbOffset.Text, out frequency, out amplitude, out offset);
-            iterativeSimulator.WavesGenerator.SetWavesParameters(frequency, amplitude, offset);
+            iterativeSimulator.SignalGenerator.SetWavesParameters(frequency, amplitude, offset);
 
             input.iterativeSimulator = iterativeSimulator;
             return input;

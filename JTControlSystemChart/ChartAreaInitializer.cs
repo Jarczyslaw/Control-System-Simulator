@@ -32,7 +32,8 @@ namespace JTControlSystemChart
         {
             var area = new ChartArea(title + "ChartArea");
             chart.ChartAreas.Add(area);
-            area.AxisX.LabelStyle.Format = "{0.00}";
+            area.AxisX.LabelStyle.Format = "{0.0}";
+            area.AxisY.LabelStyle.Format = "{0.00}";
             return area;
         }
 
