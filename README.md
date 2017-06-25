@@ -16,6 +16,66 @@ To perform simulation you need to follow a few steps:
   - use Simulate class to perform step simulation (or use signal generator)
   
 ## Examples
+###### Example setup
+```cs
+using JTControlSystem;
+using JTControlSystem.Controllers;
+using JTControlSystem.Models;
+using JTControlSystem.SignalGenerators;
+using JTControlSystem.Solvers;
+using JTControlSystem.Systems;
+using JTMath;
+
+namespace ConsoleApp1
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      // model definition as state space equations
+      var A = new Matrix(new double[,] { { 0d, 1d }, { -2d, -3d } });
+      var B = new Vector(new double[] { 0, 4 });
+      var C = new Vector(new double[] { 1, 0 });
+      var D = 0d;
+      IContinousModel model = new StateSpaceModel(A, B, C, D);
+      // initial state - watch out on Vectors' sizes!
+      var initialState = new Vector(new double[] { 1d, 0d });
+
+      // use Runge-Kutty 4th solver
+      ISolver solver = new SolverRK4();
+
+      // create continous system from above components
+      ISystem system = new ContinousSystem(model, solver, initialState);
+
+      // structure with system itself
+      var bareSystem = new BareSystem(system);
+
+      // use step series as input
+      ISignalGenerator steps = new StepsGenerator(new double[] { 0d, 5d, 10d }, new double[] { 2d, -2d, 2d });
+
+      // simulation
+      Simulate.Signal(bareSystem, 15d, 0.01d, steps);
+
+      // write data to file
+      FileWriter.ToFile(bareSystem.Data, @"C://bareSystem.txt");
+
+
+      // add controller
+      IController controller = new PID(4.2382d, 1.5278d, 0.1868d);
+
+      // structure with system and controller with feedback
+      var closeLoop = new CloseLoop(system, controller);
+
+      // simulation
+      Simulate.Signal(closeLoop, 15d, 0.01d, steps);
+
+      // write data to file
+      FileWriter.ToFile(closeLoop.Data, @"C://closeLoop.txt");
+    }
+  }
+}
+```
+
 ###### Bare system
 ```CSharp
 IContinousModel model = new ContinousSecondOrder(2d, 1d, 3d);
@@ -91,10 +151,21 @@ You can also save generated data to file.
   
 To see how it works, see this video:
 
-[![OfflineSimulator](https://img.youtube.com/vi/eZBIIx9ZL-U/0.jpg)](https://www.youtube.com/watch?v=eZBIIx9ZL-U)
+[![Offline Simulator](https://img.youtube.com/vi/eZBIIx9ZL-U/0.jpg)](https://www.youtube.com/watch?v=eZBIIx9ZL-U)
 
 ## RealtimeSimulator
 
-Performs simulation in realtime. You can specify some parameters like input source, input type or current ControlSystem's mode. To see how it works take a look at this video:
+Performs simulation in realtime. You can tune parameters like:
+  - input type (generator or manual sliders)
+  - control system mode (open, close)
+  - see the code, you can tune simulation step and UI refresh step
 
-[![RealtimeSimulator](https://img.youtube.com/vi/k_87pImObNM/0.jpg)](https://www.youtube.com/watch?v=k_87pImObNM)
+To see how it works take a look at this video:
+
+[![Realtime Simulator](https://img.youtube.com/vi/k_87pImObNM/0.jpg)](https://www.youtube.com/watch?v=k_87pImObNM)
+
+## SolversTest
+
+To test solvers performance and accuracy, SolversTest project was created. You can define your own differential equation to check which solver is better. Example result are shown below:
+
+[![solvers test](http://jtjt.pl/www/pages/symulator-obiektow-dynamicznych/symulator_obiektow_1.png)]
