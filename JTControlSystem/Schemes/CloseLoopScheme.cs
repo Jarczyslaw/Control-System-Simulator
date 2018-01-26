@@ -29,7 +29,7 @@ namespace JTControlSystem
         {
             double error = input - previousSystemOutput;
             double controllerOutput = controller.NextIteration(error, previousSystemOutput, dt);
-            double systemOutput = system.NextIteration(controllerOutput, currentTime - dt, dt);
+            double systemOutput = system.NextIteration(controllerOutput, currentTime, dt);
             CloseLoopDataSample dataSample = new CloseLoopDataSample()
             {
                 time = currentTime,

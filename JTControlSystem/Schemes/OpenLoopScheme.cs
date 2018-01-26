@@ -26,7 +26,7 @@ namespace JTControlSystem
         public OpenLoopDataSample NextIteration(double input, double currentTime, double dt)
         {
             double controllerOutput = controller.NextIteration(input, 0d, dt);
-            double systemOutput = system.NextIteration(controllerOutput, currentTime - dt, dt);
+            double systemOutput = system.NextIteration(controllerOutput, currentTime, dt);
             OpenLoopDataSample dataSample = new OpenLoopDataSample()
             {
                 time = currentTime,

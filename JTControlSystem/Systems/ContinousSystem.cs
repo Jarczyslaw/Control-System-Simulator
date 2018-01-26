@@ -28,7 +28,7 @@ namespace JTControlSystem.Systems
 
         public double NextIteration(double input, double time, double dt)
         {
-            state = solver.Solve(model.DifferentialEquations, state, input, time, dt);
+            state = solver.Solve(model.DifferentialEquations, state, input, time - dt, dt);
             double output = model.OutputEquation(state, input);
             return transportDelay.NextStep(output);
         }

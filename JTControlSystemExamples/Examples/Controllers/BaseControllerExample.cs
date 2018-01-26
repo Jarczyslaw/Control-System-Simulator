@@ -36,6 +36,6 @@ namespace JTControlSystemExamples
             data = loop.Data;
         }
 
-        public abstract  IController GetController(); 
+        public abstract IController GetController(); 
     }
 }
