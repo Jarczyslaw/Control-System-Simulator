@@ -6,6 +6,7 @@ using JTControlSystem.Systems;
 using JTMath;
 using NUnit.Framework;
 using System;
+using System.IO;
 
 namespace JTControlSystemTests
 {
@@ -16,7 +17,7 @@ namespace JTControlSystemTests
         private ISystem system;
         private IController controller;
 
-        private string projectPath = @"Y:\JTControlSystem\JTControlSystemTests";
+        private string projectPath = Directory.GetCurrentDirectory() + @"\JTControlSystemTests";
 
         [SetUp]
         public void Init()
@@ -29,7 +30,7 @@ namespace JTControlSystemTests
         [Test]
         public void BareSystemTest()
         {
-            var reference = ReferenceDataLoader.Load(projectPath + @"/LoopReferenceData/Bare/reference_data.txt");
+            var reference = ReferenceDataLoader.Load(projectPath + @"\LoopReferenceData\Bare\reference_data.txt");
 
             BareSystem loop = new BareSystem(system);
             Simulate.Step(loop, 10d, 0.1d);
