@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JTMath;
+﻿using JTMath;
 
 namespace JTControlSystem.Models
 {
@@ -13,6 +8,7 @@ namespace JTControlSystem.Models
     Transferfunction: K(z) = (0.5z + 1)/(z^3 -0.5z^2 - 0.2z - 0.2)
     Difference equation: y(i) = 0.5y(i-1) + 0.2y(i-2) + 0.2y(i-3) + 0.5u(i-2) + u(i-3)
     */
+
     public class AutoRegressive : IDiscreteModel
     {
         private Vector B = new Vector(new double[] { 0.5d, 1d });
@@ -20,7 +16,12 @@ namespace JTControlSystem.Models
 
         public AutoRegressive()
         {
+        }
 
+        public AutoRegressive(Vector nominator, Vector denominator)
+        {
+            B = nominator;
+            A = denominator;
         }
 
         public int GetInputOrder
